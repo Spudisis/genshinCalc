@@ -1,0 +1,44 @@
+@import "../../style/scss/mixin.scss";
+@import "../../style/scss/values.scss";
+.root {
+  height: 100px;
+  box-shadow: 0px 5px 5px rgb(207, 205, 205);
+  margin-bottom: 30px;
+}
+.wrapper {
+  @include wrapper;
+  background-color: white;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  height: 100%;
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
+.logo:hover {
+  transform: scale(1.1);
+}
+.links {
+  display: flex;
+  .buttonOpenModal {
+    display: flex;
+    position: relative;
+  }
+  .auth {
+    margin-left: 20px;
+
+    @include button;
+    background-color: $colorButton;
+    color: white;
+    cursor: pointer;
+  }
+  .auth:hover {
+    transform: scale(1.1);
+    background-color: $colorButtonHover;
+  }
+}

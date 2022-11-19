@@ -1,0 +1,41 @@
+@import "../../style/scss/mixin";
+@import "../../style/scss/values.scss";
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  height: 100%;
+  justify-content: space-between;
+}
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+  border-bottom: 2px solid black;
+  label {
+    color: rgba(0, 0, 0, 0.393);
+  }
+  input {
+    border: none;
+    outline: none;
+  }
+  .errorMessage {
+    position: absolute;
+    top: 50px;
+    color: red;
+    font-size: 12px;
+  }
+  .errorMessage::before {
+    content: "*";
+  }
+}
+.submitButton {
+  @include button;
+  background-color: $colorButton;
+  color: white;
+}
+.submitButton:hover {
+  background-color: $colorButtonHover;
+}

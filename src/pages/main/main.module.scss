@@ -1,0 +1,5 @@
+@import "../../style/scss/mixin.scss";
+
+.root {
+  @include wrapper;
+}

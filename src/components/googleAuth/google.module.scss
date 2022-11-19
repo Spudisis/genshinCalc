@@ -1,0 +1,22 @@
+@import "../../style/scss/mixin.scss";
+@import "../../style/scss/values.scss";
+.button {
+  @include button;
+  border-radius: 0px 0px 15px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  font-size: 18px;
+  background-color: $colorButton;
+  color: white;
+  svg {
+    margin-left: 10px;
+    font-size: 30px;
+  }
+}
+.button:hover {
+  svg {
+    color: orange;
+  }
+}
