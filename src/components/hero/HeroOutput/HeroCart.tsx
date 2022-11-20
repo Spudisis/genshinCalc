@@ -9,22 +9,30 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import error from "../../../assets/errorImg.png";
+import { FindImage } from "../findImageJson";
 export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
-
-  const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
-  const [primogems, setPrimogems] = React.useState(0);
-  const [countGemsPlus, setAddPrimogems] = React.useState(0);
-  const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
-
-  const [deleteItem, setDeleteItem] = React.useState(false);
-  const [imageCheck, setImageCheck] = React.useState(image);
   React.useEffect(() => {
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
     if (count) {
       setObj(count);
     }
+    const a = FindImage(image);
+    if (a) {
+      setImagefind(a ? true : false);
+      setImageCheck(a.img);
+    }
   }, [countStart]);
+
+  const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
+  const [primogems, setPrimogems] = React.useState(0);
+  const [countGemsPlus, setAddPrimogems] = React.useState(0);
+  const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
+  const [deleteItem, setDeleteItem] = React.useState(false);
+
+  const [imageFind, setImagefind] = React.useState(false); //если изображение с сайта, а не ссылка
+  const [imageCheck, setImageCheck] = React.useState(image); //изображение лежит
+
   React.useEffect(() => {
     if (primogems && obj.countSave) {
       setPrimogemsMinusSumm(primogems - obj.countSave);
@@ -60,7 +68,11 @@ export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, i
     <div className={s.item}>
       <div className={s.info}>
         <div className={s.mainInfoCart}>
-          <img src={imageCheck} alt="" onError={() => setImageCheck(error)} />
+          <img
+            src={imageFind ? require("../../../assets/heroes/" + imageCheck) : imageCheck}
+            alt=""
+            onError={() => setImageCheck(error)}
+          />
           <div className={s.inputs}>
             <div className={s.countPrimo}>
               <label htmlFor="gemsNow">Сколько гемов</label>

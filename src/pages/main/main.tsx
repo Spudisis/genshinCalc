@@ -7,10 +7,10 @@ import { getPerson } from "../../redux/slices/person";
 import { storeItem } from "../../redux/types/items";
 import s from "./main.module.scss";
 export const Main = () => {
-  const { store } = useSelector(getPerson);
+  const { uid } = useSelector(getPerson);
   return (
     <div className={s.root}>
-      <CreateHero />
+      {uid && <CreateHero />}
       <HeroList />
     </div>
   );

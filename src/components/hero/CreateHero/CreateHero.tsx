@@ -6,14 +6,28 @@ import { getPerson, addStore } from "../../../redux/slices/person";
 import { useSelector } from "react-redux";
 import { UpdateStore } from "../../../firebase/update/updateStoreUser";
 import { getNumberOfDays } from "../../calculator/getNumberOfDays";
+import { SelectHero } from "../selectImgHero/selectHero";
 export const CreateHero = () => {
   const id = React.useId();
   const dispath = useAppDispatch();
   const { uid, store } = useSelector(getPerson);
 
+  const [focusDateStart, setDocusDateStart] = React.useState(false);
+  const [focusDateEnd, setfocusDateEnd] = React.useState(false);
+  const [focusPrimogemsOfDay, setfocusPrimogemsOfDay] = React.useState(false);
+  const [focusPrimogemsStart, setfocusPrimogemsStart] = React.useState(false);
+  const [focusHrefImg, setfocusHrefImg] = React.useState(false);
+
+  const [ViewListHeroes, setViewListHeroes] = React.useState(false);
+  const [selectImg, setSelectImg] = React.useState("");
   React.useEffect(() => {
     if (uid && store.length !== 0) UpdateStore({ uid, store });
   }, [store]);
+
+  const handleChange = (e: any) => {
+    const value = e.target.value;
+    setSelectImg(value);
+  };
   return (
     <>
       <Formik
@@ -24,8 +38,10 @@ export const CreateHero = () => {
             const { dateStart, dateEnd } = values;
             const dateEndParse = getNumberOfDays({ dateStart, dateEnd });
             if (dateEndParse < 0) {
-              errors.dateEnd = "Начало не может быть после конца";
+              errors.dateStart = "Начало не может быть после конца";
             }
+          } else {
+            errors.dateStart = "Укажите дату";
           }
           if (values.countPrimogems < 0) {
             errors.countPrimogems = "Не может быть меньше 0";
@@ -33,46 +49,125 @@ export const CreateHero = () => {
           if (values.countStart < 0) {
             errors.countStart = "Не может быть меньше 0";
           }
+
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+        onSubmit={(values, { resetForm }) => {
+          if (!values.image) {
+            values.image = selectImg;
+          }
 
           const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
 
           dispath(addStore({ id, ...values }));
+          console.log(values);
+          resetForm();
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, isValid }) => (
           <Form className={s.form}>
             <div className={s.inputs}>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "dateStart"}>Дата начала</label>
+                <label
+                  htmlFor={id + "dateStart"}
+                  onMouseEnter={() => setDocusDateStart(true)}
+                  onMouseLeave={() => setDocusDateStart(false)}
+                >
+                  Дата начала
+                </label>
                 <Field type="date" name="dateStart" id={id + "dateStart"} placeholder="Дата" />
                 <ErrorMessage name="dateStart" component="div" className={s.errorMessage} />
+                {focusDateStart && (
+                  <div className={s.infoSide}>
+                    <p>Дата, с которой начнется накопление примогемов</p>
+                  </div>
+                )}
               </div>
+
               <div className={s.inputBlock}>
-                <label htmlFor={id + "dateEnd"}>Дата конца*</label>
+                <label
+                  htmlFor={id + "dateEnd"}
+                  onMouseEnter={() => setfocusDateEnd(true)}
+                  onMouseLeave={() => setfocusDateEnd(false)}
+                >
+                  Дата конца*
+                </label>
                 <Field type="date" name="dateEnd" id={id + "dateEnd"} placeholder="Дата" />
                 <ErrorMessage name="dateEnd" component="div" className={s.errorMessage} />
+                {focusDateEnd && (
+                  <div className={s.infoSide}>
+                    <p>Дата, когда закончится накопление гемов (необязательное поле)</p>
+                  </div>
+                )}
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "countPrimogems"}>Откладывать в день</label>
+                <label
+                  htmlFor={id + "countPrimogems"}
+                  onMouseEnter={() => setfocusPrimogemsOfDay(true)}
+                  onMouseLeave={() => setfocusPrimogemsOfDay(false)}
+                >
+                  Откладывать в день
+                </label>
                 <Field type="number" name="countPrimogems" id={id + "countPrimogems"} placeholder="Число" />
                 <ErrorMessage name="countPrimogems" component="div" className={s.errorMessage} />
+                {focusPrimogemsOfDay && (
+                  <div className={s.infoSide}>
+                    <p>Количество примогемов, которое вы хотите откладывать ежедневно (можно будет изменить)</p>
+                  </div>
+                )}
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "countStart"}>Со сколько начинаем копить</label>
+                <label
+                  htmlFor={id + "countStart"}
+                  onMouseEnter={() => setfocusPrimogemsStart(true)}
+                  onMouseLeave={() => setfocusPrimogemsStart(false)}
+                >
+                  Со сколько начинаем копить
+                </label>
                 <Field type="number" name="countStart" id={id + "countStart"} placeholder="Число" />
                 <ErrorMessage name="countStart" component="div" className={s.errorMessage} />
+                {focusPrimogemsStart && (
+                  <div className={s.infoSide}>
+                    <p>Изначальное количество примогемов, которое вы хотите отложить</p>
+                  </div>
+                )}
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "image"}>Изображение*</label>
-                <Field type="text" name="image" id={id + "image"} placeholder="Ссылка" />
+                <label
+                  htmlFor={id + "image"}
+                  onMouseEnter={() => setfocusHrefImg(true)}
+                  onMouseLeave={() => setfocusHrefImg(false)}
+                >
+                  Изображение*
+                </label>
+                <Field
+                  type="text"
+                  name="image"
+                  id={id + "image"}
+                  placeholder="Ссылка"
+                  onChange={(e: any) => {
+                    handleChange(e);
+                  }}
+                  onClick={() => setViewListHeroes(!ViewListHeroes)}
+                  value={selectImg}
+                  autoComplete="off"
+                />
                 <ErrorMessage name="image" component="div" className={s.errorMessage} />
+                {focusHrefImg && (
+                  <div className={s.infoSide}>
+                    <p>Укажите ссылку на картинку или выберите из списка, чтобы не забывать, ради кого копите</p>
+                  </div>
+                )}
+                {ViewListHeroes && (
+                  <SelectHero
+                    setSelectImg={(n: string) => setSelectImg(n)}
+                    setViewListHeroes={(n: boolean) => setViewListHeroes(n)}
+                  />
+                )}
               </div>
             </div>
-            <button className={s.submit} type="submit">
+
+            <button disabled={!isValid} className={s.submit} type="submit">
               Добавить
             </button>
           </Form>

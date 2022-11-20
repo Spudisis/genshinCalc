@@ -2,7 +2,7 @@
 @import "../../../style/scss/values.scss";
 .form {
   display: flex;
-  padding: 10px;
+  padding: 20px 10px;
   border-radius: 15px;
   align-items: center;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.525);
@@ -14,17 +14,46 @@
   .submit:hover {
     background-color: $colorButtonHover;
   }
+  .inputs {
+    display: flex;
+    width: 100%;
+
+    .inputBlock {
+      width: auto;
+      label {
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.497);
+      }
+      label:hover {
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+      }
+
+      input {
+        cursor: pointer;
+        width: auto;
+        border-bottom: 1px solid black;
+      }
+
+      position: relative;
+      .errorMessage {
+        position: absolute;
+        left: 0px;
+        bottom: -18px;
+        color: red;
+        font-size: 12px;
+      }
+    }
+  }
 }
-.inputs {
-  display: flex;
-  input {
-    cursor: pointer;
-  }
-  input:hover {
-    cursor: pointer;
-  }
-  .errorMessage {
-    color: red;
-    font-size: 12px;
-  }
+
+.infoSide {
+  position: absolute;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.629);
+  top: -70px;
+  min-width: 400px;
+  text-align: center;
 }
