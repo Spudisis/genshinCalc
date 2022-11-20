@@ -1,14 +1,14 @@
 import React from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { changeStore, deleteStore } from "../../redux/slices/person";
-import { storeItem } from "../../redux/types/items";
-import { CalcBetween } from "../calculator/calcBetweenDate";
+import { useAppDispatch } from "../../../redux/hooks";
+import { changeStore, deleteStore } from "../../../redux/slices/person";
+import { storeItem } from "../../../redux/types/items";
+import { CalcBetween } from "../../calculator/calcItem";
 import s from "./HeroCart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import error from "../../assets/errorImg.png";
+import error from "../../../assets/errorImg.png";
 export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
 

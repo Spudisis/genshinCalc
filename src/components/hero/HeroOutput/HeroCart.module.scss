@@ -1,4 +1,4 @@
-@import "../../style/scss/mixin";
+@import "../../../style/scss/mixin";
 .item {
   display: flex;
 
@@ -128,10 +128,10 @@
   }
 }
 
-.item:not(:nth-child(4n + 4)) {
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-.item:first-child {
-  margin-left: 0px;
+.item {
+  margin: 10px;
+  @media screen and (max-width: 420px) {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
 }

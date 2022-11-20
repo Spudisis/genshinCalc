@@ -2,6 +2,11 @@
   width: 1170px;
   margin: 0 auto;
 }
+@mixin wrapper1200 {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 5px;
+}
 @mixin button {
   outline: none;
   border: none;

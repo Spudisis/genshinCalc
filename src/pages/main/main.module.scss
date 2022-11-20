@@ -2,4 +2,7 @@
 
 .root {
   @include wrapper;
+  @media screen and (max-width: 1200px) {
+    @include wrapper1200;
+  }
 }

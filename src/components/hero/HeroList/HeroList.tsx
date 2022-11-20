@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getPerson } from "../../redux/slices/person";
-import { storeItem } from "../../redux/types/items";
+import { getPerson } from "../../../redux/slices/person";
+import { storeItem } from "../../../redux/types/items";
 import { Hero } from "../HeroOutput/HeroTable";
 import s from "./HeroList.module.scss";
-import wish from "../../assets/Objeto_Destino_entrelazado.webp";
+import wish from "../../../assets/Objeto_Destino_entrelazado.webp";
 import { HeroCart } from "../HeroOutput/HeroCart";
 export const HeroList = () => {
   const { store } = useSelector(getPerson);
