@@ -1,0 +1,137 @@
+@import "../../style/scss/mixin";
+.item {
+  display: flex;
+
+  justify-content: space-between;
+  flex-direction: column;
+  width: 370px;
+  max-height: 500px;
+  border-radius: 20px;
+  border: 1px solid black;
+
+  .info {
+    display: flex;
+    width: 100%;
+    max-height: 400px;
+  }
+  .mainInfoCart {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      border-radius: 20px 0px 0px 0px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .inputs {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+
+      label {
+        font-weight: 600;
+        font-size: 14px;
+        text-align: center;
+      }
+      input {
+        width: 100%;
+        background-color: inherit;
+      }
+      .countPrimo {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 15px 15px 0px 0px;
+        padding: 5px;
+        border: 1px solid black;
+      }
+      .addGems {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0px 0px 15px 15px;
+        padding: 5px;
+        border: 1px solid black;
+
+        .buttonInput {
+          width: 100%;
+          display: flex;
+
+          button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+          }
+          button:hover {
+            color: green;
+            cursor: pointer;
+          }
+          button:disabled {
+            color: red;
+            cursor: not-allowed;
+          }
+          svg {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+  .information {
+    padding: 10px;
+    p {
+      font-size: 12px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    width: 100%;
+    button {
+      @include button;
+      width: 100%;
+    }
+    button:first-child {
+      font-weight: 600;
+      border-radius: 0px 0px 0px 20px;
+      background-color: rgba(208, 227, 100, 0.627);
+    }
+    button:first-child:hover {
+      background-color: rgb(208, 227, 100);
+    }
+    button:last-child {
+      color: white;
+      border-radius: 0px 0px 20px 0px;
+      background-color: rgba(227, 100, 100, 0.627);
+    }
+    button:last-child:hover {
+      background-color: rgb(227, 100, 100);
+    }
+    .buttonsDelete {
+      display: flex;
+      width: 100%;
+      button:first-child {
+        border-radius: 0;
+        background-color: rgba(0, 128, 0, 0.482);
+        color: white;
+      }
+      button:first-child:hover {
+        background-color: rgb(0, 128, 0);
+      }
+    }
+  }
+}
+
+.item:not(:nth-child(4n + 4)) {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.item:first-child {
+  margin-left: 0px;
+}

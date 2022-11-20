@@ -5,18 +5,27 @@ import { Links } from "../linksPages/Links";
 import { ModalAuth } from "./modalAuth/modalAuth";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getPerson } from "../../redux/slices/person";
+import { clearStore, clearUid, getPerson } from "../../redux/slices/person";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
+import { useAppDispatch } from "../../redux/hooks";
 export const Header = () => {
+  const dispatch = useAppDispatch();
   const [modalActive, setModalActive] = React.useState(false);
   const { uid } = useSelector(getPerson);
 
   const [signOut, loading, error] = useSignOut(auth as any);
+
+  const exit = () => {
+    dispatch(clearStore());
+    dispatch(clearUid());
+
+    signOut();
+  };
   return (
     <div className={s.root}>
       <div className={s.wrapper}>
-        <Link to="" className={s.logo}>
+        <Link to="genshinCalc/" className={s.logo}>
           <img src={uraDavai} alt="" />
         </Link>
         <div className={s.links}>
@@ -29,7 +38,7 @@ export const Header = () => {
               {modalActive && <ModalAuth />}
             </div>
           ) : (
-            <button className={s.auth} onClick={() => signOut()}>
+            <button className={s.auth} onClick={() => exit()}>
               Выйти
             </button>
           )}

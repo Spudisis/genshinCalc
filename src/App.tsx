@@ -18,8 +18,6 @@ export const App = () => {
       const uid = user.uid;
       dispatch(setUid(uid));
       CheckUser({ uid, dispatch });
-    } else {
-      dispatch(clearUid());
     }
   }, [user]);
 
@@ -34,8 +32,8 @@ export const App = () => {
           </header>
           <main>
             <Routes>
-              <Route path="" element={<Main />}></Route>
-              <Route path="/waiting" element={"ff"}></Route>
+              <Route path="genshinCalc/" element={<Main />}></Route>
+              <Route path="genshinCalc/waiting" element={"ff"}></Route>
             </Routes>
           </main>
           <footer></footer>

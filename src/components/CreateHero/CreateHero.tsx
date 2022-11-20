@@ -15,7 +15,7 @@ export const CreateHero = () => {
   return (
     <>
       <Formik
-        initialValues={{ dateStart: "", dateEnd: "", countPrimogems: 0, image: "" }}
+        initialValues={{ dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
         validate={(values) => {
           const errors: any = {};
 
@@ -23,7 +23,10 @@ export const CreateHero = () => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
-          dispath(addStore(values));
+
+          const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
+
+          dispath(addStore({ id, ...values }));
         }}
       >
         {({ isSubmitting }) => (
@@ -43,6 +46,11 @@ export const CreateHero = () => {
                 <label htmlFor={id + "countPrimogems"}>countPrimogems</label>
                 <Field type="text" name="countPrimogems" id={id + "countPrimogems"} placeholder="Пароль" />
                 <ErrorMessage name="countPrimogems" component="div" className={s.errorMessage} />
+              </div>
+              <div className={s.inputBlock}>
+                <label htmlFor={id + "countStart"}>startPrimogems</label>
+                <Field type="text" name="countStart" id={id + "countStart"} placeholder="Пароль" />
+                <ErrorMessage name="countStart" component="div" className={s.errorMessage} />
               </div>
               <div className={s.inputBlock}>
                 <label htmlFor={id + "image"}>image</label>

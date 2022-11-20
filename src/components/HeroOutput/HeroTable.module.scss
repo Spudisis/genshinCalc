@@ -1,0 +1,25 @@
+
+.str {
+  td input {
+    border: none;
+    outline: none;
+    background-color: inherit;
+  }
+
+  td button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+  }
+  td button:hover {
+    color: green;
+    cursor: pointer;
+  }
+  td button:disabled {
+    color: red;
+    cursor: not-allowed;
+  }
+  svg {
+    font-size: 20px;
+  }
+}

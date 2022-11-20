@@ -1,0 +1,56 @@
+@import "../../style/scss/mixin.scss";
+@import "../../style/scss/values.scss";
+.wrapper {
+  margin-top: 30px;
+  .name {
+    display: flex;
+    justify-content: space-between;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  .buttons {
+    button {
+      @include button;
+      box-sizing: border-box;
+      background-color: $colorButton;
+      color: white;
+    }
+    button:hover {
+      background-color: $colorButtonHover;
+    }
+  }
+}
+
+.table {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  th {
+    border-bottom: 3px solid #b9b29f;
+    padding: 10px;
+    text-align: center;
+  }
+  td {
+    padding: 10px;
+  }
+  tr:nth-child(odd) {
+    background: white;
+  }
+  tr:nth-child(even) {
+    background: #e8e6d1;
+  }
+  input {
+    width: 100px;
+  }
+  img {
+    margin: 0 auto;
+    height: 60px;
+  }
+}
+.itemsList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: space-between;
+}

@@ -4,7 +4,22 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+input {
+  outline: none;
+  border: none;
+  
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
 /* Убираем внутренние отступы */
 ul[class],
 ol[class] {

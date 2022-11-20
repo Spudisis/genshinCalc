@@ -4,11 +4,9 @@ import s from "./Links.module.scss";
 export const Links = () => {
   return (
     <div className={s.root}>
-      
-      <NavLink to="/waiting" className={({ isActive }) => (isActive ? s.active : s.inactive)}>
+      <NavLink to="genshinCalc/waiting" className={({ isActive }) => (isActive ? s.active : s.inactive)}>
         Ждем персонажа
       </NavLink>
-     
     </div>
   );
 };
