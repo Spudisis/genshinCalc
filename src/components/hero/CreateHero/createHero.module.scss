@@ -1,0 +1,29 @@
+@import "../../../style/scss/mixin.scss";
+@import "../../../style/scss/values.scss";
+.form {
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+  align-items: center;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.525);
+  .submit {
+    @include button;
+    background-color: $colorButton;
+    color: white;
+  }
+  .submit:hover {
+    background-color: $colorButtonHover;
+  }
+}
+.inputs {
+  display: flex;
+  input {
+    cursor: pointer;
+  }
+  input:hover {
+  }
+  .errorMessage {
+    color: red;
+    font-size: 12px;
+  }
+}

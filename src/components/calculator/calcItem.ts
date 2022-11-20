@@ -8,9 +8,13 @@ export const CalcBetween = ({ id, dateStart, dateEnd, countStart, countPrimogems
   let getDays = { between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 };
 
   if (dateEnd) {
-    getDays.between = getNumberOfDays({ dateStart, dateEnd }) + +1;
+    const validate = getNumberOfDays({ dateStart, dateEnd }) + +1;
+
+    validate < 0 ? (getDays.between = 0) : (getDays.between = validate);
   }
-  getDays.now = getNumberDaysNow(dateStart) + +1;
+  const validateNow = getNumberDaysNow(dateStart) + +1;
+  validateNow < 0 ? (getDays.now = 0) : (getDays.now = validateNow);
+
   getDays.countSave = +countStart + countPrimogems * getDays.now;
   if (getDays.countSave >= 160) {
     getDays.countSumm = Math.floor(getDays.countSave / 160);

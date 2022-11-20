@@ -47,34 +47,34 @@ export const CreateHero = () => {
           <Form className={s.form}>
             <div className={s.inputs}>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "dateStart"}>dateStart</label>
-                <Field type="date" name="dateStart" id={id + "dateStart"} placeholder="Логин" />
+                <label htmlFor={id + "dateStart"}>Дата начала</label>
+                <Field type="date" name="dateStart" id={id + "dateStart"} placeholder="Дата" />
                 <ErrorMessage name="dateStart" component="div" className={s.errorMessage} />
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "dateEnd"}>dateEnd</label>
-                <Field type="date" name="dateEnd" id={id + "dateEnd"} placeholder="Пароль" />
+                <label htmlFor={id + "dateEnd"}>Дата конца*</label>
+                <Field type="date" name="dateEnd" id={id + "dateEnd"} placeholder="Дата" />
                 <ErrorMessage name="dateEnd" component="div" className={s.errorMessage} />
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "countPrimogems"}>countPrimogems</label>
-                <Field type="number" name="countPrimogems" id={id + "countPrimogems"} placeholder="Пароль" />
+                <label htmlFor={id + "countPrimogems"}>Откладывать в день</label>
+                <Field type="number" name="countPrimogems" id={id + "countPrimogems"} placeholder="Число" />
                 <ErrorMessage name="countPrimogems" component="div" className={s.errorMessage} />
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "countStart"}>startPrimogems</label>
-                <Field type="number" name="countStart" id={id + "countStart"} placeholder="Пароль" />
+                <label htmlFor={id + "countStart"}>Со сколько начинаем копить</label>
+                <Field type="number" name="countStart" id={id + "countStart"} placeholder="Число" />
                 <ErrorMessage name="countStart" component="div" className={s.errorMessage} />
               </div>
               <div className={s.inputBlock}>
-                <label htmlFor={id + "image"}>image</label>
-                <Field type="text" name="image" id={id + "image"} placeholder="Пароль" />
+                <label htmlFor={id + "image"}>Изображение*</label>
+                <Field type="text" name="image" id={id + "image"} placeholder="Ссылка" />
                 <ErrorMessage name="image" component="div" className={s.errorMessage} />
               </div>
             </div>
-            <div className={s.buttons}>
-              <button type="submit">сенд</button>
-            </div>
+            <button className={s.submit} type="submit">
+              Добавить
+            </button>
           </Form>
         )}
       </Formik>
