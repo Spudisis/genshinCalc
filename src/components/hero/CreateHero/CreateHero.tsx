@@ -49,6 +49,7 @@ export const CreateHero = () => {
     let files = [...e.dataTransfer.files];
     const image = await files[0];
     const { name } = image;
+    console.log(name);
     setObjImg(image);
     setDrag(false);
     setSelectImg(name);
@@ -75,17 +76,21 @@ export const CreateHero = () => {
           if (values.countStart < 0) {
             errors.countStart = "Не может быть меньше 0";
           }
-
+          if (!values.countPrimogems && values.countPrimogems !== 0) {
+            errors.countPrimogems = "Не может быть пустым";
+          }
+          if (!values.countStart && values.countPrimogems !== 0) {
+            errors.countStart = "Не может быть пустым";
+          }
           return errors;
         }}
-        onSubmit={(values, { resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           if (!values.image) {
             values.image = selectImg;
           }
 
-          objImg !== "" && UploadImg({ objImg, uid });
+          objImg !== "" && (await UploadImg({ objImg, uid }));
           const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
-
           dispath(addStore({ id, ...values }));
           console.log(values);
           resetForm();
@@ -94,71 +99,75 @@ export const CreateHero = () => {
         {({ isSubmitting, isValid }) => (
           <Form className={s.form}>
             <div className={s.inputs}>
-              <div className={s.inputBlock}>
-                <label
-                  htmlFor={id + "dateStart"}
-                  onMouseEnter={() => setDocusDateStart(true)}
-                  onMouseLeave={() => setDocusDateStart(false)}
-                >
-                  Дата начала
-                </label>
-                <Field type="date" name="dateStart" id={id + "dateStart"} placeholder="Дата" />
-                <ErrorMessage name="dateStart" component="div" className={s.errorMessage} />
-                {focusDateStart && (
-                  <div className={s.infoSide}>
-                    <p>Дата, с которой начнется накопление примогемов</p>
-                  </div>
-                )}
+              <div className={s.inputsCommon}>
+                <div className={s.inputBlock}>
+                  <label
+                    htmlFor={id + "dateStart"}
+                    onMouseEnter={() => setDocusDateStart(true)}
+                    onMouseLeave={() => setDocusDateStart(false)}
+                  >
+                    Дата начала
+                  </label>
+                  <Field type="date" name="dateStart" id={id + "dateStart"} placeholder="Дата" />
+                  <ErrorMessage name="dateStart" component="div" className={s.errorMessage} />
+                  {focusDateStart && (
+                    <div className={s.infoSide}>
+                      <p>Дата, с которой начнется накопление примогемов</p>
+                    </div>
+                  )}
+                </div>
+                <div className={s.inputBlock}>
+                  <label
+                    htmlFor={id + "dateEnd"}
+                    onMouseEnter={() => setfocusDateEnd(true)}
+                    onMouseLeave={() => setfocusDateEnd(false)}
+                  >
+                    Дата конца*
+                  </label>
+                  <Field type="date" name="dateEnd" id={id + "dateEnd"} placeholder="Дата" />
+                  <ErrorMessage name="dateEnd" component="div" className={s.errorMessage} />
+                  {focusDateEnd && (
+                    <div className={s.infoSide}>
+                      <p>Дата, когда закончится накопление гемов (необязательное поле)</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className={s.inputsCommon}>
+                <div className={s.inputBlock}>
+                  <label
+                    htmlFor={id + "countPrimogems"}
+                    onMouseEnter={() => setfocusPrimogemsOfDay(true)}
+                    onMouseLeave={() => setfocusPrimogemsOfDay(false)}
+                  >
+                    Откладывать в день
+                  </label>
+                  <Field type="number" name="countPrimogems" id={id + "countPrimogems"} placeholder="Число" />
+                  <ErrorMessage name="countPrimogems" component="div" className={s.errorMessage} />
+                  {focusPrimogemsOfDay && (
+                    <div className={s.infoSide}>
+                      <p>Количество примогемов, которое вы хотите откладывать ежедневно (можно будет изменить)</p>
+                    </div>
+                  )}
+                </div>
+                <div className={s.inputBlock}>
+                  <label
+                    htmlFor={id + "countStart"}
+                    onMouseEnter={() => setfocusPrimogemsStart(true)}
+                    onMouseLeave={() => setfocusPrimogemsStart(false)}
+                  >
+                    Изначальное кол-во
+                  </label>
+                  <Field type="number" name="countStart" id={id + "countStart"} placeholder="Число" />
+                  <ErrorMessage name="countStart" component="div" className={s.errorMessage} />
+                  {focusPrimogemsStart && (
+                    <div className={s.infoSide}>
+                      <p>Изначальное количество примогемов, которое вы хотите отложить</p>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              <div className={s.inputBlock}>
-                <label
-                  htmlFor={id + "dateEnd"}
-                  onMouseEnter={() => setfocusDateEnd(true)}
-                  onMouseLeave={() => setfocusDateEnd(false)}
-                >
-                  Дата конца*
-                </label>
-                <Field type="date" name="dateEnd" id={id + "dateEnd"} placeholder="Дата" />
-                <ErrorMessage name="dateEnd" component="div" className={s.errorMessage} />
-                {focusDateEnd && (
-                  <div className={s.infoSide}>
-                    <p>Дата, когда закончится накопление гемов (необязательное поле)</p>
-                  </div>
-                )}
-              </div>
-              <div className={s.inputBlock}>
-                <label
-                  htmlFor={id + "countPrimogems"}
-                  onMouseEnter={() => setfocusPrimogemsOfDay(true)}
-                  onMouseLeave={() => setfocusPrimogemsOfDay(false)}
-                >
-                  Откладывать в день
-                </label>
-                <Field type="number" name="countPrimogems" id={id + "countPrimogems"} placeholder="Число" />
-                <ErrorMessage name="countPrimogems" component="div" className={s.errorMessage} />
-                {focusPrimogemsOfDay && (
-                  <div className={s.infoSide}>
-                    <p>Количество примогемов, которое вы хотите откладывать ежедневно (можно будет изменить)</p>
-                  </div>
-                )}
-              </div>
-              <div className={s.inputBlock}>
-                <label
-                  htmlFor={id + "countStart"}
-                  onMouseEnter={() => setfocusPrimogemsStart(true)}
-                  onMouseLeave={() => setfocusPrimogemsStart(false)}
-                >
-                  Изначальное кол-во
-                </label>
-                <Field type="number" name="countStart" id={id + "countStart"} placeholder="Число" />
-                <ErrorMessage name="countStart" component="div" className={s.errorMessage} />
-                {focusPrimogemsStart && (
-                  <div className={s.infoSide}>
-                    <p>Изначальное количество примогемов, которое вы хотите отложить</p>
-                  </div>
-                )}
-              </div>
               {!drag ? (
                 <div
                   className={s.inputBlock}

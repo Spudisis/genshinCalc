@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { start } from "repl";
 import { propRedux } from "../types/calc";
 import { storeItem } from "../types/items";
 import { userSlice } from "../types/user";
@@ -35,6 +36,7 @@ export const dataSlice = createSlice({
       console.log(action.payload);
       const filtered = mas.filter((elem) => elem.id != action.payload);
       state.store = filtered;
+      
     },
     clearUid: (state) => {
       state.uid = "";

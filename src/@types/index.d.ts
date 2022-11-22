@@ -27,3 +27,4 @@ declare module "*.sass" {
   export default css;
 }
 declare module "@fortawesome/fontawesome-free";
+declare module "react-onclickoutside";

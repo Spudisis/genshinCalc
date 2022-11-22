@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppDispatch } from "../../../redux/hooks";
-import { changeStore } from "../../../redux/slices/person";
-import { storeItem } from "../../../redux/types/items";
-import { CalcBetween } from "../../calculator/calcItem";
+import { useAppDispatch } from "../../../../redux/hooks";
+import { changeStore } from "../../../../redux/slices/person";
+import { storeItem } from "../../../../redux/types/items";
+import { CalcBetween } from "../../../calculator/calcItem";
 import s from "./HeroTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";

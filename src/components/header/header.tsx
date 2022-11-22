@@ -9,6 +9,7 @@ import { clearStore, clearUid, getPerson } from "../../redux/slices/person";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 import { useAppDispatch } from "../../redux/hooks";
+
 export const Header = () => {
   const dispatch = useAppDispatch();
   const [modalActive, setModalActive] = React.useState(false);
@@ -19,9 +20,9 @@ export const Header = () => {
   const exit = () => {
     dispatch(clearStore());
     dispatch(clearUid());
-
     signOut();
   };
+
   return (
     <div className={s.root}>
       <div className={s.wrapper}>
@@ -32,10 +33,10 @@ export const Header = () => {
           <Links />
           {!uid ? (
             <div className={s.buttonOpenModal}>
-              <button className={s.auth} onClick={() => setModalActive(!modalActive)}>
+              <button className={s.auth} onClick={() => setModalActive(true)}>
                 Войти
               </button>
-              {modalActive && <ModalAuth />}
+              {modalActive && <ModalAuth setModalActive={(n: any) => setModalActive(n)} />}
             </div>
           ) : (
             <button className={s.auth} onClick={() => exit()}>

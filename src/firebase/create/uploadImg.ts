@@ -8,8 +8,7 @@ export const UploadImg = async ({ objImg, uid }: any) => {
 
   if (objImg) {
     const imageRef = ref(storage, `images/${uid}/${objImg.name}`);
-    uploadBytes(imageRef, objImg).then((snaphsot) => {
-      //   getDownloadURL(snaphsot.ref)
-    });
+    await uploadBytes(imageRef, objImg).then((snaphsot) => {});
+    console.log("это бля сначала");
   }
 };

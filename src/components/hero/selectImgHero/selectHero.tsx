@@ -2,6 +2,7 @@ import React from "react";
 import s from "./selectHero.module.scss";
 import json from "../../../assets/heroes/heroes.json";
 import { LoaderMini } from "../../loader/loaderMini/loaderMini";
+
 export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
   const lengthMas = json.length - 1;
   let indexCounter = 0;
@@ -11,8 +12,20 @@ export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
       setLoader(false);
     }
   }, [indexCounter]);
+  const modalRef = React.useRef<HTMLDivElement>(null);
+  const handleClickOutside = (event: any) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setViewListHeroes(false);
+    }
+  };
+  React.useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} ref={modalRef}>
       {loader && <LoaderMini />}
       <div className={s.images}>
         {json.map((elem: any, index) => {

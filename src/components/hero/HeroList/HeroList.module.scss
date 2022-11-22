@@ -26,11 +26,15 @@
     }
   }
 }
-
+.container {
+  overflow-x: auto;
+  width: auto;
+}
 .table {
   text-align: center;
   margin: 0 auto;
-  width: 100%;
+  width: 1170px;
+
   th {
     border-bottom: 3px solid #b9b29f;
     padding: 10px;

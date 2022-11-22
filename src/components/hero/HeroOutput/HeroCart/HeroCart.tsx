@@ -1,26 +1,35 @@
 import React from "react";
-import { useAppDispatch } from "../../../redux/hooks";
-import { changeStore, deleteStore, getPerson } from "../../../redux/slices/person";
-import { storeItem } from "../../../redux/types/items";
-import { CalcBetween } from "../../calculator/calcItem";
+import { useAppDispatch } from "../../../../redux/hooks";
+import { changeStore, deleteStore, getPerson } from "../../../../redux/slices/person";
+import { storeItem } from "../../../../redux/types/items";
+import { CalcBetween } from "../../../calculator/calcItem";
 import s from "./HeroCart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import error from "../../../assets/errorImg.png";
-import { FindImage } from "../findImageJson";
-
+import error from "../../../../assets/errorImg.png";
+import { FindImage } from "../../findImageJson";
 import { useSelector } from "react-redux";
-import { getImagesUrl } from "../../../redux/slices/images";
-import { storage } from "../../../firebase/config";
-import { ref } from "firebase/storage";
-import { useDownloadURL } from "react-firebase-hooks/storage";
+import { storage } from "../../../../firebase/config";
+import { deleteObject, getDownloadURL, getStorage, list, listAll, ref } from "firebase/storage";
+import { ChangeImageBlock } from "../../changeImage";
 
-export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
+export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
-  const { imagesUrl } = useSelector(getImagesUrl);
   const { uid } = useSelector(getPerson);
+
+  const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
+  const [primogems, setPrimogems] = React.useState(0);
+  const [countGemsPlus, setAddPrimogems] = React.useState(0);
+  const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
+  const [deleteItem, setDeleteItem] = React.useState(false);
+
+  const [imageFind, setImagefind] = React.useState(false); //если изображение с сайта, а не ссылка
+  const [imageCheck, setImageCheck] = React.useState(image); //изображение лежит
+  const [imageFirebase, setImageFirebase] = React.useState(false); //проверка, изображение с файрбейза или нет
+
+  const [changeItemImage, setChangeItemImage] = React.useState(false);
   React.useEffect(() => {
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
     if (count) {
@@ -31,26 +40,21 @@ export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, i
       setImagefind(a ? true : false);
       setImageCheck(a.img);
     }
+
+    displayImage();
   }, [countStart]);
-
-  const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
-  const [primogems, setPrimogems] = React.useState(0);
-  const [countGemsPlus, setAddPrimogems] = React.useState(0);
-  const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
-  const [deleteItem, setDeleteItem] = React.useState(false);
-
-  const [imageFind, setImagefind] = React.useState(false); //если изображение с сайта, а не ссылка
-  const [imageCheck, setImageCheck] = React.useState(image); //изображение лежит
 
   React.useEffect(() => {
     if (primogems && obj.countSave) {
       setPrimogemsMinusSumm(primogems - obj.countSave);
     }
   }, [primogems]);
-  React.useEffect(() => {}, [imagesUrl]);
+  React.useEffect(() => {
+    displayImage();
+  }, [imageFirebase]);
+
   const handleChange = (e: any) => {
     const count = e.target.value;
-    console.log(typeof +count);
     if (count) {
       setPrimogems(+count);
     } else {
@@ -70,34 +74,58 @@ export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, i
       dispatch(changeStore({ countGemsPlus, id }));
     }
   };
-  const checkFile = image.slice(-4) === "jpeg" || image.slice(-4) === ".jpg" || image.slice(-4) === ".png";
-  const [value, loading, errorImg] = useDownloadURL(ref(storage, `images/${uid}/${image}`));
-
-  React.useEffect(() => {
-    if (uid && checkFile) {
-      if (value) {
-        console.log(checkFile);
-        setImageCheck(value);
-      }
-      if (errorImg) {
-        console.log(errorImg);
-      }
-    }
-  }, [uid, value, errorImg]);
-
-  const deleteCart = () => {
+  const deleteCart = async () => {
     setDeleteItem(false);
+    imageFirebase && (await deleteImageFirebase());
+    console.log(id, image, imageFirebase);
+    setImageFirebase(false);
     dispatch(deleteStore(id));
   };
+
+  const displayImage = async () => {
+    const listRef = ref(storage, `images/${uid}/`);
+    await listAll(listRef)
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          if (itemRef.name === image) {
+            console.log(itemRef.name, image);
+            getDownloadURL(itemRef).then((getURL) => {
+              setImageFirebase(true);
+              setImageCheck(getURL);
+            });
+          }
+        });
+      })
+      .catch((error) => {});
+  };
+  const deleteImageFirebase = async () => {
+    const deleteRef = ref(storage, `images/${uid}/${image}`);
+    await deleteObject(deleteRef)
+      .then(() => {
+        console.log("удалено");
+      })
+      .catch((error) => {
+        console.log("ошибка");
+      });
+  };
+
   return (
     <div className={s.item}>
       <div className={s.info}>
         <div className={s.mainInfoCart}>
-          <img
-            src={imageFind ? require("../../../assets/heroes/" + imageCheck) : imageCheck}
-            alt=""
-            onError={() => setImageCheck(error)}
-          />
+          <div className={s.imageContain}>
+            {/* {!changeItemImage ? ( */}
+            <img
+              src={imageFind ? require("../../../../assets/heroes/" + imageCheck) : imageCheck}
+              alt=""
+              onError={() => setImageCheck(error)}
+              // onClick={() => setChangeItemImage(true)}
+            />
+            {/* // ) : (
+            //   <ChangeImageBlock setChangeItemImage={(n: boolean) => setChangeItemImage(n)} />
+            // )} */}
+          </div>
+
           <div className={s.inputs}>
             <div className={s.countPrimo}>
               <label htmlFor="gemsNow">Сколько гемов</label>
@@ -161,4 +189,4 @@ export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, i
       </div>
     </div>
   );
-};
+});
