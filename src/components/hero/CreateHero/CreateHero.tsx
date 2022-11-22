@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { UpdateStore } from "../../../firebase/update/updateStoreUser";
 import { getNumberOfDays } from "../../calculator/getNumberOfDays";
 import { SelectHero } from "../selectImgHero/selectHero";
+import { UploadImg } from "../../../firebase/create/uploadImg";
+
 export const CreateHero = () => {
   const id = React.useId();
   const dispath = useAppDispatch();
@@ -20,14 +22,38 @@ export const CreateHero = () => {
 
   const [ViewListHeroes, setViewListHeroes] = React.useState(false);
   const [selectImg, setSelectImg] = React.useState("");
+
+  const [objImg, setObjImg] = React.useState("");
+  const [drag, setDrag] = React.useState(false);
+
   React.useEffect(() => {
     if (uid && store.length !== 0) UpdateStore({ uid, store });
   }, [store]);
 
   const handleChange = (e: any) => {
+    objImg !== "" && setObjImg("");
     const value = e.target.value;
     setSelectImg(value);
   };
+
+  function dragStartHandler(e: any) {
+    e.preventDefault();
+    setDrag(true);
+  }
+  function dragLeaveHandler(e: any) {
+    e.preventDefault();
+    setDrag(false);
+  }
+  const onDropFile = async (e: any) => {
+    e.preventDefault();
+    let files = [...e.dataTransfer.files];
+    const image = await files[0];
+    const { name } = image;
+    setObjImg(image);
+    setDrag(false);
+    setSelectImg(name);
+  };
+
   return (
     <>
       <Formik
@@ -57,6 +83,7 @@ export const CreateHero = () => {
             values.image = selectImg;
           }
 
+          objImg !== "" && UploadImg({ objImg, uid });
           const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
 
           dispath(addStore({ id, ...values }));
@@ -122,7 +149,7 @@ export const CreateHero = () => {
                   onMouseEnter={() => setfocusPrimogemsStart(true)}
                   onMouseLeave={() => setfocusPrimogemsStart(false)}
                 >
-                  Со сколько начинаем копить
+                  Изначальное кол-во
                 </label>
                 <Field type="number" name="countStart" id={id + "countStart"} placeholder="Число" />
                 <ErrorMessage name="countStart" component="div" className={s.errorMessage} />
@@ -132,39 +159,56 @@ export const CreateHero = () => {
                   </div>
                 )}
               </div>
-              <div className={s.inputBlock}>
-                <label
-                  htmlFor={id + "image"}
-                  onMouseEnter={() => setfocusHrefImg(true)}
-                  onMouseLeave={() => setfocusHrefImg(false)}
+              {!drag ? (
+                <div
+                  className={s.inputBlock}
+                  onDragStart={(e) => dragStartHandler(e)}
+                  onDragLeave={(e) => dragLeaveHandler(e)}
+                  onDragOver={(e) => dragStartHandler(e)}
                 >
-                  Изображение*
-                </label>
-                <Field
-                  type="text"
-                  name="image"
-                  id={id + "image"}
-                  placeholder="Ссылка"
-                  onChange={(e: any) => {
-                    handleChange(e);
-                  }}
-                  onClick={() => setViewListHeroes(!ViewListHeroes)}
-                  value={selectImg}
-                  autoComplete="off"
-                />
-                <ErrorMessage name="image" component="div" className={s.errorMessage} />
-                {focusHrefImg && (
-                  <div className={s.infoSide}>
-                    <p>Укажите ссылку на картинку или выберите из списка, чтобы не забывать, ради кого копите</p>
-                  </div>
-                )}
-                {ViewListHeroes && (
-                  <SelectHero
-                    setSelectImg={(n: string) => setSelectImg(n)}
-                    setViewListHeroes={(n: boolean) => setViewListHeroes(n)}
+                  <label
+                    htmlFor={id + "image"}
+                    onMouseEnter={() => setfocusHrefImg(true)}
+                    onMouseLeave={() => setfocusHrefImg(false)}
+                  >
+                    Изображение*
+                  </label>
+                  <Field
+                    type="text"
+                    name="image"
+                    id={id + "image"}
+                    placeholder="Ссылка"
+                    onChange={(e: any) => {
+                      handleChange(e);
+                    }}
+                    onClick={() => setViewListHeroes(!ViewListHeroes)}
+                    value={selectImg}
+                    autoComplete="off"
                   />
-                )}
-              </div>
+                  <ErrorMessage name="image" component="div" className={s.errorMessage} />
+                  {focusHrefImg && (
+                    <div className={s.infoSide}>
+                      <p>Укажите ссылку, перетащите файл в эту область или выберите из списка картинку</p>
+                    </div>
+                  )}
+                  {ViewListHeroes && (
+                    <SelectHero
+                      setSelectImg={(n: string) => setSelectImg(n)}
+                      setViewListHeroes={(n: boolean) => setViewListHeroes(n)}
+                    />
+                  )}
+                </div>
+              ) : (
+                <div
+                  className={s.downloadFile}
+                  onDragStart={(e) => dragStartHandler(e)}
+                  onDragLeave={(e) => dragLeaveHandler(e)}
+                  onDragOver={(e) => dragStartHandler(e)}
+                  onDrop={(e) => onDropFile(e)}
+                >
+                  Загрузить файл
+                </div>
+              )}
             </div>
 
             <button disabled={!isValid} className={s.submit} type="submit">

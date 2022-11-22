@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "../../../redux/hooks";
-import { changeStore, deleteStore } from "../../../redux/slices/person";
+import { changeStore, deleteStore, getPerson } from "../../../redux/slices/person";
 import { storeItem } from "../../../redux/types/items";
 import { CalcBetween } from "../../calculator/calcItem";
 import s from "./HeroCart.module.scss";
@@ -10,8 +10,17 @@ import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import error from "../../../assets/errorImg.png";
 import { FindImage } from "../findImageJson";
+
+import { useSelector } from "react-redux";
+import { getImagesUrl } from "../../../redux/slices/images";
+import { storage } from "../../../firebase/config";
+import { ref } from "firebase/storage";
+import { useDownloadURL } from "react-firebase-hooks/storage";
+
 export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
+  const { imagesUrl } = useSelector(getImagesUrl);
+  const { uid } = useSelector(getPerson);
   React.useEffect(() => {
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
     if (count) {
@@ -38,6 +47,7 @@ export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, i
       setPrimogemsMinusSumm(primogems - obj.countSave);
     }
   }, [primogems]);
+  React.useEffect(() => {}, [imagesUrl]);
   const handleChange = (e: any) => {
     const count = e.target.value;
     console.log(typeof +count);
@@ -60,8 +70,23 @@ export const HeroCart = ({ id, dateStart, dateEnd, countStart, countPrimogems, i
       dispatch(changeStore({ countGemsPlus, id }));
     }
   };
+  const checkFile = image.slice(-4) === "jpeg" || image.slice(-4) === ".jpg" || image.slice(-4) === ".png";
+  const [value, loading, errorImg] = useDownloadURL(ref(storage, `images/${uid}/${image}`));
+
+  React.useEffect(() => {
+    if (uid && checkFile) {
+      if (value) {
+        console.log(checkFile);
+        setImageCheck(value);
+      }
+      if (errorImg) {
+        console.log(errorImg);
+      }
+    }
+  }, [uid, value, errorImg]);
 
   const deleteCart = () => {
+    setDeleteItem(false);
     dispatch(deleteStore(id));
   };
   return (
