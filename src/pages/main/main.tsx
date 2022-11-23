@@ -9,10 +9,5 @@ import s from "./main.module.scss";
 export const Main = () => {
   const { uid } = useSelector(getPerson);
 
-  return (
-    <div className={s.root}>
-      {uid && <CreateHero />}
-      <HeroList />
-    </div>
-  );
+  return <div className={s.root}>{uid && <HeroList />}</div>;
 };

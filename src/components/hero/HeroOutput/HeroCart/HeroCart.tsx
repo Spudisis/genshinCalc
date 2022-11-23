@@ -25,33 +25,43 @@ export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countP
   const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
   const [deleteItem, setDeleteItem] = React.useState(false);
 
-  const [imageFind, setImagefind] = React.useState(false); //если изображение с сайта, а не ссылка
-  const [imageCheck, setImageCheck] = React.useState(image); //изображение лежит
+  const [imageFind, setImagefind] = React.useState(false); //проверка откуда изображаение fasle-ссылкой, true-с json'а
+  const [imageCheck, setImageCheck] = React.useState(image); //отсюда берется изображение (ссылка или название)
   const [imageFirebase, setImageFirebase] = React.useState(false); //проверка, изображение с файрбейза или нет
-
-  const [changeItemImage, setChangeItemImage] = React.useState(false);
   React.useEffect(() => {
+    //рассчет примогемов
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
     if (count) {
       setObj(count);
     }
+  }, []);
+  React.useEffect(() => {
+    //Откуда картинка
+    console.log(image);
     const a = FindImage(image);
+    var RegExp =
+      /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
+    //если картинка с Json
     if (a) {
-      setImagefind(a ? true : false);
+      console.log("2");
+      setImagefind(true);
       setImageCheck(a.img);
+      //если с firebase
+    } else {
+      setImagefind(false);
+      setImageCheck(image);
+      console.log("3");
+      //если картинка ссылкой
+
+      console.log("4");
+      displayImage(image);
     }
-
-    displayImage();
-  }, [countStart]);
-
+  }, [image]);
   React.useEffect(() => {
     if (primogems && obj.countSave) {
       setPrimogemsMinusSumm(primogems - obj.countSave);
     }
   }, [primogems]);
-  React.useEffect(() => {
-    displayImage();
-  }, [imageFirebase]);
 
   const handleChange = (e: any) => {
     const count = e.target.value;
@@ -82,7 +92,7 @@ export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countP
     dispatch(deleteStore(id));
   };
 
-  const displayImage = async () => {
+  const displayImage = async (image: string) => {
     const listRef = ref(storage, `images/${uid}/`);
     await listAll(listRef)
       .then((res) => {
@@ -90,6 +100,7 @@ export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countP
           if (itemRef.name === image) {
             console.log(itemRef.name, image);
             getDownloadURL(itemRef).then((getURL) => {
+              console.log(getURL);
               setImageFirebase(true);
               setImageCheck(getURL);
             });

@@ -5,10 +5,9 @@
   padding: 20px 10px;
   border-radius: 15px;
   align-items: center;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.525);
-  @media screen and (max-width: 800px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
   .submit {
     @include button;
     background-color: $colorButton;
@@ -25,21 +24,19 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    @media screen and (max-width: 1170px) {
-      align-items: center;
-      justify-content: space-evenly;
-    }
-    @media screen and (max-width: 800px) {
-      flex-direction: column;
-    }
+    flex-direction: column;
+
     .inputBlock {
-      max-width: 200px;
-      display: flex;
+      width: 100%;
+
       flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       padding: 5px;
       @media screen and (max-width: 1200px) {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
       label {
         font-weight: 600;
@@ -58,12 +55,11 @@
 
       position: relative;
       .errorMessage {
-        position: absolute;
-        left: 0px;
-        bottom: -18px;
         color: red;
         font-size: 12px;
         width: 200px;
+        height: 0px;
+        text-align: center;
       }
     }
   }
@@ -79,6 +75,10 @@
   top: -70px;
   min-width: 400px;
   text-align: center;
+  @media screen and (max-width: 420px) {
+    width: 340px;
+    min-width: 340px;
+  }
 }
 .downloadFile {
   min-width: 200px;
@@ -90,22 +90,13 @@
   border: 1px dashed black;
 }
 .inputsCommon {
+  flex-direction: column;
   display: flex;
+  align-items: center;
+  justify-content: center;
   @media screen and (max-width: 1170px) {
     flex-direction: column;
     align-items: center;
-  }
-  @media screen and (max-width: 800px) {
-    flex-direction: row;
-    .inputBlock:first-child input {
-      margin-right: 20px;
-    }
-  }
-  @media screen and (max-width: 460px) {
-    flex-direction: column;
-    .inputBlock:first-child input {
-      margin-right: 0px;
-    }
   }
 }
 input[type="date"] {

@@ -6,6 +6,7 @@ import { Hero } from "../HeroOutput/HeroTable/HeroTable";
 import s from "./HeroList.module.scss";
 import wish from "../../../assets/Objeto_Destino_entrelazado.webp";
 import { HeroCart } from "../HeroOutput/HeroCart/HeroCart";
+import { CreateHero } from "../CreateHero/CreateHero";
 export const HeroList = () => {
   const { store } = useSelector(getPerson);
 
@@ -52,6 +53,9 @@ export const HeroList = () => {
           {store.map((elem: storeItem, index: number) => {
             return <HeroCart {...elem} key={index + "storeItemCart"} />;
           })}
+          <div className={s.item}>
+            <CreateHero />
+          </div>
         </div>
       )}
     </div>

@@ -79,7 +79,7 @@ export const CreateHero = () => {
           if (!values.countPrimogems && values.countPrimogems !== 0) {
             errors.countPrimogems = "Не может быть пустым";
           }
-          if (!values.countStart && values.countPrimogems !== 0) {
+          if (!values.countStart && values.countStart !== 0) {
             errors.countStart = "Не может быть пустым";
           }
           return errors;
@@ -94,6 +94,7 @@ export const CreateHero = () => {
           dispath(addStore({ id, ...values }));
           console.log(values);
           resetForm();
+          setSelectImg("");
         }}
       >
         {({ isSubmitting, isValid }) => (
