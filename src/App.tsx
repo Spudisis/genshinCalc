@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "./components/header/header";
-import "./style/resize.css";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Main } from "./pages/main/main";
 import { useAuthState } from "react-firebase-hooks/auth";

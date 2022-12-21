@@ -1,10 +1,9 @@
 import React from "react";
-import { betweenDate } from "../../redux/types/calc";
 import { storeItem } from "../../redux/types/items";
 import { getNumberDaysNow } from "./getNumberDaysNow";
 import { getNumberOfDays } from "./getNumberOfDays";
 
-export const CalcBetween = ({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
+export const CalcBetween = ({ dateStart, dateEnd, countStart, countPrimogems }: storeItem) => {
   let getDays = { between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 };
 
   if (dateEnd) {
