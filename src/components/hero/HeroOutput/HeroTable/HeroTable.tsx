@@ -1,13 +1,13 @@
 import React from "react";
-import { useAppDispatch } from "../../../../redux/hooks";
-import { changeStore } from "../../../../redux/slices/person";
-import { storeItem } from "../../../../redux/types/items";
-import { CalcBetween } from "../../../calculator/calcItem";
+import { useAppDispatch } from "../../../../store/hooks";
+import { changeStore } from "../../../../store/slices/person";
+import { storeItem } from "../../../../store/types/items";
+import { CalcBetween } from "../../../../utils/calcItem";
 import s from "./HeroTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-export const Hero = ({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
+export const Hero = React.memo(({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
 
   const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
@@ -20,7 +20,7 @@ export const Hero = ({ id, dateStart, dateEnd, countStart, countPrimogems, image
     if (count) {
       setObj(count);
     }
-  }, [countStart]);
+  }, [id, dateStart, dateEnd, countStart, countPrimogems, image]);
   React.useEffect(() => {
     if (primogems && obj.countSave) {
       setPrimogemsMinusSumm(primogems - obj.countSave);
@@ -91,4 +91,4 @@ export const Hero = ({ id, dateStart, dateEnd, countStart, countPrimogems, image
       </td>
     </tr>
   );
-};
+});

@@ -1,0 +1,77 @@
+.wrapper {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 240px;
+  height: 100px;
+  background-color: white;
+  box-shadow: 5px 5px 1px 1px rgb(207, 205, 205);
+  border-radius: 15px;
+  transition: 0.3s;
+  animation-duration: 1s;
+  animation-name: open;
+
+  border: 1px solid rgb(207, 205, 205);
+  @media screen and (max-width: 600px) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  &:hover {
+    transition: 0.3s;
+    height: 130px;
+  }
+  &:hover .line:last-child {
+    transition: 0.3s;
+    max-height: 100px;
+  }
+  .line {
+    display: flex;
+    &:first-child {
+      padding: 5px;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 17px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.137);
+    }
+    &:last-child {
+      padding: 0px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 48px;
+    }
+    .info {
+      background-color: white;
+    }
+    .hide {
+      cursor: pointer;
+      background-color: inherit;
+      outline: none;
+      border: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.137);
+      &:hover {
+        color: rgba(0, 0, 0, 0.708);
+      }
+    }
+    .close {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 20px;
+      &:hover {
+        color: rgba(255, 0, 0, 0.621);
+      }
+    }
+  }
+}
+@keyframes open {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

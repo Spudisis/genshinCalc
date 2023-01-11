@@ -1,13 +1,12 @@
 import React from "react";
 import s from "./HeroOutput/HeroCart/HeroCart.module.scss";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const ChangeImageBlock = ({ setChangeItemImage }: any) => {
   const [drag, setDrag] = React.useState(false);
   const [selectImg, setSelectImg] = React.useState("");
 
-  const [objImg, setObjImg] = React.useState("");
   function dragStartHandler(e: any) {
     e.preventDefault();
     setDrag(true);

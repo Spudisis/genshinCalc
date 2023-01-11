@@ -1,8 +1,8 @@
 import React from "react";
-import { userSlice } from "../../redux/types/user";
+import { User } from "../../store/types/user";
 import { firestore } from "../config";
 
-export const UpdateStore = ({ uid, store }: userSlice) => {
+export const UpdateStore = ({ uid, store, primogems }: User) => {
   const check = firestore.collection("userStore").doc(uid);
-  check.update({ store: store });
+  check.update({ store: store, primogems: primogems });
 };

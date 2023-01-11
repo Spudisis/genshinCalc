@@ -1,17 +1,23 @@
+import React from "react";
+
 import s from "./HeroList.module.scss";
 import wish from "../../../assets/Objeto_Destino_entrelazado.webp";
-import { storeItem } from "../../../redux/types/items";
+import { storeItem } from "../../../store/types/items";
 import { Hero } from "../HeroOutput/HeroTable/HeroTable";
 import { HeroCart } from "../HeroOutput/HeroCart/HeroCart";
-import { CreateHero } from "../CreateHero/CreateHero";
+import { CreateHero } from "../../../pages/createHero/components/CreateHero/CreateHero";
+import { Site, waiting } from "../../../const/routes";
 
-interface HeroListView {
+interface HeroListViewTypes {
   store: any;
   setTypeView: (n: boolean) => void;
   typeView: boolean;
+  location: string;
 }
 
-export const HeroListView = ({ store, setTypeView, typeView }: HeroListView) => {
+export const HeroListView = ({ store, setTypeView, typeView, location }: HeroListViewTypes) => {
+  const path = "/" + Site + waiting;
+
   return (
     <div className={s.wrapper}>
       <div className={s.name}>
@@ -50,12 +56,15 @@ export const HeroListView = ({ store, setTypeView, typeView }: HeroListView) => 
         </div>
       ) : (
         <div className={s.itemsList}>
-          {store.map((elem: storeItem, index: number) => {
-            return <HeroCart {...elem} key={index + "storeItemCart"} />;
+          {store.map((elem: storeItem) => {
+            return <HeroCart {...elem} key={elem.id} />;
           })}
-          <div className={s.item}>
-            <CreateHero />
-          </div>
+
+          {location === path && (
+            <div className={s.item}>
+              <CreateHero />
+            </div>
+          )}
         </div>
       )}
     </div>

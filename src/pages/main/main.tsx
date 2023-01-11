@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-import { CreateHero } from "../../components/hero/CreateHero/CreateHero";
+
 import { HeroList } from "../../components/hero/HeroList/HeroList";
+import { getPerson } from "../../store/slices/person";
 
-import { getPerson } from "../../redux/slices/person";
-
-import s from "./main.module.scss";
+import s from "../style.module.scss";
 
 export const Main = () => {
   const { uid } = useSelector(getPerson);

@@ -26,6 +26,7 @@ declare module "*.sass" {
   const css: { [key: string]: string };
   export default css;
 }
+
 declare module "@fortawesome/fontawesome-free";
 declare module "react-onclickoutside";
 declare module "styled-components";

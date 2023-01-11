@@ -1,0 +1,53 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  thead tr {
+    border: 1px solid black;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .itemHead {
+    text-align: center;
+    .line {
+      border: 1px solid black;
+      margin: 0 auto;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(214, 214, 214);
+      }
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 40px;
+      }
+    }
+  }
+}
+
+.item {
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(214, 214, 214);
+  }
+  .line {
+    border: 1px solid black;
+    text-align: center;
+    width: 25%;
+
+    .main {
+      font-size: 20px;
+    }
+    .change {
+      font-size: 14px;
+    }
+    .up {
+      color: rgb(1, 87, 1);
+    }
+    .down {
+      color: rgb(121, 1, 1);
+    }
+    .normal {
+      color: rgb(222, 159, 0);
+    }
+  }
+}

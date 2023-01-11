@@ -1,42 +1,44 @@
-[
-  {
-    "img": "Cyno.webp",
-    "name": "Cyno"
-  },
-  {
-    "img": "E-lan.webp",
-    "name": "Elan"
-  },
-  {
-    "img": "Kamisato-Ayato-_2_.png",
-    "name": "Ayato"
-  },
-  {
-    "img": "nahida_splash.webp",
-    "name": "Nahida"
-  },
-  {
-    "img": "Nilou_2.webp",
-    "name": "Nilou"
-  },
-  {
-    "img": "shenhe.png",
-    "name": "Shenhe"
-  },
-  {
-    "img": "yaemiko.png",
-    "name": "Yae Miko"
-  },
-  {
-    "img": "kokomi.webp",
-    "name": "Kokomi"
-  },
-  {
-    "img": "shougun.webp",
-    "name": "Shougun"
-  },
-  {
-    "img": "yoimiya.webp",
-    "name": "Yoimiya"
-  }
-]
+{
+  "heroes": [
+    {
+      "img": "Cyno.webp",
+      "name": "Cyno"
+    },
+    {
+      "img": "E-lan.webp",
+      "name": "Elan"
+    },
+    {
+      "img": "Kamisato-Ayato-_2_.png",
+      "name": "Ayato"
+    },
+    {
+      "img": "nahida_splash.webp",
+      "name": "Nahida"
+    },
+    {
+      "img": "Nilou_2.webp",
+      "name": "Nilou"
+    },
+    {
+      "img": "shenhe.png",
+      "name": "Shenhe"
+    },
+    {
+      "img": "yaemiko.png",
+      "name": "Yae Miko"
+    },
+    {
+      "img": "kokomi.webp",
+      "name": "Kokomi"
+    },
+    {
+      "img": "shougun.webp",
+      "name": "Shougun"
+    },
+    {
+      "img": "yoimiya.webp",
+      "name": "Yoimiya"
+    }
+  ]
+}

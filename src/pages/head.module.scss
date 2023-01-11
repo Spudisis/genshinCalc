@@ -1,0 +1,13 @@
+.head {
+  font-size: 26px;
+  @media screen and (max-width: 600px) {
+    text-align: center;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 20px;
+  }
+}
+.description {
+  text-indent: 1.5em;
+  font-size: 18px;
+}

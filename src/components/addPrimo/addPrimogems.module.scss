@@ -1,0 +1,65 @@
+@import "../../style/scss/mixin.scss";
+@import "../../style/scss/values.scss";
+.form {
+  display: flex;
+  padding: 20px 10px;
+  border-radius: 15px;
+  align-items: center;
+
+  justify-content: center;
+  height: 100%;
+  .submit {
+    @include button;
+    background-color: $colorButton;
+    color: white;
+    margin-left: 20px;
+    @media screen and (max-width: 800px) {
+      margin-left: 0px;
+    }
+  }
+  .submit:hover {
+    background-color: $colorButtonHover;
+  }
+  .inputs {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .inputBlock {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 5px;
+      @media screen and (max-width: 1200px) {
+        margin-bottom: 10px;
+      }
+      label {
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.497);
+      }
+      label:hover {
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+      }
+
+      input {
+        cursor: pointer;
+        max-width: 200px;
+        border-bottom: 1px solid black;
+      }
+
+      position: relative;
+      .errorMessage {
+        color: red;
+        font-size: 12px;
+        width: 200px;
+        height: 0px;
+        text-align: center;
+      }
+    }
+  }
+}

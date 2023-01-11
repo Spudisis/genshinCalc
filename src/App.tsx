@@ -1,14 +1,15 @@
 import React from "react";
-import { Header } from "./components/header/header";
-
+import { Header, Footer } from "./layout/index";
+import s from "./style/scss/app.module.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Main } from "./pages/main/main";
+import { useAppDispatch } from "./store/hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase/config";
-import { useAppDispatch } from "./redux/hooks";
-import { clearUid, setUid } from "./redux/slices/person";
+
+import { CounterPrim, CreateHero, Main } from "./pages";
+import { auth, CheckUser } from "./firebase/index";
+import { setUid } from "./store/slices/person";
 import { Loader } from "./components/loader/loader";
-import { CheckUser } from "./firebase/checkUser";
+import { counterPrim, Site, waiting } from "./const/routes";
 
 export const App = () => {
   const [user, loading, error] = useAuthState(auth as any);
@@ -22,21 +23,21 @@ export const App = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className={s.wrapper}>
       {loading ? (
         <Loader />
       ) : (
         <Router>
-          <header>
-            <Header />
-          </header>
+          <Header />
           <main>
             <Routes>
-              <Route path="genshinCalc/" element={<Main />}></Route>
-              <Route path="genshinCalc/waiting" element={"ff"}></Route>
+              <Route path={Site} element={<Main />}></Route>
+              <Route path={Site + waiting} element={<CreateHero />}></Route>
+              <Route path={Site + counterPrim} element={<CounterPrim />}></Route>
             </Routes>
           </main>
-          <footer></footer>
+
+          <Footer />
         </Router>
       )}
     </div>

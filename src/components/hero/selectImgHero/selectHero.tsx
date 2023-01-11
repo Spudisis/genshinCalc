@@ -1,10 +1,10 @@
 import React from "react";
 import s from "./selectHero.module.scss";
 import json from "../../../assets/heroes/heroes.json";
-import { LoaderMini } from "../../loader/loaderMini/loaderMini";
+import { LoaderMini } from "../../index";
 
 export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
-  const lengthMas = json.length - 1;
+  const lengthMas = json.heroes.length - 1;
   let indexCounter = 0;
   const [loader, setLoader] = React.useState(true);
   React.useEffect(() => {
@@ -28,7 +28,7 @@ export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
     <div className={s.wrapper} ref={modalRef}>
       {loader && <LoaderMini />}
       <div className={s.images}>
-        {json.map((elem: any, index) => {
+        {json.heroes.map((elem: any, index) => {
           indexCounter = index;
           return (
             <img
