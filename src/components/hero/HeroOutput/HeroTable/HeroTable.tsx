@@ -18,8 +18,8 @@ export const Hero = React.memo(({ id, dateStart, dateEnd, countStart, countPrimo
   const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
 
   React.useEffect(() => {
-    setPrimogems(initialCountPrimogems[0].countPrimogems);
-  }, []);
+    initialCountPrimogems.length !== 0 && setPrimogems(initialCountPrimogems[0].countPrimogems);
+  }, [initialCountPrimogems]);
 
   React.useEffect(() => {
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
