@@ -6,6 +6,8 @@ import { GoogleAuth } from "../../../components/Auth/googleAuth/googleAuth";
 import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/index";
 import { user } from "../../../store/types/user";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export const ModalAuth = ({ setModalActive }: any) => {
   const [chooseForm, setChooseForm] = React.useState(false);
@@ -17,6 +19,7 @@ export const ModalAuth = ({ setModalActive }: any) => {
 
   const handleClickOutside = (event: any) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
+      console.log("modalhui");
       setModalActive(false);
     }
   };
@@ -34,6 +37,9 @@ export const ModalAuth = ({ setModalActive }: any) => {
         </button>
         <button className={chooseForm ? s.activeButton : s.inactiveButton} onClick={() => setChooseForm(true)}>
           Регистрация
+        </button>
+        <button className={s.close} onClick={() => setModalActive(false)}>
+          <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>
       {chooseForm ? (

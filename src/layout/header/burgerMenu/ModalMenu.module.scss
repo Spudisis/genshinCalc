@@ -1,0 +1,45 @@
+@import "../../../style/scss/mixin";
+
+.modal {
+  position: absolute;
+  width: 250px;
+  right: 0px;
+  top: 100px;
+  height: auto;
+
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.39);
+  .logo {
+    display: none;
+  }
+  .close {
+    display: none;
+  }
+  @media screen and (max-width: 450px) {
+    .logo {
+      display: block;
+      img {
+        margin: 0 auto;
+      }
+    }
+    .close {
+      display: block;
+      @include button;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      color: white;
+    }
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #3c3737;
+    right: 0px;
+    top: 0px;
+    border-radius: 0px;
+    justify-content: space-between;
+  }
+}

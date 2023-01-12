@@ -7,14 +7,10 @@
   transition: 0.2s;
 }
 .autofill {
-  background-color: $colorButton;
-  color: white;
-  border: 1px solid $colorButton;
+  @include fill;
 }
 .autoFillNone {
-  background-color: White;
-  border: 1px solid black;
-  color: black;
+  @include notFill;
 }
 .form {
   display: flex;

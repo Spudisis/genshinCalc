@@ -1,15 +1,64 @@
 @import "../../style/scss/mixin.scss";
-
+@import "../../style/scss/values.scss";
 .root {
-  font-size: 20px;
-
+  @include sizes;
+  a {
+    @include button;
+    transition: 0.3s;
+  }
   a:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 10px;
   }
   .active {
-    border-bottom: 1px solid black;
+    @include fill;
+  }
+  .inactive {
+    @include notFill;
   }
   .inactive:hover {
-    border-bottom: 1px solid black;
+    @include fill;
+    background-color: rgba(0, 0, 0, 0.734);
+  }
+  @media screen and (max-width: 750px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    a:not(:last-child) {
+      margin-right: 0px;
+      border-radius: 15px 15px 0px 0px;
+    }
+    .inactive:hover {
+      @include fill;
+    }
+    .inactive {
+      border: none;
+    }
+    a {
+      height: 50px;
+      font-size: 18px;
+      text-align: center;
+      border-radius: 0px;
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .inactive:hover {
+      @include fill;
+    }
+    .inactive {
+      @include fill;
+    }
+    a:not(:last-child) {
+      margin-right: 0px;
+      border-radius: 0px;
+    }
+    a {
+      height: 50px;
+      font-size: 18px;
+      text-align: center;
+      border-radius: 0px;
+      width: 100%;
+    }
   }
 }
