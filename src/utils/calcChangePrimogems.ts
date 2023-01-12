@@ -1,6 +1,10 @@
 import { objForm } from "../components/addPrimo/AddPrimogems";
 import { primogems } from "../store/types/items";
 
+const checkTwoDigit = (number: number) => {
+  return number < 10 ? "0" + number : number;
+};
+
 export const calcChangePrimogems = (
   obj: objForm,
 
@@ -9,15 +13,22 @@ export const calcChangePrimogems = (
   const lastChange = primogems.length !== 0 && primogems[0];
   const JSJoda = require("@js-joda/core");
   let LocalDate = JSJoda.LocalDate;
+  let localTime = JSJoda.LocalTime;
+  const timeNow = localTime.now();
   const dateNow = LocalDate.now();
   const date =
     dateNow.year() +
     "-" +
-    (dateNow.monthValue() < 10 ? "0" + dateNow.monthValue() : dateNow.monthValue()) +
+    checkTwoDigit(dateNow.monthValue()) +
     "-" +
-    dateNow.dayOfMonth();
+    checkTwoDigit(dateNow.dayOfMonth()) +
+    " " +
+    checkTwoDigit(timeNow.hour()) +
+    ":" +
+    checkTwoDigit(timeNow.minute()) +
+    ":" +
+    checkTwoDigit(timeNow.second());
 
-  console.log(date);
   if (lastChange) {
     return {
       id: Math.random(),

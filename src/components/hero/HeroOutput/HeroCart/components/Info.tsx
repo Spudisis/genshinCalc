@@ -6,9 +6,11 @@ type InfoCart = {
   obj: obj;
   primogems: number;
   primogemsMinusSumm: number;
+  initialCountPrimogems: number;
 };
 
-export const Info = ({ obj, primogems, primogemsMinusSumm }: InfoCart) => {
+export const Info = ({ obj, primogems, primogemsMinusSumm, initialCountPrimogems }: InfoCart) => {
+  const lastWishes = Math.floor(primogemsMinusSumm / 160);
   return (
     <div className={s.information}>
       <p>
@@ -21,7 +23,10 @@ export const Info = ({ obj, primogems, primogemsMinusSumm }: InfoCart) => {
         Остаток:<br></br> {primogems && primogemsMinusSumm}
       </p>
       <p>
-        Остаток в крутках:<br></br> {primogemsMinusSumm >= 160 ? Math.floor(primogemsMinusSumm / 160) : "0"}
+        Остаток в крутках:<br></br> {lastWishes}
+        <span className={s.sideWishes}>
+          {initialCountPrimogems > 0 ? `+${initialCountPrimogems}=${lastWishes + initialCountPrimogems}` : ""}
+        </span>
       </p>
       <p>
         Дней до конца накопления:<br></br> {obj.between ? obj.between : "Нет конечной даты"}

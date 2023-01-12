@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { changeStore, getPerson } from "../../../../store/slices/person";
 import { storeItem } from "../../../../store/types/items";
 
@@ -29,6 +29,7 @@ export type obj = {
 export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
   const { uid } = useSelector(getPerson);
+  const initialCountPrimogems = useAppSelector((state) => state.person.primogems);
 
   const [obj, setObj] = React.useState<obj>({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
   const [primogems, setPrimogems] = React.useState(0);
@@ -38,13 +39,19 @@ export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countP
   const [imageFind, setImagefind] = React.useState(false); //проверка откуда изображаение fasle-ссылкой, true-с json'а
   const [imageCheck, setImageCheck] = React.useState(image); //отсюда берется изображение (ссылка или название)
   const [imageFirebase, setImageFirebase] = React.useState(false); //проверка, изображение с файрбейза или нет
+
+  React.useEffect(() => {
+    if (initialCountPrimogems.length !== 0) setPrimogems(initialCountPrimogems[0].countPrimogems);
+  }, [initialCountPrimogems]);
+
   React.useEffect(() => {
     //рассчет примогемов
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
     if (count) {
       setObj(count);
     }
-  }, [id, dateStart, dateEnd, countStart, countPrimogems, image]);
+  }, [id, dateStart, dateEnd, countStart, countPrimogems, image, primogems]);
+
   React.useEffect(() => {
     //Откуда картинка
     const a = FindImage(image);
@@ -56,17 +63,16 @@ export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countP
     } else {
       setImagefind(false);
       setImageCheck(image);
-
       //если картинка ссылкой
-
       displayImage(image);
     }
   }, [image]);
+
   React.useEffect(() => {
     if (primogems && obj.countSave) {
       setPrimogemsMinusSumm(primogems - obj.countSave);
     }
-  }, [primogems]);
+  }, [primogems, initialCountPrimogems]);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const count = e.currentTarget.value;
@@ -118,13 +124,19 @@ export const HeroCart = React.memo(({ id, dateStart, dateEnd, countStart, countP
             <ImageContain imageFind={imageFind} imageCheck={imageCheck} setImageCheck={setImageCheck} />
           </div>
           <InputsCart
+            initialCount={primogems}
             handleChange={handleChange}
             handleAdd={handleAdd}
             countGemsPlus={countGemsPlus}
             sendAdd={sendAdd}
           />
         </div>
-        <Info obj={obj} primogems={primogems} primogemsMinusSumm={primogemsMinusSumm} />
+        <Info
+          obj={obj}
+          primogems={primogems}
+          primogemsMinusSumm={primogemsMinusSumm}
+          initialCountPrimogems={initialCountPrimogems.length !== 0 ? initialCountPrimogems[0].countWishes : 0}
+        />
       </div>
       <Actions
         imageFirebase={imageFirebase}

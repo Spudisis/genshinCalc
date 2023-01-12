@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { changeStore } from "../../../../store/slices/person";
 import { storeItem } from "../../../../store/types/items";
 import { CalcBetween } from "../../../../utils/calcItem";
@@ -9,23 +9,31 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 export const Hero = React.memo(({ id, dateStart, dateEnd, countStart, countPrimogems, image }: storeItem) => {
   const dispatch = useAppDispatch();
+  const initialCountPrimogems = useAppSelector((state) => state.person.primogems);
 
   const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
   const [primogems, setPrimogems] = React.useState(0);
   const [countGemsPlus, setAddPrimogems] = React.useState(0);
 
   const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
+
+  React.useEffect(() => {
+    setPrimogems(initialCountPrimogems[0].countPrimogems);
+  }, []);
+
   React.useEffect(() => {
     const count = CalcBetween({ id, dateStart, dateEnd, countStart, countPrimogems, image });
     if (count) {
       setObj(count);
     }
-  }, [id, dateStart, dateEnd, countStart, countPrimogems, image]);
+  }, [id, dateStart, dateEnd, countStart, countPrimogems, image, primogems]);
+
   React.useEffect(() => {
     if (primogems && obj.countSave) {
       setPrimogemsMinusSumm(primogems - obj.countSave);
     }
   }, [primogems]);
+
   const handleChange = (e: any) => {
     const count = e.target.value;
     console.log(typeof +count);
@@ -52,7 +60,7 @@ export const Hero = React.memo(({ id, dateStart, dateEnd, countStart, countPrimo
     <tr className={s.str}>
       {/* количество гемов */}
       <td>
-        <input type="number" onChange={(e: any) => handleChange(e)} placeholder="Количество" />
+        <input type="number" onChange={(e: any) => handleChange(e)} value={primogems} placeholder="Количество" />
       </td>
       {/* Сколько отложено */}
       <td>

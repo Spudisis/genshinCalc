@@ -1,5 +1,21 @@
 @import "../../style/scss/mixin.scss";
 @import "../../style/scss/values.scss";
+.buttonFill {
+  @include button;
+
+  margin-left: 20px;
+  transition: 0.2s;
+}
+.autofill {
+  background-color: $colorButton;
+  color: white;
+  border: 1px solid $colorButton;
+}
+.autoFillNone {
+  background-color: White;
+  border: 1px solid black;
+  color: black;
+}
 .form {
   display: flex;
   padding: 20px 10px;

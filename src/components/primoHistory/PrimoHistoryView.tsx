@@ -11,11 +11,12 @@ import s from "./PrimoHistory.module.scss";
 export type objPrimogems = {
   primogem: primogems[];
   createClipBoard: (n: copy) => void;
+  reserve: number;
 };
-export const PrimoHistoryView = ({ primogem, createClipBoard }: objPrimogems) => {
+export const PrimoHistoryView = ({ primogem, createClipBoard, reserve }: objPrimogems) => {
   return (
     <table>
-      <thead>
+      <thead className={s.theadTable}>
         <tr className={s.itemHead}>
           <td className={s.line}>Дата</td>
           <td className={s.line}>
@@ -30,7 +31,7 @@ export const PrimoHistoryView = ({ primogem, createClipBoard }: objPrimogems) =>
         </tr>
       </thead>
       <tbody>
-        {primogem.map((obj: primogems) => (
+        {primogem.map((obj: primogems, index: number) => (
           <LineTable
             id={obj.id}
             date={obj.date}
@@ -41,6 +42,7 @@ export const PrimoHistoryView = ({ primogem, createClipBoard }: objPrimogems) =>
             differenceCountWishes={obj.differenceCountWishes}
             differenceCountStarglitter={obj.differenceCountStarglitter}
             createClipBoard={createClipBoard}
+            reserve={index === 0 ? reserve : 0}
             key={obj.id}
           />
         ))}

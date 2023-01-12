@@ -10,6 +10,7 @@ import { Site, waiting } from "../../../const/routes";
 
 interface HeroListViewTypes {
   store: any;
+
   setTypeView: (n: boolean) => void;
   typeView: boolean;
   location: string;

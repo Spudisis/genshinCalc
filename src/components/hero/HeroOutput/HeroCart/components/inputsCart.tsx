@@ -10,9 +10,10 @@ type Inputs = {
   handleAdd: (n: React.FormEvent<HTMLInputElement>) => void;
   sendAdd: () => void;
   countGemsPlus: number;
+  initialCount: number;
 };
 
-export const InputsCart = ({ handleChange, handleAdd, countGemsPlus, sendAdd }: Inputs) => {
+export const InputsCart = ({ handleChange, initialCount, handleAdd, countGemsPlus, sendAdd }: Inputs) => {
   return (
     <div className={s.inputs}>
       <div className={s.countPrimo}>
@@ -20,6 +21,7 @@ export const InputsCart = ({ handleChange, handleAdd, countGemsPlus, sendAdd }: 
         <input
           type="number"
           id="gemsNow"
+          value={initialCount}
           onChange={(e: React.FormEvent<HTMLInputElement>) => handleChange(e)}
           placeholder="Количество"
         />
