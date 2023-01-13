@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
-import { primogems, storeItem } from "../../store/types/items";
+import { storeItem } from "../../store/types/items";
 import { CalcBetween } from "../../utils";
 import { NoticedCopy } from "./NoticedCopy/noticedCopy";
 import { PrimoHistoryView } from "./PrimoHistoryView";
@@ -15,23 +15,25 @@ export type copy = {
 export const PrimoHistory = () => {
   const primogems = useAppSelector((store) => store.person.primogems);
   const store = useAppSelector((store) => store.person.store);
-
+  const lastCalc = useAppSelector((store) => store.persistedReducer.params);
   const [reserve, setReserve] = React.useState(0);
   const [statusNoticed, setStatusNoticed] = React.useState(false);
-  
+
   React.useEffect(() => {
-    if (store) {
+    if (store && lastCalc.lastCalc) {
       const count = store.reduce((a: number, elem: storeItem) => CalcBetween(elem).countSave + a, 0);
       setReserve(count);
+    } else {
+      !lastCalc.lastCalc && setReserve(0);
     }
-  }, [store]);
+  }, [store, lastCalc]);
 
   const createClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter }: copy) => {
     try {
       await navigator.clipboard.writeText(
         `${date} у меня было ${countPrimogems} примогемов, ${countWishes} круток и ${countStarglitter} блеска`
       );
-      console.log("copy");
+
       setStatusNoticed(true);
     } catch (error) {
       console.log(error);

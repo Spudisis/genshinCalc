@@ -2,7 +2,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { changeStore } from "../../../../store/slices/person";
 import { storeItem } from "../../../../store/types/items";
-import { CalcBetween } from "../../../../utils/calcItem";
+import { CalcBetween } from "../../../../utils/";
 import s from "./HeroTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";

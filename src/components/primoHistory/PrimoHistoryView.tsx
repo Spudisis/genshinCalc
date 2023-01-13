@@ -13,7 +13,7 @@ export type objPrimogems = {
   createClipBoard: (n: copy) => void;
   reserve: number;
 };
-export const PrimoHistoryView = ({ primogem, createClipBoard, reserve }: objPrimogems) => {
+export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve }: objPrimogems) => {
   return (
     <table>
       <thead className={s.theadTable}>
@@ -49,4 +49,4 @@ export const PrimoHistoryView = ({ primogem, createClipBoard, reserve }: objPrim
       </tbody>
     </table>
   );
-};
+});

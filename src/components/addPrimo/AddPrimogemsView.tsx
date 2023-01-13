@@ -1,6 +1,6 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import React from "react";
-import { primogems } from "../../store/types/items";
+import { AdditionalActions } from "./AdditionalActions";
 
 import { objForm } from "./AddPrimogems";
 import s from "./addPrimogems.module.scss";
@@ -19,14 +19,9 @@ export const AddPrimogemsView = React.memo(
 
     return (
       <div>
-        <div>
-          <button
-            className={`${s.buttonFill}  ${autoFill ? s.autofill : s.autoFillNone}`}
-            onClick={() => setAutoFill(!autoFill)}
-          >
-            Автозаполнение
-          </button>
-        </div>
+        <>
+          <AdditionalActions autoFill={autoFill} setAutoFill={setAutoFill} />
+        </>
         <Formik
           enableReinitialize
           initialValues={{ countPrimogems: primogemsCount, countWishes: wishCount, countStarglitter: starglitterCount }}

@@ -1,17 +1,6 @@
 @import "../../style/scss/mixin.scss";
 @import "../../style/scss/values.scss";
-.buttonFill {
-  @include button;
 
-  margin-left: 20px;
-  transition: 0.2s;
-}
-.autofill {
-  @include fill;
-}
-.autoFillNone {
-  @include notFill;
-}
 .form {
   display: flex;
   padding: 20px 10px;

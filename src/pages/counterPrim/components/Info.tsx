@@ -8,8 +8,9 @@ export const Info = () => {
       </div>
 
       <p className={s.description}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi qui saepe ab. Explicabo, in dolorum. Minima
-        eum reprehenderit iste, quaerat, voluptas quia provident ab id maiores excepturi, architecto obcaecati ratione!
+        Страница предназначена для отслеживания изменения примогемов, круток и блеска со временем. Стоит указывать
+        только то количество, которое у вас присутствует на данный момент на аккаунте (без учета открученных круток,
+        предполагаемой валюты в будущем и т.д.). Нажатие на строку с данными скопирует их в буфер обмена.
       </p>
     </div>
   );

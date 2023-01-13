@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { UpdateStore } from "../../firebase";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addPrimogems, getPerson } from "../../store/slices/person";
-import { calcChangePrimogems, findLocalStorage } from "../../utils";
+import { calcChangePrimogems } from "../../utils";
 import { AddPrimogemsView } from "./AddPrimogemsView";
+import { setAutoFill as dispatchFill }  from "../../store/slices/localstorage";
 
 export type objForm = {
   countPrimogems: number;
@@ -13,12 +14,12 @@ export type objForm = {
 };
 
 export const AddPrimogems = () => {
-  const typeLocal = findLocalStorage("autoFill");
-
   const { uid, primogems, store } = useAppSelector((state) => state.person);
+  const fill = useAppSelector((store) => store.persistedReducer.params);
   const dispatch = useAppDispatch();
 
-  const [autoFill, setAutoFill] = React.useState(typeLocal[1]);
+  const [autoFill, setAutoFill] = React.useState(fill.autoFill);
+
   const [primogemsCount, setPrimogemsCount] = React.useState(0);
   const [wishCount, setWishCount] = React.useState(0);
   const [starglitterCount, setStarglitterCount] = React.useState(0);
@@ -39,13 +40,9 @@ export const AddPrimogems = () => {
     uid && primogems.length !== 0 && UpdateStore({ uid, store, primogems });
   }, [primogems]);
 
-  React.useEffect(() => {
-    !typeLocal[0] && localStorage.setItem("autoFill", JSON.stringify(autoFill));
-  }, []);
-
   const setLocalStorage = (boolean: boolean) => {
     setAutoFill(boolean);
-    localStorage.setItem("autoFill", JSON.stringify(boolean));
+    dispatch(dispatchFill(boolean));
   };
 
   const calcPrimogems = (obj: objForm) => {

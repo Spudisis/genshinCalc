@@ -4,4 +4,4 @@ export { getNumberOfDays } from "./getNumberOfDays";
 export { FindImage } from "./findImageJson";
 export { calcChangePrimogems } from "./calcChangePrimogems";
 
-export { findLocalStorage } from "./findLocalStorage";
+export { findLocalStorage, setItemLocalStorage } from "./findLocalStorage";
