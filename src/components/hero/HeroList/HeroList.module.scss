@@ -1,7 +1,8 @@
 @import "../../../style/scss/mixin.scss";
-@import "../../../style/scss/values.scss";
+
 .wrapper {
   margin-top: 30px;
+  color: var(--color-text);
   .name {
     display: flex;
     justify-content: space-between;
@@ -17,12 +18,11 @@
   .buttons {
     button {
       @include button;
-      box-sizing: border-box;
-      background-color: $colorButton;
-      color: white;
+      @include fill;
+      transition: 0.2s;
     }
     button:hover {
-      background-color: $colorButtonHover;
+      @include notFill;
     }
   }
 }
@@ -36,18 +36,21 @@
   width: 1170px;
 
   th {
-    border-bottom: 3px solid #b9b29f;
+    border-bottom: 3px solid var(--color-thHeroList);
     padding: 10px;
     text-align: center;
   }
   td {
     padding: 10px;
+    input {
+      color: var(--color-input);
+    }
   }
   tr:nth-child(odd) {
-    background: white;
+    background: var(--color-bgc-trHeroList1);
   }
   tr:nth-child(even) {
-    background: #e8e6d1;
+    background: var(--color-bgc-trHeroList2);
   }
   input {
     width: 100px;
@@ -65,8 +68,8 @@
     width: 370px;
     max-height: 500px;
     border-radius: 20px;
-    box-shadow: 15px 15px 2px 1px rgba(0, 0, 0, 0.37);
-    border: 1px solid rgba(0, 0, 0, 0.37);
+    box-shadow: 15px 15px 2px 1px var(--color-item);
+    border: 1px solid var(--color-item);
     margin: 10px;
     transition: box-shadow 0.4s;
 
@@ -80,7 +83,7 @@
     }
   }
   .item:hover {
-    box-shadow: 15px 15px 2px 1px rgba(0, 0, 0, 0.607);
+    box-shadow: 15px 15px 2px 1px var(--color-item-hover);
     @media screen and (max-width: 450px) {
       box-shadow: none;
     }

@@ -1,4 +1,5 @@
 @import "../../../../style/scss/mixin";
+
 .item {
   display: flex;
   overflow: hidden;
@@ -7,9 +8,11 @@
   width: 370px;
   max-height: 500px;
   border-radius: 20px;
-  box-shadow: 15px 15px 2px 1px rgba(0, 0, 0, 0.37);
-  border: 1px solid rgba(0, 0, 0, 0.37);
+  background-color: var(--color-bgc-color);
+  box-shadow: 15px 15px 2px 1px var(--color-item);
+  border: 1px solid var(--color-item);
   margin: 10px;
+  color: var(--color-text);
   transition: box-shadow 0.4s;
   @media screen and (max-width: 450px) {
     box-shadow: none;
@@ -41,7 +44,7 @@
         width: inherit;
         height: inherit;
         .sectionDownload {
-          background-color: rgba(0, 0, 0, 0.096);
+          background-color: var(--sectionDownload-color);
 
           text-align: center;
           height: 50%;
@@ -50,9 +53,9 @@
           align-items: center;
         }
         .sectionForFile {
-          border: 1px dotted black;
-          background-color: rgba(0, 0, 0, 0.43);
-          color: white;
+          border: 1px dotted var(--sectionDownload-color-border);
+          background-color: var(--color-item);
+          color: var(--sectionDownload-color);
           font-size: 40px;
         }
         .buttonsaveImage {
@@ -60,7 +63,7 @@
 
           font-weight: 600;
           font-size: 35px;
-          color: white;
+          color: var(--color-text-fill);
 
           width: 100%;
           height: 100%;
@@ -107,6 +110,7 @@
       input {
         width: 100%;
         background-color: inherit;
+        color: var(--color-input);
       }
       .countPrimo {
         display: flex;
@@ -114,7 +118,8 @@
         width: 100%;
         border-radius: 15px 15px 0px 0px;
         padding: 5px;
-        border: 1px solid black;
+
+        border: 1px solid var(--input-border-color);
       }
       .addGems {
         width: 100%;
@@ -122,7 +127,7 @@
         flex-direction: column;
         border-radius: 0px 0px 15px 15px;
         padding: 5px;
-        border: 1px solid black;
+        border: 1px solid var(--input-border-color);
 
         .buttonInput {
           width: 100%;
@@ -132,6 +137,7 @@
             background-color: inherit;
             border: none;
             outline: none;
+            color: var(--color-text);
           }
           button:hover {
             color: green;
@@ -153,9 +159,9 @@
     p {
       font-size: 12px;
       margin-bottom: 10px;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid var(--input-border-color);
       .sideWishes {
-        color: rgb(2, 98, 2);
+        color: var(--sideInfoCart);
 
         margin-bottom: 0px;
         border-bottom: 0px;
@@ -202,7 +208,7 @@
 }
 
 .item:hover {
-  box-shadow: 15px 15px 2px 1px rgba(0, 0, 0, 0.607);
+  box-shadow: 15px 15px 2px 1px var(--box-shadow-color);
   @media screen and (max-width: 450px) {
     box-shadow: none;
   }

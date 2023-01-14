@@ -1,0 +1,155 @@
+:root[data-theme="light"] {
+  --color-bgc-color: white;
+
+  --color-bgc-main: white;
+  --colorButton: rgb(60, 55, 55);
+  --color-not-fill-button: white;
+  --color-border-not-fill-button: black;
+  --bgc-color-button: black;
+  --color-text: black;
+  --color-text-fill: white;
+  --colorButtonHover: rgb(10, 10, 10);
+  --change-theme-duration: 0.5s;
+
+  --label-color: rgba(0, 0, 0, 0.5);
+  --label-color-hover: rgb(0, 0, 0);
+
+  --input-border-color: black;
+
+  --error-color-message: red;
+
+  --box-shadow-color: rgba(0, 0, 0, 0.629);
+
+  --dnd-bgc-color: rgba(0, 0, 0, 0.07);
+  --dnd-border-color: black;
+
+  --box-shadow-main: rgb(207, 205, 205);
+
+  --hover-burger-menu: rgb(149, 141, 141);
+
+  --modal-bgc-color: white;
+
+  --button-modal-auth-bgc-color: rgba(224, 220, 220, 0.325);
+  --button-active-color-shadow: rgba(0, 0, 0, 0.39);
+  --modal-color-border: rgba(224, 220, 220, 0.325);
+  --border-table: black;
+
+  --hover-tr-color: rgb(214, 214, 214);
+
+  --up: rgb(1, 87, 1);
+  --down: rgb(121, 1, 1);
+  --normal: rgb(222, 159, 0);
+
+  --noticed-color-border: rgba(0, 0, 0, 0.137);
+
+  --color-hide-hover: rgba(0, 0, 0, 0.708);
+
+  --color-close-hover: rgba(255, 0, 0, 0.621);
+
+  --color-spinner-bgc: black;
+
+  --color-thHeroList: #b9b29f;
+  --color-bgc-trHeroList1: white;
+  --color-bgc-trHeroList2: #e8e6d1;
+  --color-item: rgba(0, 0, 0, 0.37);
+  --color-item-hover: rgba(0, 0, 0, 0.607);
+
+  --sectionDownload-color: rgba(0, 0, 0, 0.096);
+  --sectionDownload-color-border: black;
+  --sectionDownload-color: white;
+
+  --color-bgc-layout: rgb(60, 55, 55);
+  --bgc-color-layout: #414040;
+  --color-bgc-header: var(--color-bgc-main);
+  --color-input: var(--color-text);
+
+  --sideInfoCart: rgb(2, 98, 2);
+
+  --color-modal-hover-add: white;
+
+  --bgc-color-button-active-auth: black;
+  --color-text-active-auth: white;
+  --color-text-inactive-auth: black;
+
+  --color-modal-burger-bgc: rgb(60, 55, 55);
+  --color-close-modal-burger: white;
+
+  --bcg-color-hover-modal-links: black;
+}
+
+:root[data-theme="dark"] {
+  --color-bgc-main: #141414;
+  --colorButton: white;
+  --color-not-fill-button: #141414;
+  --color-border-not-fill-button: white;
+  --bgc-color-button: white;
+  --color-text: white;
+  --color-text-fill: black;
+  --colorButtonHover: rgb(219, 216, 216);
+
+  --label-color: rgba(255, 255, 255, 0.5);
+  --label-color-hover: white;
+
+  --input-border-color: white;
+  --color-input: var(--color-text);
+
+  --error-color-message: red;
+
+  --box-shadow-color: rgba(0, 0, 0, 0.629);
+
+  --dnd-bgc-color: rgba(0, 0, 0, 0.07);
+  --dnd-border-color: black;
+
+  --box-shadow-main: var(--bgc-color-layout);
+
+  --hover-burger-menu: rgb(149, 141, 141);
+
+  --modal-bgc-color: var(--color-bgc-main);
+
+  --button-modal-auth-bgc-color: black;
+
+  --bgc-color-button-active-auth: white;
+  --button-active-color-shadow: rgba(67, 67, 67, 0.39);
+  --color-text-active-auth: black;
+  --color-text-inactive-auth: white;
+  --modal-color-border: var(--bgc-color-layout);
+
+  --border-table: var(--bgc-color-layout);
+
+  --hover-tr-color: var(--bgc-color-layout);
+
+  --up: rgb(1, 87, 1);
+  --down: rgb(121, 1, 1);
+  --normal: rgb(222, 159, 0);
+
+  --noticed-color-border: var(--color-bgc-layout);
+
+  --color-hide-hover: var(--color-thHeroList);
+
+  --color-close-hover: rgba(255, 0, 0, 0.621);
+
+  --color-spinner-bgc: white;
+
+  --color-thHeroList: #b9b29f;
+  --color-bgc-trHeroList1: var(--color-bgc-main);
+  --color-bgc-trHeroList2: #e8e6d1;
+  --color-item: rgba(0, 0, 0, 0.37);
+  --color-item-hover: rgba(0, 0, 0, 0.607);
+
+  --sectionDownload-color: rgba(0, 0, 0, 0.096);
+  --sectionDownload-color-border: black;
+  --sectionDownload-color: white;
+
+  --color-bgc-layout: #222222;
+  --bgc-color-layout: #292929;
+
+  --color-bgc-header: var(--color-bgc-layout);
+  --color-bgc-color: rgba(255, 255, 255, 0.08);
+
+  --sideInfoCart: rgb(3, 147, 3);
+
+  --color-modal-hover-add: rgb(71, 71, 71);
+  --color-modal-burger-bgc: var(--color-bgc-main);
+  --color-close-modal-burger: white;
+  --bcg-color-hover-modal-links: white;
+}

@@ -1,5 +1,5 @@
 @import "../../style/scss/mixin.scss";
-@import "../../style/scss/values.scss";
+
 .root {
   @include sizes;
   a {
@@ -17,7 +17,7 @@
   }
   .inactive:hover {
     @include fill;
-    background-color: rgba(0, 0, 0, 0.734);
+    background-color: var(--color-hide);
   }
   @media screen and (max-width: 750px) {
     display: flex;
@@ -45,9 +45,14 @@
   @media screen and (max-width: 450px) {
     .inactive:hover {
       @include fill;
+      background-color: var(--bcg-color-hover-modal-links);
+      border: none;
     }
     .inactive {
-      @include fill;
+      @include notFill;
+      background-color: var(--color-modal-burger-bgc);
+      color: var(--color-close-modal-burger);
+      border: none;
     }
     a:not(:last-child) {
       margin-right: 0px;

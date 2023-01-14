@@ -1,5 +1,5 @@
-
 .str {
+  color: var(--color-text);
   td input {
     border: none;
     outline: none;
@@ -10,6 +10,7 @@
     background-color: inherit;
     border: none;
     outline: none;
+    color: var(--color-text);
   }
   td button:hover {
     color: green;

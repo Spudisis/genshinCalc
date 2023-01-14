@@ -17,15 +17,15 @@
 }
 
 @mixin fill {
-  background-color: $colorButton;
-  color: white;
-  border: 1px solid $colorButton;
+  background-color: var(--colorButton);
+  color: var(--color-text-fill);
+  border: 1px solid var(--colorButton);
 }
 
 @mixin notFill {
-  background-color: White;
-  border: 1px solid black;
-  color: black;
+  background-color: var(--color-not-fill-button);
+  border: 1px solid var(--color-border-not-fill-button);
+  color: var(--color-text);
 }
 @mixin sizes {
   font-size: 18px;

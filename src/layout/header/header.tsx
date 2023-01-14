@@ -1,8 +1,9 @@
 import React from "react";
+
 import s from "./header.module.scss";
 import uraDavai from "../../assets/davaidavaiuraaa.png";
-import { Links } from "../../components/linksPages/Links";
 
+import { Links } from "../../components/linksPages/Links";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,8 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { AuthButton } from "./modalAuth/auth";
 import { Site } from "../../const/routes";
 import { ModalMenu } from "./burgerMenu/ModalMenu";
+import { ThemeContext, themes } from "../../provider/context";
+import { Toggle } from "../../components";
 
 export const Header = () => {
   const [modalMenu, setModalMenu] = React.useState(false);
@@ -17,9 +20,37 @@ export const Header = () => {
   return (
     <header className={s.root}>
       <div className={s.wrapper}>
-        <Link to={Site} className={s.logo}>
-          <img src={uraDavai} alt="uraDavai" />
-        </Link>
+        <div className={s.toggleNimg}>
+          <Link to={Site} className={s.logo}>
+            <img src={uraDavai} alt="uraDavai" />
+          </Link>
+          <div className={s.context751}>
+            <ThemeContext.Consumer>
+              {({ theme, setTheme }: any) => (
+                <Toggle
+                  onChange={() => {
+                    if (theme === themes.light) setTheme(themes.dark);
+                    if (theme === themes.dark) setTheme(themes.light);
+                  }}
+                  value={theme === themes.dark}
+                />
+              )}
+            </ThemeContext.Consumer>
+          </div>
+        </div>
+        <div className={s.context750}>
+          <ThemeContext.Consumer>
+            {({ theme, setTheme }: any) => (
+              <Toggle
+                onChange={() => {
+                  if (theme === themes.light) setTheme(themes.dark);
+                  if (theme === themes.dark) setTheme(themes.light);
+                }}
+                value={theme === themes.dark}
+              />
+            )}
+          </ThemeContext.Consumer>
+        </div>
         <div className={s.links}>
           <Links />
           <AuthButton />

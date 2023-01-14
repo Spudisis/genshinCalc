@@ -2,7 +2,7 @@ import s from "../../head.module.scss";
 
 export const Info = () => {
   return (
-    <div>
+    <div className={s.headWrapper}>
       <div className={s.head}>
         <h2>Добавить персонажа </h2>
       </div>

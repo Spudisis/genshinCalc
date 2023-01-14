@@ -1,5 +1,5 @@
 @import "../../../style/scss/mixin";
-@import "../../../style/scss/values";
+
 .buttonOpenModal {
   display: flex;
   position: relative;
@@ -9,12 +9,12 @@
 }
 .auth {
   margin-left: 20px;
-  transition: $transitionTime;
+  transition: 0.3s;
   @include button;
-  background-color: $colorButton;
+  background-color: var(--bgc-color-button);
   @include sizes;
   @include fill;
-
+  border: none;
   @media screen and (max-width: 750px) {
     height: 50px;
     width: 100%;
@@ -23,13 +23,14 @@
   }
   @media screen and (max-width: 450px) {
     border-radius: 0px;
-    background-color: black;
+    background-color: var(--bgc-color-button);
   }
   &:hover {
     transform: scale(1.1);
+    @include notFill;
+    border: none;
     @media screen and (max-width: 750px) {
       transform: scale(1);
     }
-    background-color: $colorButtonHover;
   }
 }

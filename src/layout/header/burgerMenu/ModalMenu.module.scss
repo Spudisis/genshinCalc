@@ -6,12 +6,12 @@
   right: 0px;
   top: 100px;
   height: auto;
-
+  z-index: 100;
   border-radius: 15px;
 
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.39);
+  box-shadow: 2px 5px 5px var(--button-active-color-shadow);
   .logo {
     display: none;
   }
@@ -31,12 +31,12 @@
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      color: white;
+      color: var(--color-close-modal-burger);
     }
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: #3c3737;
+    background-color: var(--color-modal-burger-bgc);
     right: 0px;
     top: 0px;
     border-radius: 0px;

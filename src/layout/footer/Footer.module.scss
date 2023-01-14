@@ -1,8 +1,7 @@
-@import "../../style/scss/values.scss";
-
 .footer {
   margin-top: 100px;
 
   min-height: 20vh;
-  background-color: rgb(93, 92, 92);
+  background-color: var(--color-bgc-layout);
+  border-top: 1px solid var(--bgc-color-layout);
 }

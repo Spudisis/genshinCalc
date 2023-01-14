@@ -1,5 +1,5 @@
 @import "../../../style/scss/mixin";
-@import "../../../style/scss/values.scss";
+
 .form {
   display: flex;
   flex-direction: column;
@@ -13,18 +13,23 @@
   justify-content: space-between;
   margin-bottom: 20px;
   position: relative;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--input-border-color);
   label {
-    color: rgba(0, 0, 0, 0.393);
+    color: var(--label-color);
+    &:hover {
+      color: var(--color-text);
+    }
   }
   input {
+    background-color: var(--color-bgc);
+    color: var(--color-text);
     border: none;
     outline: none;
   }
   .errorMessage {
     position: absolute;
     top: 50px;
-    color: red;
+    color: var(--error-color-message);
     font-size: 12px;
   }
   .errorMessage::before {
@@ -33,9 +38,8 @@
 }
 .submitButton {
   @include button;
-  background-color: $colorButton;
-  color: white;
+  @include fill;
 }
 .submitButton:hover {
-  background-color: $colorButtonHover;
+  @include notFill;
 }
