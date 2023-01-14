@@ -13,3 +13,4 @@ export { PrimoHistory } from "./primoHistory/PrimoHistory";
 export { AddPrimogems } from "./addPrimo/AddPrimogems";
 
 export { Toggle } from "./toggle/toggle";
+export { Pagination } from "./pagination/pagination";

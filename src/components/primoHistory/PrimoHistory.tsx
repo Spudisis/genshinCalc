@@ -1,7 +1,8 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
 import { storeItem } from "../../store/types/items";
-import { CalcBetween } from "../../utils";
+import { CalcBetween, copyClipBoard } from "../../utils";
+import { Pagination } from "../pagination/pagination";
 import { NoticedCopy } from "./NoticedCopy/noticedCopy";
 import { PrimoHistoryView } from "./PrimoHistoryView";
 
@@ -10,6 +11,7 @@ export type copy = {
   countPrimogems: number;
   countWishes: number;
   countStarglitter: number;
+  index: number;
 };
 
 export const PrimoHistory = () => {
@@ -18,6 +20,17 @@ export const PrimoHistory = () => {
   const lastCalc = useAppSelector((store) => store.persistedReducer.params);
   const [reserve, setReserve] = React.useState(0);
   const [statusNoticed, setStatusNoticed] = React.useState(false);
+  const [pageNumber, setPageNumber] = React.useState(0);
+  const [pageCount, setPageCount] = React.useState(0);
+  const [countLine, setCountLine] = React.useState(10);
+
+  React.useEffect(() => {
+    pageCount < pageNumber && setPageNumber(pageCount - 1);
+  }, [pageCount]);
+
+  React.useEffect(() => {
+    setPageCount(Math.ceil(primogems.length / countLine));
+  }, [primogems, countLine]);
 
   React.useEffect(() => {
     if (store && lastCalc.lastCalc) {
@@ -28,12 +41,9 @@ export const PrimoHistory = () => {
     }
   }, [store, lastCalc]);
 
-  const createClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter }: copy) => {
+  const createClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter, index }: copy) => {
     try {
-      await navigator.clipboard.writeText(
-        `${date} у меня было ${countPrimogems} примогемов, ${countWishes} круток и ${countStarglitter} блеска`
-      );
-
+      await copyClipBoard({ date, countPrimogems, countWishes, countStarglitter, index });
       setStatusNoticed(true);
     } catch (error) {
       console.log(error);
@@ -43,7 +53,20 @@ export const PrimoHistory = () => {
   return (
     <>
       <NoticedCopy status={statusNoticed} setStatus={setStatusNoticed} />
-      <PrimoHistoryView primogem={primogems} createClipBoard={createClipBoard} reserve={reserve} />
+      <PrimoHistoryView
+        primogem={primogems.slice(pageNumber * countLine, (pageNumber + 1) * countLine)}
+        createClipBoard={createClipBoard}
+        reserve={reserve}
+      />
+      {primogems.length > countLine && (
+        <Pagination
+          pageCount={pageCount}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          setCountLine={setCountLine}
+          countLine={countLine}
+        />
+      )}
     </>
   );
 };
