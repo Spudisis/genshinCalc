@@ -17,7 +17,6 @@
   }
   .inactive:hover {
     @include fill;
-    background-color: var(--color-hide);
   }
   @media screen and (max-width: 750px) {
     display: flex;
