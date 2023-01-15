@@ -1,0 +1,13 @@
+.image {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  border-radius: 20px;
+  img {
+    border-radius: inherit;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

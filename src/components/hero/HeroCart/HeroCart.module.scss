@@ -1,4 +1,4 @@
-@import "../../../../style/scss/mixin";
+@import "../../../style/scss/mixin";
 
 .item {
   display: flex;
@@ -172,18 +172,22 @@
   .buttons {
     display: flex;
     width: 100%;
+    .link {
+      @include button;
+      width: 100%;
+      font-weight: 600;
+      border-radius: 0px 0px 0px 20px;
+      background-color: rgba(208, 227, 100, 0.627);
+      text-align: center;
+      &:hover {
+        background-color: rgb(208, 227, 100);
+      }
+    }
     button {
       @include button;
       width: 100%;
     }
-    button:first-child {
-      font-weight: 600;
-      border-radius: 0px 0px 0px 20px;
-      background-color: rgba(208, 227, 100, 0.627);
-    }
-    button:first-child:hover {
-      background-color: rgb(208, 227, 100);
-    }
+
     button:last-child {
       color: white;
       border-radius: 0px 0px 20px 0px;

@@ -46,12 +46,7 @@
       color: var(--color-input);
     }
   }
-  tr:nth-child(odd) {
-    background: var(--color-bgc-trHeroList1);
-  }
-  tr:nth-child(even) {
-    background: var(--color-bgc-trHeroList2);
-  }
+
   input {
     width: 100px;
   }

@@ -39,9 +39,12 @@ export const CreateHero = () => {
   return (
     <>
       <Formik
-        initialValues={{ dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
+        initialValues={{ nameHero: "", dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
         validate={(values) => {
           const errors: any = {};
+          if (values.nameHero.length === 0) {
+            errors.nameHero = "Обязательное поле";
+          }
           if (values.dateEnd && values.dateStart) {
             const { dateStart, dateEnd } = values;
             const dateEndParse = getNumberOfDays({ dateStart, dateEnd });
@@ -49,7 +52,6 @@ export const CreateHero = () => {
               errors.dateStart = "Начало не может быть после конца";
             }
           } else if (!values.dateStart) {
-            console.log(values.dateStart);
             errors.dateStart = "Укажите дату";
           }
           if (values.countPrimogems < 0) {
@@ -71,9 +73,10 @@ export const CreateHero = () => {
             values.image = selectImg;
           }
           objImg !== "" && (await UploadImg({ objImg, uid }));
+          const synchValue = 0;
           const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
-          dispath(addStore({ id, ...values }));
-          console.log(values);
+          dispath(addStore({ id, ...values, synchValue }));
+
           resetForm();
           setSelectImg("");
         }}

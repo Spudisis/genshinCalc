@@ -1,40 +1,61 @@
-table {
-  width: 100%;
+@import "../../style/scss/values.scss";
+@import "../../style/scss/mixin.scss";
+.wrapper {
+  width: auto;
+  overflow-x: auto;
+  .table {
+    width: 100%;
+    color: var(--color-text);
+    border-spacing: 0px;
 
-  color: var(--color-text);
-  border-spacing: 0px;
-  .theadTable tr {
-    border: 1px solid var(--border-table);
-
-    td:first-child {
-      border-radius: 10px 0px 0px 0px;
-    }
-    td:last-child {
-      border-radius: 0px 10px 0px 0px;
-    }
-  }
-  .itemHead {
-    text-align: center;
-    min-height: 44px;
-    .line {
+    .theadTable tr {
       border: 1px solid var(--border-table);
-      margin: 0 auto;
 
-      &:hover {
-        cursor: pointer;
-        background-color: var(--hover-tr-color);
+      td:first-child {
+        border-radius: 10px 0px 0px 0px;
+      }
+      td:last-child {
+        border-radius: 0px 10px 0px 0px;
+      }
+    }
+    .itemHead {
+      text-align: center;
+      min-height: 44px;
+      .line {
+        border: 1px solid var(--border-table);
+        margin: 0 auto;
+
+        &:hover {
+          cursor: pointer;
+          background-color: var(--hover-tr-color);
+          img {
+            transform: rotate(360deg);
+            transition: 10s;
+          }
+        }
         img {
-          transform: rotate(360deg);
-          transition: 10s;
+          display: block;
+          margin: 0 auto;
+          width: 40px;
         }
       }
-      img {
-        display: block;
-        margin: 0 auto;
-        width: 40px;
-      }
+    }
+    @media screen and (max-width: $fixedPrimogemsTable) {
+      width: 650px;
     }
   }
+  // .tableVertically {
+  //   margin-top: 80px;
+  //   margin-right: 100px;
+  //   @media screen and (max-width: $fixedPrimogemsTable) {
+  //     transform: rotate(-90deg);
+  //   }
+  // }
+  // .tableHorizontally {
+  //   @media screen and (max-width: $fixedPrimogemsTable) {
+  //     width: 650px;
+  //   }
+  // }
 }
 
 .item {

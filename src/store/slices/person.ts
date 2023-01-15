@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { propRedux } from "../types/calc";
 import { primogems, storeItem } from "../types/items";
-import { User } from "../types/user";
+import { personSlice } from "../types/user";
 
-const initialState: User = {
+const initialState: personSlice = {
   uid: "",
   store: [],
   primogems: [],

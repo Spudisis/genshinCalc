@@ -17,6 +17,20 @@ import { Toggle } from "../../components";
 export const Header = () => {
   const [modalMenu, setModalMenu] = React.useState(false);
 
+  const toggleContextChange = (
+    <ThemeContext.Consumer>
+      {({ theme, setTheme }: any) => (
+        <Toggle
+          onChange={() => {
+            if (theme === themes.light) setTheme(themes.dark);
+            if (theme === themes.dark) setTheme(themes.light);
+          }}
+          value={theme === themes.dark}
+        />
+      )}
+    </ThemeContext.Consumer>
+  );
+
   return (
     <header className={s.root}>
       <div className={s.wrapper}>
@@ -24,33 +38,9 @@ export const Header = () => {
           <Link to={Site} className={s.logo}>
             <img src={uraDavai} alt="uraDavai" />
           </Link>
-          <div className={s.context751}>
-            <ThemeContext.Consumer>
-              {({ theme, setTheme }: any) => (
-                <Toggle
-                  onChange={() => {
-                    if (theme === themes.light) setTheme(themes.dark);
-                    if (theme === themes.dark) setTheme(themes.light);
-                  }}
-                  value={theme === themes.dark}
-                />
-              )}
-            </ThemeContext.Consumer>
-          </div>
+          <div className={s.context751}>{toggleContextChange}</div>
         </div>
-        <div className={s.context750}>
-          <ThemeContext.Consumer>
-            {({ theme, setTheme }: any) => (
-              <Toggle
-                onChange={() => {
-                  if (theme === themes.light) setTheme(themes.dark);
-                  if (theme === themes.dark) setTheme(themes.light);
-                }}
-                value={theme === themes.dark}
-              />
-            )}
-          </ThemeContext.Consumer>
-        </div>
+        <div className={s.context750}>{toggleContextChange}</div>
         <div className={s.links}>
           <Links />
           <AuthButton />

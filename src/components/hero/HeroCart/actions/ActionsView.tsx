@@ -2,17 +2,23 @@ import s from "../HeroCart.module.scss";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { heroCart, Site, waiting } from "../../../../const/routes";
 
 interface ActionsViewTypes {
   deleteItem: boolean;
   deleteCart: () => void;
   setDeleteItem: (n: boolean) => void;
+  id: number;
 }
 
-export const ActionsView = ({ deleteItem, deleteCart, setDeleteItem }: ActionsViewTypes) => {
+export const ActionsView = ({ deleteItem, deleteCart, setDeleteItem, id }: ActionsViewTypes) => {
   return (
     <div className={s.buttons}>
-      <button>История изменений</button>
+      <Link className={s.link} to={heroCart + id}>
+        Подробнее
+      </Link>
+
       {!deleteItem ? (
         <button onClick={() => setDeleteItem(true)}>
           <FontAwesomeIcon icon={faTrash as IconProp} />

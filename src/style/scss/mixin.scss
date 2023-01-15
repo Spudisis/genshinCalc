@@ -33,3 +33,18 @@
     font-size: 16px;
   }
 }
+
+@mixin details {
+  margin-top: 20px;
+  summary {
+    @include button;
+    @include notFill;
+    transition: 0.2s;
+    &:hover {
+      @include fill;
+    }
+  }
+  &[open] > summary {
+    @include fill;
+  }
+}

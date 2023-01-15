@@ -8,11 +8,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./store/hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { CounterPrim, CreateHero, Main } from "./pages";
+import { CounterPrim, CreateHero, HeroCart, Main } from "./pages";
 import { auth, CheckUser } from "./firebase/index";
 import { setUid } from "./store/slices/person";
 import { Loader } from "./components/";
-import { counterPrim, Site, waiting } from "./const/routes";
+import { counterPrim, heroCart, idHeroCart, Site, waiting } from "./const/routes";
 import ThemeProvider from "./provider/provider";
 
 export const App = () => {
@@ -38,10 +38,10 @@ export const App = () => {
               <Routes>
                 <Route path={Site} element={<Main />}></Route>
                 <Route path={Site + waiting} element={<CreateHero />}></Route>
+                <Route path={Site + waiting + heroCart + idHeroCart} element={<HeroCart />}></Route>
                 <Route path={Site + counterPrim} element={<CounterPrim />}></Route>
               </Routes>
             </main>
-
             <Footer />
           </Router>
         )}

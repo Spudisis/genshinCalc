@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
 import { storeItem } from "../../store/types/items";
-import { CalcBetween, copyClipBoard } from "../../utils";
+import { CalcBetween, copyClipBoard, findLocalStorageNumber, setItemLocalStorage } from "../../utils";
 import { Pagination } from "../pagination/pagination";
 import { NoticedCopy } from "./NoticedCopy/noticedCopy";
 import { PrimoHistoryView } from "./PrimoHistoryView";
@@ -14,25 +14,35 @@ export type copy = {
   index: number;
 };
 
+export type lineCount = 5 | 10 | 15 | 25;
+
 export const PrimoHistory = () => {
+  const getLocalPageCount = findLocalStorageNumber("countLine");
+
   const primogems = useAppSelector((store) => store.person.primogems);
   const store = useAppSelector((store) => store.person.store);
   const lastCalc = useAppSelector((store) => store.persistedReducer.params);
+
   const [reserve, setReserve] = React.useState(0);
   const [statusNoticed, setStatusNoticed] = React.useState(false);
+
   const [pageNumber, setPageNumber] = React.useState(0);
   const [pageCount, setPageCount] = React.useState(0);
-  const [countLine, setCountLine] = React.useState(10);
+  const [countLine, setCountLine] = React.useState<lineCount>(getLocalPageCount[1] ? getLocalPageCount[1] : 10);
 
   React.useEffect(() => {
     pageCount < pageNumber && setPageNumber(pageCount - 1);
   }, [pageCount]);
 
   React.useEffect(() => {
+    setItemLocalStorage("countLine", countLine);
+  }, [countLine]);
+
+  React.useEffect(() => {
     setPageCount(Math.ceil(primogems.length / countLine));
   }, [primogems, countLine]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (store && lastCalc.lastCalc) {
       const count = store.reduce((a: number, elem: storeItem) => CalcBetween(elem).countSave + a, 0);
       setReserve(count);

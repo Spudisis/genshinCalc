@@ -2,7 +2,6 @@ import { copy } from "../components/primoHistory/PrimoHistory";
 import { getDateNow } from "./calcChangePrimogems";
 
 export const copyClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter, index }: copy) => {
-  console.log(index);
   let declination = "";
 
   if (index === 0 && date.slice(0, 10) === getDateNow()) {

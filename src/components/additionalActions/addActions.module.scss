@@ -5,13 +5,10 @@
 
   margin-left: 20px;
   transition: 0.2s;
+  margin-bottom: 10px;
 }
 .autofill {
   @include fill;
-
-  &:hover {
-    background-color: black;
-  }
 }
 .autoFillNone {
   @include notFill;
@@ -21,21 +18,10 @@
 }
 
 .details {
-  margin-top: 20px;
-  .additionalButton {
-    @include button;
-    @include notFill;
-    transition: 0.2s;
-    &:hover {
-      @include fill;
-    }
-  }
+  @include details;
   .additionalFunction {
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
-  }
-  &[open] > summary {
-    @include fill;
   }
 }

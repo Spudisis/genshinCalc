@@ -1,9 +1,11 @@
 export type storeItem = {
   id: number;
+  nameHero: string;
   dateStart: string;
   dateEnd: string | undefined;
   countPrimogems: number;
   countStart: number;
+  synchValue: number;
   image: string;
 };
 

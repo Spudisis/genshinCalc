@@ -49,8 +49,7 @@
   --color-spinner-bgc: black;
 
   --color-thHeroList: #b9b29f;
-  --color-bgc-trHeroList1: white;
-  --color-bgc-trHeroList2: #e8e6d1;
+
   --color-item: rgba(0, 0, 0, 0.37);
   --color-item-hover: rgba(0, 0, 0, 0.607);
 
@@ -131,8 +130,7 @@
   --color-spinner-bgc: white;
 
   --color-thHeroList: #b9b29f;
-  --color-bgc-trHeroList1: var(--color-bgc-main);
-  --color-bgc-trHeroList2: #e8e6d1;
+
   --color-item: rgba(0, 0, 0, 0.37);
   --color-item-hover: rgba(0, 0, 0, 0.607);
 
