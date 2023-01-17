@@ -17,7 +17,6 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
   const handleClickOutside = (event: any) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setModalMenu(false);
-      console.log("modalhuimain");
     }
   };
   React.useEffect(() => {
@@ -40,6 +39,7 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
         </div>
 
         <AuthButton />
+        
       </div>
     </div>
   );

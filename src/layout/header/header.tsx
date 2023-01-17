@@ -17,6 +17,10 @@ import { Toggle } from "../../components";
 export const Header = () => {
   const [modalMenu, setModalMenu] = React.useState(false);
 
+  React.useEffect(() => {
+    modalMenu ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+  }, [modalMenu]);
+
   const toggleContextChange = (
     <ThemeContext.Consumer>
       {({ theme, setTheme }: any) => (

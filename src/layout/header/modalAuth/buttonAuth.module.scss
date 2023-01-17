@@ -1,9 +1,9 @@
 @import "../../../style/scss/mixin";
-
+@import "../../../style/scss/values";
 .buttonOpenModal {
   display: flex;
   position: relative;
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: $modalMenu) {
     position: static;
   }
 }
@@ -21,7 +21,7 @@
     margin-left: 0px;
     border-radius: 0px 0px 15px 15px;
   }
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: $modalMenu) {
     border-radius: 0px;
     background-color: var(--bgc-color-button);
   }
