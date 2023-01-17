@@ -18,7 +18,10 @@ export const Header = () => {
   const [modalMenu, setModalMenu] = React.useState(false);
 
   React.useEffect(() => {
-    modalMenu ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+    //костыль
+    if (document.body.offsetWidth < 450) {
+      modalMenu ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+    }
   }, [modalMenu]);
 
   const toggleContextChange = (

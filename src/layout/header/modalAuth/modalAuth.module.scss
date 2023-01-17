@@ -4,13 +4,14 @@
   position: absolute;
   width: 300px;
   height: 400px;
-  top: 60px;
+  top: 80px;
   right: 10px;
 
   z-index: 9999999;
 
   @media screen and (max-width: 750px) {
     font-size: 18px;
+    top: 150px;
   }
   @media screen and (max-width: $modalMenu) {
     position: fixed;
@@ -30,6 +31,7 @@
     border: 1px solid var(--modal-color-border);
     @media screen and (max-width: $modalMenu) {
       height: 100%;
+      border-radius: 0px;
     }
   }
 }

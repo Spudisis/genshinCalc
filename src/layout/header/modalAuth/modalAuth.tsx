@@ -43,11 +43,13 @@ export const ModalAuth = ({ setModalActive }: any) => {
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
+
         {chooseForm ? (
           <Reg createUser={({ email, password }: user) => createUserWithEmailAndPassword(email, password)} />
         ) : (
           <Auth signIn={({ email, password }: user) => signInWithEmailAndPassword(email, password)} />
         )}
+
         <GoogleAuth />
       </div>
     </div>

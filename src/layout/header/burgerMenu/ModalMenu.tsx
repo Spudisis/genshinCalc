@@ -34,12 +34,11 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
         <Link to={Site} className={s.logo} onClick={() => setModalMenu(!modalMenu)}>
           <img src={uraDavai} alt="uraDavai" />
         </Link>
+
         <div onClick={() => setModalMenu(!modalMenu)}>
           <Links />
         </div>
-
         <AuthButton />
-        
       </div>
     </div>
   );

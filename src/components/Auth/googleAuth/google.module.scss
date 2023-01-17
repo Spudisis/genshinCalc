@@ -1,5 +1,5 @@
 @import "../../../style/scss/mixin.scss";
-
+@import "../../../style/scss/values.scss";
 .button {
   @include button;
   border-radius: 0px 0px 15px 15px;
@@ -14,8 +14,12 @@
     margin-left: 10px;
     font-size: 30px;
   }
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: $modalMenu) {
     border-radius: 0px;
+    width: auto;
+    border-radius: 15px;
+
+    margin: 0px 20px 60px;
   }
 }
 @media (hover: hover) {

@@ -8,8 +8,6 @@
   top: 100px;
   height: auto;
   z-index: 9999999;
-  overflow: hidden;
-  overflow-y: auto;
 
   @media screen and (max-width: $modalMenu) {
     position: fixed;
@@ -24,13 +22,11 @@
   .wrapper {
     border-radius: 15px;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     box-shadow: 2px 5px 5px var(--button-active-color-shadow);
     height: 100%;
-    @media screen and (max-width: $modalMenu) {
-      justify-content: space-between;
-    }
+
     .logo {
       display: none;
     }
@@ -38,6 +34,8 @@
       display: none;
     }
     @media screen and (max-width: $modalMenu) {
+      justify-content: space-between;
+      padding-bottom: 40px;
       .logo {
         display: block;
         img {
