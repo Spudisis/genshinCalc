@@ -1,3 +1,5 @@
+@import "./values.scss";
+
 @mixin wrapper {
   width: 1170px;
   margin: 0 auto;
@@ -11,7 +13,7 @@
   outline: none;
   border: none;
   background-color: inherit;
-  border-radius: 10px;
+  border-radius: $borderRadiusButton;
   padding: 5px 10px;
   cursor: pointer;
 }
@@ -40,8 +42,10 @@
     @include button;
     @include notFill;
     transition: 0.2s;
-    &:hover {
-      @include fill;
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
     }
   }
   &[open] > summary {

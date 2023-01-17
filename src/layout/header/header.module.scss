@@ -46,10 +46,13 @@
     width: auto;
     height: 100%;
   }
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
-.logo:hover {
-  transform: scale(1.1);
-}
+
 .links {
   display: flex;
   align-items: center;
@@ -74,8 +77,10 @@
   @media screen and (min-width: 751px) {
     display: none;
   }
-  &:hover {
-    color: var(--hover-burger-menu);
-    transition: 0.3s;
+  @media (hover: hover) {
+    &:hover {
+      color: var(--hover-burger-menu);
+      transition: 0.3s;
+    }
   }
 }

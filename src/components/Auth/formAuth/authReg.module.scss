@@ -16,8 +16,10 @@
   border-bottom: 2px solid var(--input-border-color);
   label {
     color: var(--label-color);
-    &:hover {
-      color: var(--color-text);
+    @media (hover: hover) {
+      &:hover {
+        color: var(--color-text);
+      }
     }
   }
   input {
@@ -39,7 +41,9 @@
 .submitButton {
   @include button;
   @include fill;
-}
-.submitButton:hover {
-  @include notFill;
+  @media (hover: hover) {
+    &:hover {
+      @include notFill;
+    }
+  }
 }

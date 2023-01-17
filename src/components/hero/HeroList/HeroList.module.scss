@@ -20,9 +20,11 @@
       @include button;
       @include fill;
       transition: 0.2s;
-    }
-    button:hover {
-      @include notFill;
+      @media (hover: hover) {
+        &:hover {
+          @include notFill;
+        }
+      }
     }
   }
 }
@@ -77,10 +79,12 @@
       width: 330px;
     }
   }
-  .item:hover {
-    box-shadow: 15px 15px 2px 1px var(--color-item-hover);
-    @media screen and (max-width: 450px) {
-      box-shadow: none;
+  @media (hover: hover) {
+    .item:hover {
+      box-shadow: 15px 15px 2px 1px var(--color-item-hover);
+      @media screen and (max-width: 450px) {
+        box-shadow: none;
+      }
     }
   }
 

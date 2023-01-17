@@ -12,16 +12,18 @@
   border-radius: inherit;
   .submit {
     @include button;
-    background-color: var(--colorButton);
-    color: var(--color-text-fill);
+    @include notFill;
     margin-left: 20px;
     @media screen and (max-width: 800px) {
       margin-left: 0px;
     }
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
+    }
   }
-  .submit:hover {
-    background-color: var(--colorButtonHover);
-  }
+
   .inputs {
     display: flex;
     width: 100%;
@@ -43,10 +45,13 @@
       label {
         font-weight: 600;
         color: var(--label-color);
-      }
-      label:hover {
         cursor: pointer;
-        color: var(--label-color-hover);
+      }
+
+      label:hover {
+        @media (hover: hover) {
+          color: var(--label-color-hover);
+        }
       }
 
       input {

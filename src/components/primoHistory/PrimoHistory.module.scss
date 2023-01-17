@@ -24,15 +24,17 @@
       .line {
         border: 1px solid var(--border-table);
         margin: 0 auto;
-
-        &:hover {
-          cursor: pointer;
-          background-color: var(--hover-tr-color);
-          img {
-            transform: rotate(360deg);
-            transition: 10s;
+        @media (hover: hover) {
+          &:hover {
+            cursor: pointer;
+            background-color: var(--hover-tr-color);
+            img {
+              transform: rotate(360deg);
+              transition: 10s;
+            }
           }
         }
+
         img {
           display: block;
           margin: 0 auto;
@@ -59,10 +61,13 @@
 }
 
 .item {
-  &:hover {
-    cursor: pointer;
-    background-color: var(--hover-tr-color);
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: var(--hover-tr-color);
+    }
   }
+
   .line {
     text-align: center;
     width: 25%;

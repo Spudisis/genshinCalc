@@ -25,12 +25,14 @@
     border-radius: 0px;
     background-color: var(--bgc-color-button);
   }
-  &:hover {
-    transform: scale(1.1);
-    @include notFill;
-    border: none;
-    @media screen and (max-width: 750px) {
-      transform: scale(1);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+      @include notFill;
+      border: none;
+      @media screen and (max-width: 750px) {
+        transform: scale(1);
+      }
     }
   }
 }

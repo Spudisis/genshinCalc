@@ -12,9 +12,11 @@
     outline: none;
     color: var(--color-text);
   }
-  td button:hover {
-    color: green;
-    cursor: pointer;
+  @media (hover: hover) {
+    td button:hover {
+      color: green;
+      cursor: pointer;
+    }
   }
   td button:disabled {
     color: red;

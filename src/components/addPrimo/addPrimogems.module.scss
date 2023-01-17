@@ -21,9 +21,11 @@
       padding: 10px 30px;
       font-size: 20px;
     }
-  }
-  .submit:hover {
-    @include notFill;
+    @media (hover: hover) {
+      &:hover {
+        @include notFill;
+      }
+    }
   }
   .inputs {
     display: flex;
@@ -54,10 +56,12 @@
       label {
         font-weight: 600;
         color: var(--label-color);
-      }
-      label:hover {
-        cursor: pointer;
-        color: var(--label-color-hover);
+        @media (hover: hover) {
+          &:hover {
+            cursor: pointer;
+            color: var(--label-color-hover);
+          }
+        }
       }
 
       input {

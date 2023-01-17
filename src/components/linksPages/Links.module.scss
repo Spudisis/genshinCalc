@@ -14,10 +14,13 @@
   }
   .inactive {
     @include notFill;
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
+    }
   }
-  .inactive:hover {
-    @include fill;
-  }
+
   @media screen and (max-width: 750px) {
     display: flex;
     flex-direction: column;
@@ -27,9 +30,12 @@
       margin-right: 0px;
       border-radius: 15px 15px 0px 0px;
     }
-    .inactive:hover {
-      @include fill;
+    @media (hover: hover) {
+      .inactive:hover {
+        @include fill;
+      }
     }
+
     .inactive {
       border: none;
     }
@@ -42,16 +48,18 @@
     }
   }
   @media screen and (max-width: 450px) {
-    .inactive:hover {
-      @include fill;
-      background-color: var(--bcg-color-hover-modal-links);
-      border: none;
-    }
     .inactive {
       @include notFill;
       background-color: var(--color-modal-burger-bgc);
       color: var(--color-close-modal-burger);
       border: none;
+      @media (hover: hover) {
+        &:hover {
+          @include fill;
+          background-color: var(--bcg-color-hover-modal-links);
+          border: none;
+        }
+      }
     }
     a:not(:last-child) {
       margin-right: 0px;

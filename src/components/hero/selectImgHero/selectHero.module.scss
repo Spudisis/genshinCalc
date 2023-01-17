@@ -10,8 +10,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  img:hover {
-    background-color: rgba(238, 184, 5, 0.547);
-    cursor: pointer;
+  @media (hover: hover) {
+    img:hover {
+      background-color: rgba(238, 184, 5, 0.547);
+      cursor: pointer;
+    }
   }
 }

@@ -12,8 +12,10 @@
 }
 .autoFillNone {
   @include notFill;
-  &:hover {
-    @include fill;
+  @media (hover: hover) {
+    &:hover {
+      @include fill;
+    }
   }
 }
 

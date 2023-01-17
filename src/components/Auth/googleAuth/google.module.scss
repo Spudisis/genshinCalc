@@ -18,8 +18,10 @@
     border-radius: 0px;
   }
 }
-.button:hover {
-  svg {
-    color: orange;
+@media (hover: hover) {
+  .button:hover {
+    svg {
+      color: orange;
+    }
   }
 }

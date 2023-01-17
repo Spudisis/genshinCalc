@@ -19,9 +19,10 @@
   }
   .changePage {
     @include notFill;
-
-    &:hover {
-      @include fill;
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
     }
   }
   .activePage {
@@ -42,8 +43,10 @@
     padding: 5px 10px;
     border-radius: 15px;
     cursor: pointer;
-    &:hover {
-      @include fill;
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
     }
   }
   .modalLinesChange {
@@ -60,9 +63,11 @@
       cursor: pointer;
       @include notFill;
       border: none;
-      &:hover {
-        @include fill;
-        border: none;
+      @media (hover: hover) {
+        &:hover {
+          @include fill;
+          border: none;
+        }
       }
     }
   }

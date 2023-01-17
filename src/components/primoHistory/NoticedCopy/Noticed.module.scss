@@ -17,13 +17,15 @@
     left: 50%;
     transform: translate(-50%, 0);
   }
-  &:hover {
-    transition: 0.3s;
-    height: 130px;
-  }
-  &:hover .line:last-child {
-    transition: 0.3s;
-    max-height: 100px;
+  @media (hover: hover) {
+    &:hover {
+      transition: 0.3s;
+      height: 130px;
+    }
+    &:hover .line:last-child {
+      transition: 0.3s;
+      max-height: 100px;
+    }
   }
   .line {
     display: flex;
@@ -54,8 +56,10 @@
       border: none;
       color: var(--color-text);
       border-top: 1px solid var(--noticed-color-border);
-      &:hover {
-        color: var(--color-hide-hover);
+      @media (hover: hover) {
+        &:hover {
+          color: var(--color-hide-hover);
+        }
       }
     }
     .close {
@@ -65,8 +69,10 @@
       cursor: pointer;
       font-size: 20px;
       color: var(--color-text);
-      &:hover {
-        color: var(--color-close-hover);
+      @media (hover: hover) {
+        &:hover {
+          color: var(--color-close-hover);
+        }
       }
     }
   }

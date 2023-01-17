@@ -72,27 +72,41 @@
           background-color: rgba(0, 128, 0, 0.599);
           border-radius: 15px 0px 0px 0px;
         }
-        .buttonsaveImage:first-child:hover {
-          background-color: green;
+        @media (hover: hover) {
+          .buttonsaveImage:first-child:hover {
+            background-color: green;
+          }
         }
         .buttonsaveImage:last-child {
           border-radius: 0px 0px 0px 0px;
           background-color: rgba(227, 100, 100, 0.627);
         }
-        .buttonsaveImage:last-child:hover {
-          background-color: rgb(227, 100, 100);
+        @media (hover: hover) {
+          .buttonsaveImage:last-child:hover {
+            background-color: rgb(227, 100, 100);
+          }
         }
       }
       img {
         border-radius: 20px 0px 0px 0px;
         width: 100%;
         height: 100%;
+        min-height: 178px;
+        min-width: 178px;
         object-fit: cover;
         cursor: pointer;
         transition: transform 0.25s;
+        @media screen and (max-width: 420px) {
+          min-height: auto;
+          min-width: auto;
+          width: 150px;
+          height: 150px;
+        }
       }
-      img:hover {
-        transform: scale(1.05);
+      @media (hover: hover) {
+        img:hover {
+          transform: scale(1.05);
+        }
       }
     }
 
@@ -138,11 +152,14 @@
             border: none;
             outline: none;
             color: var(--color-text);
+            @media (hover: hover) {
+              &:hover {
+                color: green;
+                cursor: pointer;
+              }
+            }
           }
-          button:hover {
-            color: green;
-            cursor: pointer;
-          }
+
           button:disabled {
             color: red;
             cursor: not-allowed;
@@ -179,8 +196,10 @@
       border-radius: 0px 0px 0px 20px;
       background-color: rgba(208, 227, 100, 0.627);
       text-align: center;
-      &:hover {
-        background-color: rgb(208, 227, 100);
+      @media (hover: hover) {
+        &:hover {
+          background-color: rgb(208, 227, 100);
+        }
       }
     }
     button {
@@ -193,8 +212,10 @@
       border-radius: 0px 0px 20px 0px;
       background-color: rgba(227, 100, 100, 0.627);
     }
-    button:last-child:hover {
-      background-color: rgb(227, 100, 100);
+    @media (hover: hover) {
+      button:last-child:hover {
+        background-color: rgb(227, 100, 100);
+      }
     }
     .buttonsDelete {
       display: flex;
@@ -204,16 +225,19 @@
         background-color: rgba(0, 128, 0, 0.482);
         color: white;
       }
-      button:first-child:hover {
-        background-color: rgb(0, 128, 0);
+      @media (hover: hover) {
+        button:first-child:hover {
+          background-color: rgb(0, 128, 0);
+        }
       }
     }
   }
 }
-
-.item:hover {
-  box-shadow: 15px 15px 2px 1px var(--box-shadow-color);
-  @media screen and (max-width: 450px) {
-    box-shadow: none;
+@media (hover: hover) {
+  .item:hover {
+    box-shadow: 15px 15px 2px 1px var(--box-shadow-color);
+    @media screen and (max-width: 450px) {
+      box-shadow: none;
+    }
   }
 }
