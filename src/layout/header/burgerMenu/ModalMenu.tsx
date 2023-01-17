@@ -4,7 +4,7 @@ import { Links } from "../../../components";
 import { Site } from "../../../const/routes";
 import { AuthButton } from "../modalAuth/auth";
 import s from "./ModalMenu.module.scss";
-import uraDavai from "../../../assets/davaidavaiuraaa.png";
+import logo from "../../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 type modal = {
@@ -32,7 +32,7 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
           <FontAwesomeIcon icon={faXmark} />
         </button>
         <Link to={Site} className={s.logo} onClick={() => setModalMenu(!modalMenu)}>
-          <img src={uraDavai} alt="uraDavai" />
+          <img src={logo} alt="logo" />
         </Link>
 
         <div onClick={() => setModalMenu(!modalMenu)}>
