@@ -27,12 +27,21 @@ export const dataSlice = createSlice({
     setPrimogems: (state, action: PayloadAction<primogems[]>) => {
       state.primogems = action.payload;
     },
-    changeStore: (state, action: PayloadAction<propRedux>) => {
+    addGemsItemStore: (state, action: PayloadAction<propRedux>) => {
       state.store.forEach((elem) => {
         if (elem.id === action.payload.id) {
-          elem.countStart = +elem.countStart + +action.payload.countGemsPlus;
+          elem.countAdd = +elem.countAdd + +action.payload.countGemsPlus;
         }
       });
+    },
+    changeItemStore: (state, action: PayloadAction<storeItem>) => {
+      const newArr = state.store.map((elem) => {
+        if (elem.id === action.payload.id) {
+          return action.payload;
+        }
+        return elem;
+      });
+      state.store = newArr;
     },
     deleteStore: (state, action: PayloadAction<number>) => {
       state.store = state.store.filter((elem) => elem.id !== action.payload);
@@ -56,7 +65,8 @@ export const {
   setPrimogems,
   clearStore,
   deleteStore,
-  changeStore,
+  addGemsItemStore,
+  changeItemStore,
   addPrimogems,
 } = dataSlice.actions;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { changeStore, getPerson } from "../../../store/slices/person";
+import { addGemsItemStore, getPerson } from "../../../store/slices/person";
 import { storeItem } from "../../../store/types/items";
 
 import { CalcBetween } from "../../../utils";
@@ -15,17 +15,10 @@ import { InputsCart } from "./components/inputsCart";
 import { Info } from "./components/Info";
 import { useLocation } from "react-router-dom";
 import { Site } from "../../../const/routes";
-
-export type obj = {
-  between: number;
-  now: number;
-  countSave: number;
-  countSumm: number;
-  betweenSumm: number;
-};
+import { obj } from "../../../store/slices/calcPrimogemObj";
 
 export const HeroCart = React.memo(
-  ({ id, nameHero, dateStart, dateEnd, countStart, countPrimogems, image, synchValue }: storeItem) => {
+  ({ id, name, dateStart, dateEnd, countStart, countAdd, countPrimogems, image, synchValue }: storeItem) => {
     const dispatch = useAppDispatch();
     const location = useLocation();
 
@@ -47,11 +40,21 @@ export const HeroCart = React.memo(
 
     React.useLayoutEffect(() => {
       //рассчет примогемов
-      const count = CalcBetween({ id, nameHero, dateStart, dateEnd, countStart, countPrimogems, image, synchValue });
+      const count = CalcBetween({
+        id,
+        name,
+        dateStart,
+        dateEnd,
+        countAdd,
+        countStart,
+        countPrimogems,
+        image,
+        synchValue,
+      });
       if (count) {
         setObj(count);
       }
-    }, [id, dateStart, dateEnd, countStart, countPrimogems, image, primogems]);
+    }, [id, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, primogems]);
 
     React.useLayoutEffect(() => {
       if (primogems && obj.countSave) {
@@ -77,7 +80,7 @@ export const HeroCart = React.memo(
     };
     const sendAdd = () => {
       if (countGemsPlus) {
-        dispatch(changeStore({ countGemsPlus, id }));
+        dispatch(addGemsItemStore({ countGemsPlus, id }));
       }
     };
 
@@ -86,7 +89,7 @@ export const HeroCart = React.memo(
         <div className={s.info}>
           <div className={s.mainInfoCart}>
             <div className={s.imageContain}>
-              <ImageContain setImageFirebase={setImageFirebase} image={image} uid={uid} />
+              <ImageContain setImageFirebase={setImageFirebase} image={image} uid={uid} setSizeImg={undefined} />
             </div>
             <InputsCart
               initialCount={primogems}

@@ -1,0 +1,197 @@
+@import "../../../style/scss/mixin.scss";
+.wrapper {
+  color: var(--color-text);
+  margin: 0px 10px;
+
+  flex: 1;
+  @media screen and (max-width: $CartAdaptive700) {
+    margin-top: 20px;
+  }
+  @media screen and (max-width: $cartAdaptive450) {
+    margin: 0px;
+    margin-top: 20px;
+  }
+  form {
+    border-radius: 20px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 3px 3px 5px 5px var(--box-shadow-main);
+    @media screen and (max-width: $cartAdaptive450) {
+      padding: 0px 10px;
+    }
+    .content {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      flex-direction: column;
+      .head {
+        height: 36px;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        @media screen and(max-width:870px) {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+        @media screen and(max-width:$CartAdaptive700) {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @media screen and (max-width: $cartAdaptive450) {
+          margin-top: 10px;
+          display: flex;
+          justify-content: center;
+        }
+        h3 {
+          grid-column: 2;
+
+          text-align: center;
+        }
+        .resetForm {
+          @include button;
+          @include notFill;
+          transition: 0.2s ease all;
+          @media (hover: hover) {
+            &:hover {
+              @include fill;
+            }
+          }
+          @media screen and(max-width:870px) {
+            margin-left: 20px;
+          }
+          @media screen and(max-width:$CartAdaptive700) {
+            margin-left: 0px;
+          }
+          @media screen and (max-width: $cartAdaptive450) {
+            margin-left: 20px;
+          }
+        }
+      }
+
+      .columns {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-row-gap: 10px;
+        grid-column-gap: 20px;
+        width: 100%;
+        @media screen and (max-width: $FieldsCartAdaptive) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+        @media screen and (max-width: $CartAdaptive700) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media screen and (max-width: $cartAdaptive450) {
+          grid-template-columns: repeat(1, 1fr);
+          margin-top: 10px;
+        }
+        .inputBlock {
+          border: 1px solid var(--bgc-color-layout);
+          padding: 10px;
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin: 15px 0px;
+          @media screen and (max-width: $cartAdaptive450) {
+            margin: 5px 0px;
+            padding: 5px 10px;
+          }
+          @media screen and (max-width: $FieldsCartAdaptive) {
+            margin: 5px 0px;
+          }
+          label {
+            font-size: 18px;
+            text-align: center;
+            @media screen and (max-width: 1200px) {
+              font-size: 16px;
+            }
+          }
+
+          input {
+            width: 100%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            color: var(--color-input);
+            background-color: var(--color-bgc-main);
+          }
+          input:not(:read-only) {
+            border-bottom: 1px solid var(--bgc-color-layout);
+          }
+
+          input:read-only {
+            cursor: auto;
+            color: red;
+          }
+          .details {
+            summary {
+              @include button;
+              @include notFill;
+              transition: 0.2s ease all;
+              @media (hover: hover) {
+                &:hover {
+                  @include fill;
+                }
+              }
+            }
+            &[open] summary {
+              @include fill;
+            }
+            .info {
+              margin-top: 10px;
+
+              display: flex;
+              justify-content: space-between;
+              border: 1px solid var(--bgc-color-layout);
+              border-radius: $borderRadiusButton;
+              box-sizing: border-box;
+              input {
+                padding: 0px;
+                padding-left: 14px;
+                border: none;
+                overflow: hidden;
+                border-radius: inherit;
+              }
+              button {
+                @include button;
+                @include notFill;
+                transition: 0.2s ease all;
+                border-radius: 0px $borderRadiusButton $borderRadiusButton 0px;
+                border: none;
+                border-left: 1px solid var(--bgc-color-layout);
+                @media (hover: hover) {
+                  &:hover {
+                    @include fill;
+                    border: none;
+                    border-left: 1px solid var(--bgc-color-layout);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .submit {
+      @include button;
+      @include notFill;
+      max-width: 200px;
+      transition: 0.2s ease all;
+      @media (hover: hover) {
+        &:hover {
+          @include fill;
+        }
+      }
+      @media screen and (max-width: $FieldsCartAdaptive) {
+        margin: 5px 0px;
+      }
+    }
+  }
+}

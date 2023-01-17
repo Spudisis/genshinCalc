@@ -20,3 +20,4 @@ export { ImageContain } from "./hero/HeroCart/components/imageContain";
 
 export { Image } from "./HeroCartPage/Image/Image";
 export { Fields } from "./HeroCartPage/fields/Fields";
+export { PrimogemsViewCart } from "./HeroCartPage/PrimogemsViewCart/PrimogemsViewCart";

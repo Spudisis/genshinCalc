@@ -17,9 +17,9 @@ export const Fields = ({
     <>
       <div className={s.inputsCommon}>
         <div className={s.inputBlock}>
-          <label htmlFor={id + "nameHero"}>Имя карточки</label>
-          <Field type="input" name="nameHero" id={id + "nameHero"} placeholder="Имя" />
-          <ErrorMessage name="nameHero" component="div" className={s.errorMessage} />
+          <label htmlFor={id + "name"}>Имя карточки</label>
+          <Field type="input" name="name" id={id + "name"} placeholder="Имя" />
+          <ErrorMessage name="name" component="div" className={s.errorMessage} />
         </div>
         <div className={s.inputBlock}>
           <label

@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 import person from "./slices/person";
 import localStorage from "./slices/localstorage";
 import getImagesUrl from "./slices/images";
+import calcPrimogemObj from "./slices/calcPrimogemObj";
 
 const persistConfig = {
   key: "additionalActions",
@@ -19,7 +20,7 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: { persistedReducer, person, getImagesUrl },
+  reducer: { persistedReducer, person, getImagesUrl, calcPrimogemObj },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

@@ -15,22 +15,18 @@ export const Image = ({ id, setSizeImg }: Img) => {
   const store = useAppSelector((store) => store.person.store);
   const [cart, setCart] = React.useState<storeItem>();
   const [imageFirebase, setImageFirebase] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+ 
 
   React.useEffect(() => {
     const cart = store.find((elem: storeItem) => id && elem.id === +id);
     if (cart) setCart(cart);
   }, [store]);
-  React.useEffect(() => {
-    if (cart && ref.current && ref) {
-      setSizeImg([ref.current.offsetHeight, ref.current.offsetWidth]);
-    }
-  }, [cart]);
+ 
   return (
     <>
       {cart && cart.image && (
-        <div ref={ref} className={s.image}>
-          <ImageContain uid={uid} image={cart.image} setImageFirebase={setImageFirebase} />
+        <div  className={s.image}>
+          <ImageContain uid={uid} image={cart.image} setImageFirebase={setImageFirebase} setSizeImg={setSizeImg}/>
         </div>
       )}
     </>

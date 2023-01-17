@@ -10,9 +10,12 @@ type Contain = {
 
   setImageFirebase: (n: boolean) => void;
   uid: any;
+  setSizeImg: (([n, b]: [T: number, U: number]) => void) | undefined;
 };
 
-export const ImageContain = ({ image, setImageFirebase, uid }: Contain) => {
+export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Contain) => {
+  const refImg = React.useRef<HTMLImageElement>(null);
+
   const [imageFind, setImagefind] = React.useState(false); //проверка откуда изображаение fasle-ссылкой, true-с json'а
   const [imageCheck, setImageCheck] = React.useState(image); //отсюда берется изображение (ссылка или название)
 
@@ -49,11 +52,20 @@ export const ImageContain = ({ image, setImageFirebase, uid }: Contain) => {
         console.log(error);
       });
   };
+
+  const onLoadImg = () => {
+    if (refImg && refImg.current && setSizeImg) {
+      setSizeImg([refImg.current.offsetHeight, refImg.current.offsetWidth]);
+    }
+  };
+
   return (
     <img
+      ref={refImg}
       src={imageFind ? require("../../../../assets/heroes/" + imageCheck) : imageCheck}
       alt=""
       onError={() => setImageCheck(error)}
+      onLoad={() => onLoadImg()}
     />
   );
 };

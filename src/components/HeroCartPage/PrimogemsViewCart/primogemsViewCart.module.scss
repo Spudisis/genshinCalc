@@ -1,0 +1,29 @@
+@import "../../../style/scss/mixin.scss";
+
+.wrapper {
+  color: var(--color-text);
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 3px 3px 5px 5px var(--box-shadow-main);
+  border-radius: 15px;
+  padding: 5px;
+  .wish {
+    color: rgb(157, 8, 157);
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+    @include button;
+    @include notFill;
+    margin: 5px;
+    cursor: auto;
+
+    p {
+      padding-right: 10px;
+    }
+  }
+  @media screen and (max-width: $CartAdaptive700) {
+    grid-template-columns: 1fr;
+  }
+}

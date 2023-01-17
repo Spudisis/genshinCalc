@@ -1,5 +1,6 @@
 import React from "react";
-import { obj } from "../HeroCart";
+import { obj } from "../../../../store/slices/calcPrimogemObj";
+
 import s from "../HeroCart.module.scss";
 
 type InfoCart = {

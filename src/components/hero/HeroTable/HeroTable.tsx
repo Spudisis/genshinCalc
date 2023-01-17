@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { changeStore } from "../../../store/slices/person";
+import { addGemsItemStore } from "../../../store/slices/person";
 import { storeItem } from "../../../store/types/items";
 import { CalcBetween } from "../../../utils";
 import s from "./HeroTable.module.scss";
@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 export const Hero = React.memo(
-  ({ id, nameHero, dateStart, dateEnd, countStart, countPrimogems, image, synchValue }: storeItem) => {
+  ({ id, name, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, synchValue }: storeItem) => {
     const dispatch = useAppDispatch();
     const initialCountPrimogems = useAppSelector((state) => state.person.primogems);
 
@@ -23,11 +23,21 @@ export const Hero = React.memo(
     }, [initialCountPrimogems]);
 
     React.useEffect(() => {
-      const count = CalcBetween({ id, nameHero, dateStart, dateEnd, countStart, countPrimogems, image, synchValue });
+      const count = CalcBetween({
+        id,
+        name,
+        dateStart,
+        dateEnd,
+        countAdd,
+        countStart,
+        countPrimogems,
+        image,
+        synchValue,
+      });
       if (count) {
         setObj(count);
       }
-    }, [id, dateStart, dateEnd, countStart, countPrimogems, image, primogems]);
+    }, [id, dateStart, dateEnd, countStart, countPrimogems, image, countAdd, primogems]);
 
     React.useEffect(() => {
       if (primogems && obj.countSave) {
@@ -54,7 +64,7 @@ export const Hero = React.memo(
     };
     const sendAdd = () => {
       if (countGemsPlus) {
-        dispatch(changeStore({ countGemsPlus, id }));
+        dispatch(addGemsItemStore({ countGemsPlus, id }));
       }
     };
     return (

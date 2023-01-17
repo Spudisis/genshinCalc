@@ -39,11 +39,13 @@ export const CreateHero = () => {
   return (
     <>
       <Formik
-        initialValues={{ nameHero: "", dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
+        initialValues={{ name: "", dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
         validate={(values) => {
           const errors: any = {};
-          if (values.nameHero.length === 0) {
-            errors.nameHero = "Обязательное поле";
+          if (values.name.length === 0) {
+            errors.name = "Обязательное поле";
+          } else if (values.name.length > 12) {
+            errors.name = "Не больше 12 символов";
           }
           if (values.dateEnd && values.dateStart) {
             const { dateStart, dateEnd } = values;
@@ -74,8 +76,9 @@ export const CreateHero = () => {
           }
           objImg !== "" && (await UploadImg({ objImg, uid }));
           const synchValue = 0;
+          const countAdd = 0;
           const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
-          dispath(addStore({ id, ...values, synchValue }));
+          dispath(addStore({ id, ...values, synchValue, countAdd }));
 
           resetForm();
           setSelectImg("");
