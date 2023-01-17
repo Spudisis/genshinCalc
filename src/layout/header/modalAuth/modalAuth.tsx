@@ -31,23 +31,25 @@ export const ModalAuth = ({ setModalActive }: any) => {
   }, []);
   return (
     <div className={s.modal} ref={modalRef}>
-      <div className={s.buttons}>
-        <button className={chooseForm ? s.inactiveButton : s.activeButton} onClick={() => setChooseForm(false)}>
-          Войти
-        </button>
-        <button className={chooseForm ? s.activeButton : s.inactiveButton} onClick={() => setChooseForm(true)}>
-          Регистрация
-        </button>
-        <button className={s.close} onClick={() => setModalActive(false)}>
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
+      <div className={s.wrapper}>
+        <div className={s.buttons}>
+          <button className={chooseForm ? s.inactiveButton : s.activeButton} onClick={() => setChooseForm(false)}>
+            Войти
+          </button>
+          <button className={chooseForm ? s.activeButton : s.inactiveButton} onClick={() => setChooseForm(true)}>
+            Регистрация
+          </button>
+          <button className={s.close} onClick={() => setModalActive(false)}>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>
+        {chooseForm ? (
+          <Reg createUser={({ email, password }: user) => createUserWithEmailAndPassword(email, password)} />
+        ) : (
+          <Auth signIn={({ email, password }: user) => signInWithEmailAndPassword(email, password)} />
+        )}
+        <GoogleAuth />
       </div>
-      {chooseForm ? (
-        <Reg createUser={({ email, password }: user) => createUserWithEmailAndPassword(email, password)} />
-      ) : (
-        <Auth signIn={({ email, password }: user) => signInWithEmailAndPassword(email, password)} />
-      )}
-      <GoogleAuth />
     </div>
   );
 };

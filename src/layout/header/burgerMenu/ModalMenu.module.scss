@@ -1,5 +1,5 @@
 @import "../../../style/scss/mixin";
-
+@import "../../../style/scss/values";
 .modal {
   position: absolute;
   width: 250px;
@@ -7,32 +7,7 @@
   top: 100px;
   height: auto;
   z-index: 9999999;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-  box-shadow: 2px 5px 5px var(--button-active-color-shadow);
-  .logo {
-    display: none;
-  }
-  .close {
-    display: none;
-  }
-  @media screen and (max-width: 450px) {
-    .logo {
-      display: block;
-      img {
-        margin: 0 auto;
-      }
-    }
-    .close {
-      display: block;
-      @include button;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      color: var(--color-close-modal-burger);
-    }
+  @media screen and (max-width: $modalMenu) {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -41,5 +16,38 @@
     top: 0px;
     border-radius: 0px;
     justify-content: space-between;
+  }
+  .wrapper {
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 5px 5px var(--button-active-color-shadow);
+    height: 100%;
+    @media screen and (max-width: $modalMenu) {
+      justify-content: space-between;
+    }
+    .logo {
+      display: none;
+    }
+    .close {
+      display: none;
+    }
+    @media screen and (max-width: $modalMenu) {
+      .logo {
+        display: block;
+        img {
+          margin: 0 auto;
+        }
+      }
+      .close {
+        display: block;
+        @include button;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        color: var(--color-close-modal-burger);
+      }
+    }
   }
 }

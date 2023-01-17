@@ -28,17 +28,19 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
   }, []);
   return (
     <div className={s.modal} ref={modalRef}>
-      <button className={s.close} onClick={() => setModalMenu(!modalMenu)}>
-        <FontAwesomeIcon icon={faXmark} />
-      </button>
-      <Link to={Site} className={s.logo} onClick={() => setModalMenu(!modalMenu)}>
-        <img src={uraDavai} alt="uraDavai" />
-      </Link>
-      <div onClick={() => setModalMenu(!modalMenu)}>
-        <Links />
-      </div>
+      <div className={s.wrapper}>
+        <button className={s.close} onClick={() => setModalMenu(!modalMenu)}>
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
+        <Link to={Site} className={s.logo} onClick={() => setModalMenu(!modalMenu)}>
+          <img src={uraDavai} alt="uraDavai" />
+        </Link>
+        <div onClick={() => setModalMenu(!modalMenu)}>
+          <Links />
+        </div>
 
-      <AuthButton />
+        <AuthButton />
+      </div>
     </div>
   );
 };
