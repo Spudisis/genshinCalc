@@ -1,7 +1,7 @@
 import React from "react";
 
 import s from "./header.module.scss";
-import uraDavai from "../../assets/davaidavaiuraaa.png";
+import logo from "../../assets/logo.png";
 
 import { Links } from "../../components/linksPages/Links";
 import { Link } from "react-router-dom";
@@ -43,7 +43,7 @@ export const Header = () => {
       <div className={s.wrapper}>
         <div className={s.toggleNimg}>
           <Link to={Site} className={s.logo}>
-            <img src={uraDavai} alt="uraDavai" />
+            <img src={logo} alt="logo" />
           </Link>
           <div className={s.context751}>{toggleContextChange}</div>
         </div>

@@ -16,8 +16,22 @@ type pagination = {
 export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine, countLine }: pagination) => {
   const array = Array.from({ length: pageCount }, () => undefined);
 
+  const ref = React.useRef<HTMLDivElement>(null);
   const [modalView, setModalView] = React.useState(false);
 
+  React.useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
+  const handleClickOutside = (event: any) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      console.log("modalhui");
+      setModalView(false);
+    }
+  };
   const nextPage = () => {
     if (pageCount > pageNumber + 1) {
       setPageNumber(pageNumber + 1);
@@ -55,17 +69,19 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
         </button>
       </div>
       <div className={s.setCountLine}>
-        <button className={s.openModal} onClick={() => setModalView(!modalView)}>
-          {countLine}&nbsp;&nbsp; записей
-        </button>
-        {modalView && (
-          <div className={s.modalLinesChange}>
-            <button onClick={() => setLine(5)}>5</button>
-            <button onClick={() => setLine(10)}>10</button>
-            <button onClick={() => setLine(15)}>15</button>
-            <button onClick={() => setLine(25)}>25</button>
-          </div>
-        )}
+        <div ref={ref}>
+          <button className={s.openModal} onClick={() => setModalView(!modalView)}>
+            {countLine}&nbsp;&nbsp; записей
+          </button>
+          {modalView && (
+            <div className={s.modalLinesChange}>
+              <button onClick={() => setLine(5)}>5</button>
+              <button onClick={() => setLine(10)}>10</button>
+              <button onClick={() => setLine(15)}>15</button>
+              <button onClick={() => setLine(25)}>25</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

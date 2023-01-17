@@ -22,7 +22,7 @@ export const PrimogemsViewCart = ({ obj }: cartPrimogem) => {
       {obj.betweenSumm !== 0 && (
         <div className={s.wish}>
           <p>Предварительное кол-во в крутках: </p>
-          {Math.ceil(obj.betweenSumm / 160)}
+          {Math.floor(obj.betweenSumm / 160)}
         </div>
       )}
       <div>
