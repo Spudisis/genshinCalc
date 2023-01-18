@@ -1,8 +1,7 @@
 {
   "files": {
     "main.css": "/genshinCalc/static/css/main.22c84f2d.css",
-    "main.js": "/genshinCalc/static/js/main.73c67c96.js",
-    "static/media/logo.png": "/genshinCalc/static/media/logo.f41845830296a4b53b57.png",
+    "main.js": "/genshinCalc/static/js/main.0f21e236.js",
     "static/media/Nilou_2.webp": "/genshinCalc/static/media/Nilou_2.51d28697d474aa7543d6.webp",
     "static/media/Kamisato-Ayato-_2_.png": "/genshinCalc/static/media/Kamisato-Ayato-_2_.28da5811294eae021362.png",
     "static/media/yoimiya.webp": "/genshinCalc/static/media/yoimiya.0206fec82551c44af03f.webp",
@@ -11,6 +10,7 @@
     "static/media/Cyno.webp": "/genshinCalc/static/media/Cyno.41b9124be18d8e5e98dc.webp",
     "static/media/shenhe.png": "/genshinCalc/static/media/shenhe.6a2219346c8a976da2f1.png",
     "static/media/E-lan.webp": "/genshinCalc/static/media/E-lan.a26063414e8af2ebdf9f.webp",
+    "static/media/logo.png": "/genshinCalc/static/media/logo.9c3ba71a6aaaec3f8f76.png",
     "static/media/shougun.webp": "/genshinCalc/static/media/shougun.236d84ba6cc79109b8b2.webp",
     "static/media/kokomi.webp": "/genshinCalc/static/media/kokomi.5be14ced403ad5a14a09.webp",
     "static/media/Objeto_Destino_entrelazado.webp": "/genshinCalc/static/media/Objeto_Destino_entrelazado.8f482051285ff53ad3f1.webp",
@@ -19,10 +19,10 @@
     "static/media/Item_Primogem.webp": "/genshinCalc/static/media/Item_Primogem.852791dc455614ac9f59.webp",
     "index.html": "/genshinCalc/index.html",
     "main.22c84f2d.css.map": "/genshinCalc/static/css/main.22c84f2d.css.map",
-    "main.73c67c96.js.map": "/genshinCalc/static/js/main.73c67c96.js.map"
+    "main.0f21e236.js.map": "/genshinCalc/static/js/main.0f21e236.js.map"
   },
   "entrypoints": [
     "static/css/main.22c84f2d.css",
-    "static/js/main.73c67c96.js"
+    "static/js/main.0f21e236.js"
   ]
 }
