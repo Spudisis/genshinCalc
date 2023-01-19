@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: any = {
   imagesUrl: [],
@@ -11,13 +11,13 @@ export const dataSlice = createSlice({
       state.imagesUrl = action.payload;
     },
 
-    clearStore: (state) => {
+    clearImages: (state) => {
       state.store = [];
     },
   },
 });
 export const getImagesUrl = (state: any) => state.getImagesUrl;
 
-export const { setImagesUrl } = dataSlice.actions;
+export const { setImagesUrl, clearImages } = dataSlice.actions;
 
 export default dataSlice.reducer;

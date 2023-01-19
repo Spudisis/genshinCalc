@@ -18,6 +18,7 @@ export type checkPerson = {
 export type primogems = {
   id: number;
   date: string;
+  dateTime: string | undefined;
   countPrimogems: number;
   countWishes: number;
   countStarglitter: number;
@@ -25,3 +26,15 @@ export type primogems = {
   differenceCountWishes: number;
   differenceCountStarglitter: number;
 };
+
+export type Synchronization = {
+  id: number;
+
+  name: string;
+  value: number;
+  typeValue: string;
+};
+export enum typeVal {
+  "percent",
+  "number",
+}

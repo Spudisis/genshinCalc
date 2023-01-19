@@ -1,0 +1,25 @@
+@import "../../style/scss/mixin.scss";
+
+.root {
+  @include wrapper;
+  @media screen and (max-width: 1200px) {
+    @include wrapper1200;
+  }
+}
+
+section {
+  margin: 10px 0px;
+  color: var(--color-text);
+  img {
+    max-width: 400px;
+    max-height: 400px;
+  }
+  .imageAddHero {
+    float: left;
+    margin: 0px 5px 0px 0px;
+    @media screen and (max-width: 550px) {
+      float: none;
+      margin: 0 auto;
+    }
+  }
+}

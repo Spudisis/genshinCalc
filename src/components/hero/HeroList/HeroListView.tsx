@@ -17,7 +17,7 @@ interface HeroListViewTypes {
 }
 
 export const HeroListView = ({ store, setTypeView, typeView, location }: HeroListViewTypes) => {
-  const path = "/" + Site + waiting;
+  const path = Site + waiting;
 
   return (
     <div className={s.wrapper}>

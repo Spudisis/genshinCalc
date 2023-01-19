@@ -1,11 +1,17 @@
 @import "../../style/scss/mixin.scss";
-
+@import "../../style/scss/values.scss";
 .buttonFill {
   @include button;
 
   margin-left: 20px;
   transition: 0.2s;
   margin-bottom: 10px;
+}
+.relative {
+  position: relative;
+  @media screen and (max-width: $menuSync) {
+    position: static;
+  }
 }
 .autofill {
   @include fill;

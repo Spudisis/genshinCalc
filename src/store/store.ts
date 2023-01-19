@@ -7,6 +7,8 @@ import person from "./slices/person";
 import localStorage from "./slices/localstorage";
 import getImagesUrl from "./slices/images";
 import calcPrimogemObj from "./slices/calcPrimogemObj";
+import primogemSlice from "./slices/primogems";
+import syncSlice from "./slices/synchronization";
 
 const persistConfig = {
   key: "additionalActions",
@@ -20,7 +22,7 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: { persistedReducer, person, getImagesUrl, calcPrimogemObj },
+  reducer: { persistedReducer, person, getImagesUrl, calcPrimogemObj, primogemSlice, syncSlice },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

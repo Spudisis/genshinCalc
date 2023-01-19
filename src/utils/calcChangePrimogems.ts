@@ -12,12 +12,14 @@ export const calcChangePrimogems = (
 ) => {
   const lastChange = primogems.length !== 0 && primogems[0];
 
-  const date = getDateNow() + " " + getTimeNow();
+  const date = getDateNow();;
+  const dateTime =  getTimeNow();
 
   if (lastChange) {
     return {
       id: Math.random(),
       date: date,
+      dateTime: dateTime,
       countPrimogems: obj.countPrimogems,
       countWishes: obj.countWishes,
       countStarglitter: obj.countStarglitter,
@@ -29,6 +31,7 @@ export const calcChangePrimogems = (
   return {
     id: Math.random(),
     date: date,
+    dateTime: dateTime,
     countPrimogems: obj.countPrimogems,
     countWishes: obj.countWishes,
     countStarglitter: obj.countStarglitter,

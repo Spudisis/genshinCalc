@@ -19,6 +19,7 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
     <LineTable
       id={obj.id}
       date={obj.date}
+      dateTime={obj.dateTime ? obj.dateTime : ""}
       countPrimogems={obj.countPrimogems}
       countWishes={obj.countWishes}
       countStarglitter={obj.countStarglitter}
@@ -49,6 +50,7 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
             </td>
           </tr>
         </thead>
+
         <tbody>{lines}</tbody>
       </table>
     </div>

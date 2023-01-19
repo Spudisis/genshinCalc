@@ -7,10 +7,11 @@ import s from "./HeroTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
 export const Hero = React.memo(
   ({ id, name, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, synchValue }: storeItem) => {
     const dispatch = useAppDispatch();
-    const initialCountPrimogems = useAppSelector((state) => state.person.primogems);
+    const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.primogems);
 
     const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
     const [primogems, setPrimogems] = React.useState(0);

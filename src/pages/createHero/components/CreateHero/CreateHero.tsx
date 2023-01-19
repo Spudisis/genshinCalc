@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./createHero.module.scss";
-import { useAppDispatch } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { getPerson, addStore } from "../../../../store/slices/person";
 import { useSelector } from "react-redux";
 import { UpdateStore, UploadImg } from "../../../../firebase/index";
@@ -12,7 +12,9 @@ import { Drag } from "./drag";
 
 export const CreateHero = () => {
   const dispath = useAppDispatch();
-  const { uid, primogems, store } = useSelector(getPerson);
+  const primogems = useAppSelector((store) => store.primogemSlice.primogems);
+  const synchro = useAppSelector((store) => store.syncSlice.synchro);
+  const { uid, store } = useAppSelector((store) => store.person);
 
   const [focusDateStart, setFocusDateStart] = React.useState(false);
   const [focusDateEnd, setfocusDateEnd] = React.useState(false);
@@ -27,7 +29,7 @@ export const CreateHero = () => {
   const [drag, setDrag] = React.useState(false);
 
   React.useEffect(() => {
-    if (uid && store.length !== 0) UpdateStore({ uid, store, primogems });
+    if (uid && store.length !== 0) UpdateStore({ uid, store, primogems, synchro });
   }, [store]);
 
   const handleChange = (e: any) => {

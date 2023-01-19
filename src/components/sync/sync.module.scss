@@ -1,0 +1,139 @@
+@import "../../style/scss/mixin.scss";
+@import "../../style/scss/values.scss";
+.modal {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  z-index: 300;
+  @media screen and (max-width: $menuSync) {
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+  }
+
+  .wrapper {
+    width: auto;
+    height: auto;
+    min-width: 500px;
+    box-shadow: 2px 2px 5px var(--box-shadow-color);
+    border-radius: 15px;
+    background-color: var(--color-bgc-main);
+    color: var(--color-text);
+
+    ul {
+      margin-top: 10px;
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      form:first-child li {
+        border-top: none;
+      }
+      li {
+        padding: 12px;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 120px 90px 60px 1fr 1fr;
+        grid-column-gap: 10px;
+        text-align: center;
+        border-top: 1px solid var(--bgc-color-layout);
+
+        input {
+          background-color: var(--color-bgc-main);
+          color: var(--color-text);
+          max-width: 100px;
+          border-bottom: 1px solid var(--bgc-color-layout);
+        }
+      }
+    }
+  }
+}
+.button {
+  @include button;
+  @include notFill;
+  width: 100%;
+  @media (hover: hover) {
+    &:hover {
+      @include fill;
+    }
+  }
+}
+
+.formAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid var(--bgc-color-layout);
+  margin-bottom: 10px;
+  .groupInput {
+    margin: 15px 0px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    input {
+      max-width: 100px;
+    }
+    .inputGem {
+      display: flex;
+
+      .text {
+        @include button;
+        @include fill;
+        border-radius: 15px 0px 0px 15px;
+        cursor: auto;
+      }
+      input {
+        border-radius: 0px 15px 15px 0px;
+        border: 1px solid var(--colorButton);
+        padding: 5px;
+      }
+      .error {
+        margin-top: 40px;
+      }
+    }
+    .groupRadio {
+      border-bottom: 1px solid var(--bgc-color-layout);
+      .list {
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        background-color: var(--color-bgc-main);
+        color: var(--color-text);
+
+        padding: 5px 10px;
+        label {
+          display: flex;
+          cursor: pointer;
+          input {
+            margin: 0px;
+          }
+          @media (hover: hover) {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .select {
+        @include button;
+        @include notFill;
+        min-width: 180px;
+        cursor: auto;
+      }
+    }
+  }
+  .add {
+    margin-bottom: 10px;
+    max-width: 120px;
+    max-height: 60px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+}
+.nullHero {
+  text-align: center;
+}

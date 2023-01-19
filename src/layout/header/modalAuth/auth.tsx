@@ -6,6 +6,7 @@ import { clearStore, clearUid, getPerson } from "../../../store/slices/person";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import { auth } from "../../../firebase";
+import { clearPrimogems } from "../../../store/slices/primogems";
 
 export const AuthButton = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ export const AuthButton = () => {
   }, [modalAuthActive]);
   const exit = () => {
     dispatch(clearStore());
+    dispatch(clearPrimogems());
     dispatch(clearUid());
     signOut();
   };

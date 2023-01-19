@@ -1,11 +1,9 @@
+import s from "./fields.module.scss";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { obj } from "../../../store/slices/calcPrimogemObj";
-
 import { storeItem } from "../../../store/types/items";
 import { FormObserver } from "./observerForm";
 
-import s from "./Fields.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { changeItemStore } from "../../../store/slices/person";
 

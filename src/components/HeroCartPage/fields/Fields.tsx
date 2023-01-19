@@ -1,9 +1,9 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { obj, setObj } from "../../../store/slices/calcPrimogemObj";
+
 import { addGemsItemStore } from "../../../store/slices/person";
 import { storeItem } from "../../../store/types/items";
-import { CalcBetween } from "../../../utils";
+
 
 import { FieldsView } from "./FieldsView";
 

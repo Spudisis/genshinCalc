@@ -28,7 +28,6 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
 
   const handleClickOutside = (event: any) => {
     if (ref.current && !ref.current.contains(event.target)) {
-      console.log("modalhui");
       setModalView(false);
     }
   };

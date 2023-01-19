@@ -32,13 +32,13 @@
         text-align: center;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        @media screen and(max-width:870px) {
+        @media screen and (max-width: 870px) {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
           width: 100%;
         }
-        @media screen and(max-width:$CartAdaptive700) {
+        @media screen and (max-width: $CartAdaptive700) {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
         }
@@ -61,10 +61,10 @@
               @include fill;
             }
           }
-          @media screen and(max-width:870px) {
+          @media screen and (max-width: 870px) {
             margin-left: 20px;
           }
-          @media screen and(max-width:$CartAdaptive700) {
+          @media screen and (max-width: $CartAdaptive700) {
             margin-left: 0px;
           }
           @media screen and (max-width: $cartAdaptive450) {

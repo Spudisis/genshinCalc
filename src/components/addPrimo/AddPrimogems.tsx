@@ -1,11 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import { UpdateStore } from "../../firebase";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { addPrimogems, getPerson } from "../../store/slices/person";
+import { addPrimogems } from "../../store/slices/primogems";
 import { calcChangePrimogems } from "../../utils";
 import { AddPrimogemsView } from "./AddPrimogemsView";
-import { setAutoFill as dispatchFill } from "../../store/slices/localstorage";
 
 export type objForm = {
   countPrimogems: number;
@@ -14,7 +13,9 @@ export type objForm = {
 };
 
 export const AddPrimogems = () => {
-  const { uid, primogems, store } = useAppSelector((state) => state.person);
+  const { uid, store } = useAppSelector((state) => state.person);
+  const { primogems } = useAppSelector((state) => state.primogemSlice);
+  const synchro = useAppSelector((state) => state.syncSlice.synchro);
   const fill = useAppSelector((store) => store.persistedReducer.params);
   const dispatch = useAppDispatch();
 
@@ -35,7 +36,7 @@ export const AddPrimogems = () => {
   }, [fill.autoFill, primogems]);
 
   React.useEffect(() => {
-    uid && primogems.length !== 0 && UpdateStore({ uid, store, primogems });
+    uid && primogems.length !== 0 && UpdateStore({ uid, store, primogems, synchro });
   }, [primogems]);
 
   const calcPrimogems = (obj: objForm) => {

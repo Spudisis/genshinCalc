@@ -1,4 +1,6 @@
 import s from "../../head.module.scss";
+import { Link } from "react-router-dom";
+import { Site, waiting, more } from "../../../const/routes";
 
 export const Info = () => {
   return (
@@ -8,9 +10,14 @@ export const Info = () => {
       </div>
 
       <p className={s.description}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum nemo recusandae fugit dolor dolores, ipsa libero
-        veritatis voluptate tenetur officia magni dolorum consequuntur tempora sequi omnis quaerat numquam. Nesciunt,
-        porro?
+        Создание персонажа. Указывается "Имя" - название карточки, которое будет использоваться в некоторых настройках,
+        указывайте, желательно, уникальное имя каждой карточке, дабы работало всё правильно, в будущем ошибка будет
+        исправлена (или нет). "Дата начала" - дата, с которой вы начинаете копить на персонажа, "Дата конца" -
+        аналогично, является необязательным полем. "Откладывать в день" - количество примогемов, которое вы готовы
+        откладывать ежедневно на персонажа. "Изначальное кол-во" - изначальное количество примогемов, которое вы готовы
+        отложить. "Изображение" - выберите изображение своего персонажа, по нажатию на поле можно выбрать из
+        предложенных, либо вставить ссылку в поле или перетащить своё изображение в область поля. Наведение на название
+        поля выдаст краткую информацию. <Link to={Site + waiting + more}>Подробнее</Link>
       </p>
     </div>
   );

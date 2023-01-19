@@ -25,7 +25,7 @@ export const HeroCart = React.memo(
     const actionView = location.pathname !== "/" + Site && location.pathname !== "/" + Site.slice(0, Site.length - 1);
 
     const { uid } = useSelector(getPerson);
-    const initialCountPrimogems = useAppSelector((state) => state.person.primogems);
+    const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.primogems);
 
     const [obj, setObj] = React.useState<obj>({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
     const [primogems, setPrimogems] = React.useState(0);
@@ -111,6 +111,7 @@ export const HeroCart = React.memo(
             imageFirebase={imageFirebase}
             setImageFirebase={(n: boolean) => setImageFirebase(n)}
             id={id}
+            name={name}
             image={image}
             uid={uid}
           />

@@ -5,6 +5,7 @@ import React from "react";
 type cartHistory = {
   id: number;
   date: string;
+  dateTime: string;
   countPrimogems: number;
   countWishes: number;
   countStarglitter: number;
@@ -19,6 +20,7 @@ export const LineTable = React.memo(
   ({
     id,
     date,
+    dateTime,
     countPrimogems,
     countWishes,
     countStarglitter,
@@ -34,7 +36,9 @@ export const LineTable = React.memo(
         className={s.item}
         onClick={() => createClipBoard({ date, countPrimogems, countWishes, countStarglitter, index })}
       >
-        <td className={s.line}>{date}</td>
+        <td className={s.line}>
+          {date} {dateTime && dateTime}
+        </td>
         <td className={s.line}>
           <div className={s.main}>
             {countPrimogems}

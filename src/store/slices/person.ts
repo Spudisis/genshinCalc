@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { propRedux } from "../types/calc";
-import { primogems, storeItem } from "../types/items";
+import { storeItem } from "../types/items";
 import { personSlice } from "../types/user";
 
 const initialState: personSlice = {
   uid: "",
   store: [],
-  primogems: [],
 };
 export const dataSlice = createSlice({
   name: "user",
@@ -18,15 +17,11 @@ export const dataSlice = createSlice({
     addStore: (state, action: PayloadAction<storeItem>) => {
       state.store.push(action.payload);
     },
-    addPrimogems: (state, action: PayloadAction<primogems>) => {
-      state.primogems.unshift(action.payload);
-    },
+
     setStore: (state, action: PayloadAction<storeItem[]>) => {
       state.store = action.payload;
     },
-    setPrimogems: (state, action: PayloadAction<primogems[]>) => {
-      state.primogems = action.payload;
-    },
+
     addGemsItemStore: (state, action: PayloadAction<propRedux>) => {
       state.store.forEach((elem) => {
         if (elem.id === action.payload.id) {
@@ -51,7 +46,6 @@ export const dataSlice = createSlice({
     },
     clearStore: (state) => {
       state.store = [];
-      state.primogems = [];
     },
   },
 });
@@ -62,12 +56,11 @@ export const {
   clearUid,
   addStore,
   setStore,
-  setPrimogems,
+
   clearStore,
   deleteStore,
   addGemsItemStore,
   changeItemStore,
-  addPrimogems,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;
