@@ -12,10 +12,10 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 export const ModalAuth = ({ setModalActive }: any) => {
   const [chooseForm, setChooseForm] = React.useState(false);
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const [createUserWithEmailAndPassword, userReg, loadingReg, errorReg] = useCreateUserWithEmailAndPassword(
+  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(
     auth as any
   );
-  const [signInWithEmailAndPassword, userLog, loadingLog, errorLog] = useSignInWithEmailAndPassword(auth as any);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth as any);
 
   const handleClickOutside = (event: any) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -28,15 +28,15 @@ export const ModalAuth = ({ setModalActive }: any) => {
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  });
   return (
     <div className={s.modal} ref={modalRef}>
       <div className={s.wrapper}>
         <div className={s.buttons}>
-          <button className={chooseForm ? s.inactiveButton : s.activeButton} onClick={() => setChooseForm(false)}>
+          <button className={chooseForm ? '' : s.activeButton} onClick={() => setChooseForm(false)}>
             Войти
           </button>
-          <button className={chooseForm ? s.activeButton : s.inactiveButton} onClick={() => setChooseForm(true)}>
+          <button className={chooseForm ? s.activeButton : ''} onClick={() => setChooseForm(true)}>
             Регистрация
           </button>
           <button className={s.close} onClick={() => setModalActive(false)}>

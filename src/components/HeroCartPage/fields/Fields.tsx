@@ -1,19 +1,16 @@
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 
 import { addGemsItemStore } from "../../../store/slices/person";
 import { storeItem } from "../../../store/types/items";
 
-
 import { FieldsView } from "./FieldsView";
 
-type Fields = {
+type FieldsT = {
   id: string;
-
   hero: storeItem;
 };
 
-export const Fields = ({ id, hero }: Fields) => {
+export const Fields = ({ hero }: FieldsT) => {
   const dispatch = useAppDispatch();
 
   const addPrimogems = (id: number, countGemsPlus: number) => {

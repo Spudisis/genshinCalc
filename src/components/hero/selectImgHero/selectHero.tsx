@@ -11,7 +11,7 @@ export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
     if (lengthMas === indexCounter) {
       setLoader(false);
     }
-  }, [indexCounter]);
+  }, [indexCounter, lengthMas]);
   const modalRef = React.useRef<HTMLDivElement>(null);
   const handleClickOutside = (event: any) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -23,7 +23,7 @@ export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  });
   return (
     <div className={s.wrapper} ref={modalRef}>
       {loader && <LoaderMini />}

@@ -4,7 +4,7 @@ import React from "react";
 import { storeItem } from "../../../store/types/items";
 import { FormObserver } from "./observerForm";
 
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import { changeItemStore } from "../../../store/slices/person";
 import { getNumberOfDays } from "../../../utils";
 

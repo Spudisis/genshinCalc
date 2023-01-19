@@ -38,13 +38,13 @@ export const Hero = React.memo(
       if (count) {
         setObj(count);
       }
-    }, [id, dateStart, dateEnd, countStart, countPrimogems, image, countAdd, primogems]);
+    }, [id, dateStart, dateEnd, countStart, countPrimogems, image, countAdd, primogems, name, synchValue]);
 
     React.useEffect(() => {
       if (primogems && obj.countSave) {
         setPrimogemsMinusSumm(primogems - obj.countSave);
       }
-    }, [primogems]);
+    }, [primogems, obj.countSave]);
 
     const handleChange = (e: any) => {
       const count = e.target.value;

@@ -1,5 +1,5 @@
 import React from "react";
-import _ from "lodash.debounce";
+import debounce from "lodash.debounce";
 import { NoticedCopyView } from "./noticedCopyView";
 
 type notice = {
@@ -8,13 +8,16 @@ type notice = {
 };
 
 export const NoticedCopy = ({ status, setStatus }: notice) => {
-  const closeModal = () => {
-    setStatus(false);
-  };
-  const debounceFn = React.useCallback(_(closeModal, 3000), []);
+  const debounceFn = React.useMemo(
+    () =>
+      debounce(() => {
+        setStatus(false);
+      }, 3000),
+    [setStatus]
+  );
   React.useEffect(() => {
     status && debounceFn();
-  }, [status]);
+  }, [status, debounceFn]);
 
   const clearDebounce = () => {
     debounceFn.cancel();

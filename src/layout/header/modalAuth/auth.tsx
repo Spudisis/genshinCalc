@@ -12,7 +12,7 @@ export const AuthButton = () => {
   const dispatch = useAppDispatch();
   const [modalAuthActive, setModalAuthActive] = React.useState(false);
   const { uid } = useSelector(getPerson);
-  const [signOut, loading, error] = useSignOut(auth as any);
+  const [signOut] = useSignOut(auth as any);
 
   React.useEffect(() => {
     console.log(modalAuthActive);

@@ -10,12 +10,12 @@ import { CalcBetween } from "../../utils";
 export const HeroCart = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
-
+  const id = params.id!;
   const objectPrimogemsNewCalc = useAppSelector((state) => state.calcPrimogemObj.calculate);
   const [objPrimogems, setObjPrimogems] = React.useState<obj>();
 
   const store = useAppSelector((store) => store.person.store);
-  const [id, setId] = React.useState<string>(params.id!);
+
   const [sizeImg, setSizeImg] = React.useState<[T: number, U: number]>([0, 0]);
 
   const [style, setStyle] = React.useState<string>("");
@@ -23,19 +23,22 @@ export const HeroCart = () => {
   const [hero, setHero] = React.useState<storeItem>();
   React.useEffect(() => {
     if (hero) {
-      const count = CalcBetween(hero);
-      if (count) {
-        dispatch(setObj(count));
-      }
+      const setObjHero = (hero: storeItem) => {
+        const count = CalcBetween(hero);
+        if (count) {
+          dispatch(setObj(count));
+        }
+      };
+      setObjHero(hero);
     }
-  }, [hero]);
+  }, [hero, dispatch]);
 
   React.useEffect(() => {
     const hero = store.find((elem: storeItem) => elem.id === +id);
     hero && setHero(hero);
-  }, [store]);
+  }, [store, id]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     console.log(sizeImg);
     if (sizeImg[0] > sizeImg[1]) setStyle(w.vertically);
     if (sizeImg[0] < sizeImg[1]) setStyle(w.horizontally);

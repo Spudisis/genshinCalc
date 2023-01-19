@@ -1,9 +1,9 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import s from "./createHero.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { getPerson, addStore } from "../../../../store/slices/person";
-import { useSelector } from "react-redux";
+import { addStore } from "../../../../store/slices/person";
+
 import { UpdateStore, UploadImg } from "../../../../firebase/index";
 import { getNumberOfDays } from "../../../../utils/getNumberOfDays";
 
@@ -11,7 +11,7 @@ import { Fields } from "./Fields";
 import { Drag } from "./drag";
 
 export const CreateHero = () => {
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
   const primogems = useAppSelector((store) => store.primogemSlice.primogems);
   const synchro = useAppSelector((store) => store.syncSlice.synchro);
   const { uid, store } = useAppSelector((store) => store.person);
@@ -30,7 +30,7 @@ export const CreateHero = () => {
 
   React.useEffect(() => {
     if (uid && store.length !== 0) UpdateStore({ uid, store, primogems, synchro });
-  }, [store]);
+  }, [store, uid, primogems, synchro]);
 
   const handleChange = (e: any) => {
     objImg !== "" && setObjImg("");
@@ -80,7 +80,7 @@ export const CreateHero = () => {
           const synchValue = 0;
           const countAdd = 0;
           const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
-          dispath(addStore({ id, ...values, synchValue, countAdd }));
+          dispatch(addStore({ id, ...values, synchValue, countAdd }));
 
           resetForm();
           setSelectImg("");

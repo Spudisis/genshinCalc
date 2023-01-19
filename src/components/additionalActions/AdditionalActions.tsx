@@ -1,9 +1,8 @@
-import axios from "axios";
 import React from "react";
-import { UpdateStore } from "../../firebase";
+
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setAutoFill, setLastCalc } from "../../store/slices/localstorage";
-import { setSynchro } from "../../store/slices/synchronization";
+
 import { Sync } from "../sync/sync";
 import s from "./addActions.module.scss";
 

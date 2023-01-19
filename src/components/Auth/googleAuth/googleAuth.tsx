@@ -5,7 +5,7 @@ import s from "./google.module.scss";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/index";
 export const GoogleAuth = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth as any);
+  const [signInWithGoogle] = useSignInWithGoogle(auth as any);
   return (
     <button className={s.button} onClick={() => signInWithGoogle()}>
       Войти через google <FontAwesomeIcon icon={faGoogle as IconProp} />

@@ -37,7 +37,7 @@ export const AddPrimogems = () => {
 
   React.useEffect(() => {
     uid && primogems.length !== 0 && UpdateStore({ uid, store, primogems, synchro });
-  }, [primogems]);
+  }, [primogems, uid, store, synchro]);
 
   const calcPrimogems = (obj: objForm) => {
     const objectFull = calcChangePrimogems(obj, primogems);

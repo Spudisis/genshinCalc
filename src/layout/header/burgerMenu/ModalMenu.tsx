@@ -24,7 +24,7 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  });
   return (
     <div className={s.modal} ref={modalRef}>
       <div className={s.wrapper}>

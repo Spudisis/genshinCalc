@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { primogems, storeItem } from "../types/items";
+import { primogems } from "../types/items";
 import { primogemsSlice } from "../types/user";
 
 const initialState: primogemsSlice = {

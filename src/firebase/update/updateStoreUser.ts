@@ -1,4 +1,3 @@
-import React from "react";
 import { allSlice } from "../../store/types/user";
 import { firestore } from "../config";
 

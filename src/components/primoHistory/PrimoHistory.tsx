@@ -32,7 +32,7 @@ export const PrimoHistory = () => {
 
   React.useEffect(() => {
     pageCount < pageNumber && setPageNumber(pageCount - 1);
-  }, [pageCount]);
+  }, [pageCount, pageNumber]);
 
   React.useEffect(() => {
     setItemLocalStorage("countLine", countLine);

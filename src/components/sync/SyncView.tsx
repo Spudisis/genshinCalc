@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Synchronization } from "../../store/types/items";
 import { deleteSynchro, editSynchro } from "../../store/slices/synchronization";
 import s from "./sync.module.scss";
-
+import React from "react";
 type viewSync = {
   id: number;
   name: string;
@@ -14,15 +14,15 @@ type viewSync = {
 
 export const FormSync = ({ id, name, value, typeValue, synchro }: viewSync) => {
   const dispatch = useAppDispatch();
+
   const handleDelete = (id: number) => {
     dispatch(deleteSynchro(id));
   };
 
-  const sum = synchro
-    .filter((elem) => {
-      if (elem.id !== id && elem.typeValue !== "number") return elem;
-    })
-    .reduce((prev, sum) => prev + sum.value, 0);
+  const sum = synchro.map((elem) => {
+    if (elem.id !== id && elem.typeValue !== "number") return elem;
+    return null
+  }).reduce((prev, sumElem) => (sumElem && sumElem.value ? prev + sumElem.value : prev + 0), 0);
 
   return (
     <Formik

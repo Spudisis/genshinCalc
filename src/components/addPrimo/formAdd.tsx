@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { useAppSelector } from "../../store/hooks";
+
 import s from "./addPrimogems.module.scss";
 
 type add = {

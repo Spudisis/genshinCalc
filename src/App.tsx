@@ -4,19 +4,19 @@ import "./style/resize.css";
 import s from "./style/scss/app.module.scss";
 import "./style/theme.css";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { useAppDispatch } from "./store/hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero } from "./pages";
-import { auth, CheckUser, UpdateStore } from "./firebase/index";
+import { auth, CheckUser } from "./firebase/index";
 import { setUid } from "./store/slices/person";
 import { Loader } from "./components/";
 import { counterPrim, heroCart, idHeroCart, more, Site, waiting } from "./const/routes";
 import ThemeProvider from "./provider/provider";
 
 export const App = () => {
-  const [user, loading, error] = useAuthState(auth as any);
+  const [user, loading] = useAuthState(auth as any);
 
   const dispatch = useAppDispatch();
   React.useEffect(() => {
@@ -25,7 +25,7 @@ export const App = () => {
       dispatch(setUid(uid));
       CheckUser({ uid, dispatch });
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   return (
     <ThemeProvider>

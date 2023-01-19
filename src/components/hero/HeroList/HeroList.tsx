@@ -19,7 +19,7 @@ export const HeroList = () => {
 
   React.useEffect(() => {
     !typeLocal[0] && localStorage.setItem("typeView", JSON.stringify(typeView));
-  }, []);
+  }, [typeLocal, typeView]);
 
   return <HeroListView store={store} setTypeView={setLocalStorage} typeView={typeView} location={location.pathname} />;
 };

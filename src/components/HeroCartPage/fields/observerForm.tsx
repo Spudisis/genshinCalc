@@ -11,7 +11,7 @@ export const FormObserver: React.FC = () => {
     const calc = CalcBetween(values);
     console.log(calc);
     dispatch(setObj(calc));
-  }, [values]);
+  }, [values, dispatch]);
 
   return null;
 };

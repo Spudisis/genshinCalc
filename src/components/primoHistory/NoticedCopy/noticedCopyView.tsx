@@ -13,17 +13,18 @@ type viewNotice = {
 export const NoticedCopyView = ({ setStatus, clearDebounce, addDebounce }: viewNotice) => {
   const ref = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
-    if (ref && ref.current) {
-      ref.current.addEventListener("mouseover", clearDebounce);
-      ref.current.addEventListener("mouseout", addDebounce);
+    const current = ref.current;
+    if (ref && current) {
+      current.addEventListener("mouseover", clearDebounce);
+      current.addEventListener("mouseout", addDebounce);
     }
     return () => {
-      if (ref && ref.current) {
-        ref.current.removeEventListener("mouseover", clearDebounce);
-        ref.current.removeEventListener("mouseout", addDebounce);
+      if (ref && current) {
+        current.removeEventListener("mouseover", clearDebounce);
+        current.removeEventListener("mouseout", addDebounce);
       }
     };
-  }, []);
+  });
   return (
     <div className={s.wrapper} ref={ref}>
       <div className={s.line}>

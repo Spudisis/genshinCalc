@@ -14,19 +14,19 @@ export const Image = ({ id, setSizeImg }: Img) => {
   const uid = useAppSelector((state) => state.person.uid);
   const store = useAppSelector((store) => store.person.store);
   const [cart, setCart] = React.useState<storeItem>();
+  // eslint-disable-next-line
   const [imageFirebase, setImageFirebase] = React.useState(false);
- 
 
   React.useEffect(() => {
     const cart = store.find((elem: storeItem) => id && elem.id === +id);
     if (cart) setCart(cart);
-  }, [store]);
- 
+  }, [store, id]);
+
   return (
     <>
       {cart && cart.image && (
-        <div  className={s.image}>
-          <ImageContain uid={uid} image={cart.image} setImageFirebase={setImageFirebase} setSizeImg={setSizeImg}/>
+        <div className={s.image}>
+          <ImageContain uid={uid} image={cart.image} setImageFirebase={setImageFirebase} setSizeImg={setSizeImg} />
         </div>
       )}
     </>

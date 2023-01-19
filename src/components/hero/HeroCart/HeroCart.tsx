@@ -54,13 +54,13 @@ export const HeroCart = React.memo(
       if (count) {
         setObj(count);
       }
-    }, [id, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, primogems]);
+    }, [id, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, primogems, name, synchValue]);
 
     React.useLayoutEffect(() => {
       if (primogems && obj.countSave) {
         setPrimogemsMinusSumm(primogems - obj.countSave);
       }
-    }, [primogems, initialCountPrimogems]);
+    }, [primogems, initialCountPrimogems, obj.countSave]);
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
       const count = e.currentTarget.value;

@@ -19,10 +19,32 @@ export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Conta
   const [imageFind, setImagefind] = React.useState(false); //проверка откуда изображаение fasle-ссылкой, true-с json'а
   const [imageCheck, setImageCheck] = React.useState(image); //отсюда берется изображение (ссылка или название)
 
+  const onLoadImg = () => {
+    if (refImg && refImg.current && setSizeImg) {
+      setSizeImg([refImg.current.naturalHeight, refImg.current.naturalWidth]);
+    }
+  };
+
   React.useEffect(() => {
     //Откуда картинка
     const a = FindImage(image);
-
+    const displayImage = async (image: string) => {
+      const listRef = ref(storage, `images/${uid}/`);
+      await listAll(listRef)
+        .then((res) => {
+          res.items.forEach((itemRef) => {
+            if (itemRef.name === image) {
+              getDownloadURL(itemRef).then((getURL) => {
+                setImageFirebase(true);
+                setImageCheck(getURL);
+              });
+            }
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
     //если картинка с Json
     if (a) {
       setImagefind(true);
@@ -34,30 +56,7 @@ export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Conta
       //если картинка ссылкой
       displayImage(image);
     }
-  }, [image]);
-  const displayImage = async (image: string) => {
-    const listRef = ref(storage, `images/${uid}/`);
-    await listAll(listRef)
-      .then((res) => {
-        res.items.forEach((itemRef) => {
-          if (itemRef.name === image) {
-            getDownloadURL(itemRef).then((getURL) => {
-              setImageFirebase(true);
-              setImageCheck(getURL);
-            });
-          }
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const onLoadImg = () => {
-    if (refImg && refImg.current && setSizeImg) {
-      setSizeImg([refImg.current.naturalHeight, refImg.current.naturalWidth]);
-    }
-  };
+  }, [image, uid, setImageFirebase]);
 
   return (
     <img

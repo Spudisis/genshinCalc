@@ -1,5 +1,4 @@
-import React from "react";
-import { NavLink, Routes } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { counterPrim, Site, waiting } from "../../const/routes";
 import s from "./Links.module.scss";
 export const Links = () => {
