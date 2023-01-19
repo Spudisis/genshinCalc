@@ -30,7 +30,7 @@ export const Info = ({ obj, primogems, primogemsMinusSumm, initialCountPrimogems
         </span>
       </p>
       <p>
-        Дней до конца накопления:<br></br> {obj.between ? obj.between : "Нет конечной даты"}
+        Дней до конца накопления:<br></br> {obj.between ? obj.between - obj.now : "Нет конечной даты"}
       </p>
       <p>
         Какой сейчас день накопления:<br></br>
