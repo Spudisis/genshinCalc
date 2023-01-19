@@ -22,7 +22,7 @@ export const HeroCart = React.memo(
     const dispatch = useAppDispatch();
     const location = useLocation();
 
-    const actionView = location.pathname !== Site && location.pathname !== "/" + Site.slice(0, Site.length - 1);
+    const actionView = location.pathname !== Site && location.pathname !== Site.slice(0, Site.length - 1);
 
     const { uid } = useSelector(getPerson);
     const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.primogems);
