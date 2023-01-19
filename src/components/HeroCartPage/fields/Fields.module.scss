@@ -106,6 +106,9 @@
           @media screen and (max-width: $FieldsCartAdaptive) {
             margin: 5px 0px;
           }
+          .error {
+            color: red;
+          }
           label {
             font-size: 18px;
             text-align: center;

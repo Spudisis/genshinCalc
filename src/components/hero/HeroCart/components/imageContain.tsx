@@ -55,7 +55,7 @@ export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Conta
 
   const onLoadImg = () => {
     if (refImg && refImg.current && setSizeImg) {
-      setSizeImg([refImg.current.offsetHeight, refImg.current.offsetWidth]);
+      setSizeImg([refImg.current.naturalHeight, refImg.current.naturalWidth]);
     }
   };
 
