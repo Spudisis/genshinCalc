@@ -57,6 +57,7 @@ export const Drag = ({
             placeholder="Ссылка"
             onChange={(e: any) => {
               handleChange(e);
+              console.log(e);
             }}
             onClick={() => setViewListHeroes(!ViewListHeroes)}
             value={selectImg}

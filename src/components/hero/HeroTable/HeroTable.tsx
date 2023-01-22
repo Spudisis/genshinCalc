@@ -7,11 +7,12 @@ import s from "./HeroTable.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { updateHero } from "../../../api/heros";
 
 export const Hero = React.memo(
-  ({ id, name, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, synchValue }: storeItem) => {
+  ({ id, name, date_start, date_end, countStart, countAdd, valueDayByDay, synchValue }: storeItem) => {
     const dispatch = useAppDispatch();
-    const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.primogems);
+    const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.oneRow);
 
     const [obj, setObj] = React.useState({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
     const [primogems, setPrimogems] = React.useState(0);
@@ -25,20 +26,17 @@ export const Hero = React.memo(
 
     React.useEffect(() => {
       const count = CalcBetween({
-        id,
-        name,
-        dateStart,
-        dateEnd,
-        countAdd,
+        date_start,
+        date_end,
         countStart,
-        countPrimogems,
-        image,
+        countAdd,
+        valueDayByDay,
         synchValue,
       });
       if (count) {
         setObj(count);
       }
-    }, [id, dateStart, dateEnd, countStart, countPrimogems, image, countAdd, primogems, name, synchValue]);
+    }, [date_start, date_end, countStart, countAdd, valueDayByDay, synchValue]);
 
     React.useEffect(() => {
       if (primogems && obj.countSave) {
@@ -63,9 +61,11 @@ export const Hero = React.memo(
         setAddPrimogems(0);
       }
     };
-    const sendAdd = () => {
+    const sendAdd = (add: number) => {
       if (countGemsPlus) {
-        dispatch(addGemsItemStore({ countGemsPlus, id }));
+        let countAdd = +add + +countGemsPlus;
+
+        updateHero({ countAdd, id }).then(() => dispatch(addGemsItemStore({ countGemsPlus, id })));
       }
     };
     return (
@@ -105,7 +105,7 @@ export const Hero = React.memo(
         <td>{obj.betweenSumm ? obj.betweenSumm : "Нет конечной даты"}</td>
         <td>
           <input type="number" onChange={(e) => handleAdd(e)} placeholder="Количество" />
-          <button onClick={() => sendAdd()} disabled={countGemsPlus ? false : true}>
+          <button onClick={() => sendAdd(countAdd)} disabled={countGemsPlus ? false : true}>
             <FontAwesomeIcon icon={faCheck as IconProp} />
           </button>
         </td>

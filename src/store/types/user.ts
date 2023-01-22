@@ -10,7 +10,9 @@ export type personSlice = {
 };
 
 export type primogemsSlice = {
+  oneRow: primogems[];
   primogems: primogems[];
+  count: number;
 };
 
 export type allSlice = {

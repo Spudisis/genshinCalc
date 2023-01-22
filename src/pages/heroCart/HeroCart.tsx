@@ -7,36 +7,43 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { obj, setObj } from "../../store/slices/calcPrimogemObj";
 import { storeItem } from "../../store/types/items";
 import { CalcBetween } from "../../utils";
+import { getHeros, getOneHero } from "../../api/heros";
+import { setStore } from "../../store/slices/person";
 export const HeroCart = () => {
   const params = useParams();
-  const dispatch = useAppDispatch();
   const id = params.id!;
+  const dispatch = useAppDispatch();
+
+  const uid = useAppSelector((store) => store.person.uid);
   const objectPrimogemsNewCalc = useAppSelector((state) => state.calcPrimogemObj.calculate);
   const [objPrimogems, setObjPrimogems] = React.useState<obj>();
 
-  const store = useAppSelector((store) => store.person.store);
-
   const [sizeImg, setSizeImg] = React.useState<[T: number, U: number]>([0, 0]);
-
+  
   const [style, setStyle] = React.useState<string>("");
 
   const [hero, setHero] = React.useState<storeItem>();
   React.useEffect(() => {
     if (hero) {
-      const setObjHero = (hero: storeItem) => {
+      const setObjHero = () => {
         const count = CalcBetween(hero);
         if (count) {
           dispatch(setObj(count));
         }
       };
-      setObjHero(hero);
+      setObjHero();
     }
-  }, [hero, dispatch]);
+  }, [hero]);
 
   React.useEffect(() => {
-    const hero = store.find((elem: storeItem) => elem.id === +id);
-    hero && setHero(hero);
-  }, [store, id]);
+    const getHero = async () => {
+      await getOneHero(uid, id).then((data) => {
+        dispatch(setStore([data]));
+        setHero(data);
+      });
+    };
+    getHero();
+  }, [id, uid]);
 
   React.useLayoutEffect(() => {
     console.log(sizeImg);

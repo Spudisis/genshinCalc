@@ -2,20 +2,17 @@ import React from "react";
 import { Formik, Form } from "formik";
 import s from "./createHero.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { addStore } from "../../../../store/slices/person";
 
-import { UpdateStore, UploadImg } from "../../../../firebase/index";
 import { getNumberOfDays } from "../../../../utils/getNumberOfDays";
 
 import { Fields } from "./Fields";
 import { Drag } from "./drag";
+import { createHero } from "../../../../api/heros";
+import { addStore } from "../../../../store/slices/person";
 
 export const CreateHero = () => {
+  const uid = useAppSelector((store) => store.person.uid);
   const dispatch = useAppDispatch();
-  const primogems = useAppSelector((store) => store.primogemSlice.primogems);
-  const synchro = useAppSelector((store) => store.syncSlice.synchro);
-  const { uid, store } = useAppSelector((store) => store.person);
-
   const [focusDateStart, setFocusDateStart] = React.useState(false);
   const [focusDateEnd, setfocusDateEnd] = React.useState(false);
   const [focusPrimogemsOfDay, setfocusPrimogemsOfDay] = React.useState(false);
@@ -28,10 +25,6 @@ export const CreateHero = () => {
   const [objImg, setObjImg] = React.useState("");
   const [drag, setDrag] = React.useState(false);
 
-  React.useEffect(() => {
-    if (uid && store.length !== 0) UpdateStore({ uid, store, primogems, synchro });
-  }, [store, uid, primogems, synchro]);
-
   const handleChange = (e: any) => {
     objImg !== "" && setObjImg("");
     const value = e.target.value;
@@ -41,8 +34,16 @@ export const CreateHero = () => {
   return (
     <>
       <Formik
-        initialValues={{ name: "", dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
-        validate={(values) => {
+        initialValues={{
+          name: "",
+          dateStart: "",
+          dateEnd: "",
+          countPrimogems: 0,
+          countStart: 0,
+          image: "",
+          imagePath: false,
+        }}
+        validate={(values: any) => {
           const errors: any = {};
           if (values.name.length === 0) {
             errors.name = "Обязательное поле";
@@ -51,7 +52,9 @@ export const CreateHero = () => {
           }
           if (values.dateEnd && values.dateStart) {
             const { dateStart, dateEnd } = values;
-            const dateEndParse = getNumberOfDays({ dateStart, dateEnd });
+            const date_start = dateStart;
+            const date_end = dateEnd;
+            const dateEndParse = getNumberOfDays({ date_start, date_end });
             if (dateEndParse < 0) {
               errors.dateStart = "Начало не может быть после конца";
             }
@@ -72,21 +75,32 @@ export const CreateHero = () => {
           }
           return errors;
         }}
-        onSubmit={async (values, { resetForm }) => {
-          if (!values.image) {
+        onSubmit={async (values: any, { resetForm }: any) => {
+          if (!objImg) {
             values.image = selectImg;
+            values.imagePath = false;
+          } else {
+            values.imagePath = true;
+            values.image = "";
           }
-          objImg !== "" && (await UploadImg({ objImg, uid }));
-          const synchValue = 0;
-          const countAdd = 0;
-          const id = Math.floor(10000000 + Math.random() * (99999999 - 10000000 + 1));
-          dispatch(addStore({ id, ...values, synchValue, countAdd }));
+          const { name, dateStart, dateEnd, countPrimogems, countStart, image, imagePath } = values;
+          const formData = new FormData();
+          formData.append("name", name);
+          formData.append("date_start", dateStart);
+          formData.append("date_end", dateEnd);
+          formData.append("valueDayByDay", `${countPrimogems}`);
+          formData.append("countStart", `${countStart}`);
+          formData.append("image", image);
+          formData.append("imagePath", `${imagePath}`);
+          formData.append("img", objImg);
+          formData.append("personId", uid);
+
+          createHero(formData).then((data) => dispatch(addStore(data)));
 
           resetForm();
-          setSelectImg("");
         }}
       >
-        {({ isValid }) => (
+        {({ isValid }: any) => (
           <Form className={s.form}>
             <div className={s.inputs}>
               <Fields

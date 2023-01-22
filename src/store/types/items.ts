@@ -1,13 +1,17 @@
 export type storeItem = {
   id: number;
   name: string;
-  dateStart: string;
-  dateEnd: string | undefined;
-  countPrimogems: number;
+  date_start: string;
+  date_end: string | undefined;
+  valueDayByDay: number;
   countStart: number;
   countAdd: number;
   synchValue: number;
   image: string;
+  imagePath: boolean;
+  personId: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type checkPerson = {
@@ -25,6 +29,9 @@ export type primogems = {
   differenceCountPrimogems: number;
   differenceCountWishes: number;
   differenceCountStarglitter: number;
+  personId: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Synchronization = {

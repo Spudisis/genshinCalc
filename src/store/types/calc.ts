@@ -1,6 +1,6 @@
 export type betweenDate = {
-  dateStart: string;
-  dateEnd: string | undefined;
+  date_start: string;
+  date_end: string | undefined;
 };
 export type propRedux = {
   id: number;

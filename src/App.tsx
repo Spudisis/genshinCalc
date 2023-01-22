@@ -4,28 +4,37 @@ import "./style/resize.css";
 import s from "./style/scss/app.module.scss";
 import "./style/theme.css";
 
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./store/hooks";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero } from "./pages";
-import { auth, CheckUser } from "./firebase/index";
+import { check } from "./api/userApi";
 import { setUid } from "./store/slices/person";
 import { Loader } from "./components/";
 import { counterPrim, heroCart, idHeroCart, more, Site, waiting } from "./const/routes";
 import ThemeProvider from "./provider/provider";
+import { getOnePrimogems } from "./api/primogems";
+import { setOneRow } from "./store/slices/primogems";
+import { primogems } from "./store/types/items";
 
 export const App = () => {
-  const [user, loading] = useAuthState(auth as any);
-
+  const [loading, setLoading] = React.useState(true);
   const dispatch = useAppDispatch();
   React.useEffect(() => {
-    if (user) {
-      const uid = user.uid;
-      dispatch(setUid(uid));
-      CheckUser({ uid, dispatch });
-    }
-  }, [user, dispatch]);
+    check()
+      .then((data: any) => {
+        dispatch(setUid(data.id));
+        const findOneRow = async () => {
+          const res: any = await getOnePrimogems(data.id);
+          if (!res) {
+            return;
+          }
+          dispatch(setOneRow(res));
+        };
+        findOneRow();
+      })
+      .finally(() => setLoading(false));
+  }, [dispatch]);
 
   return (
     <ThemeProvider>

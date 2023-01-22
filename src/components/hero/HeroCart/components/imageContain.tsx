@@ -2,18 +2,16 @@ import React from "react";
 import error from "../../../../assets/errorImg.png";
 import { FindImage } from "../../../../utils";
 
-import { storage } from "../../../../firebase";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 
 type Contain = {
   image: string;
-
-  setImageFirebase: (n: boolean) => void;
+  imagePath: boolean;
   uid: any;
   setSizeImg: (([n, b]: [T: number, U: number]) => void) | undefined;
 };
 
-export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Contain) => {
+export const ImageContain = ({ image, imagePath, uid, setSizeImg }: Contain) => {
   const refImg = React.useRef<HTMLImageElement>(null);
 
   const [imageFind, setImagefind] = React.useState(false); //проверка откуда изображаение fasle-ссылкой, true-с json'а
@@ -28,23 +26,7 @@ export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Conta
   React.useEffect(() => {
     //Откуда картинка
     const a = FindImage(image);
-    const displayImage = async (image: string) => {
-      const listRef = ref(storage, `images/${uid}/`);
-      await listAll(listRef)
-        .then((res) => {
-          res.items.forEach((itemRef) => {
-            if (itemRef.name === image) {
-              getDownloadURL(itemRef).then((getURL) => {
-                setImageFirebase(true);
-                setImageCheck(getURL);
-              });
-            }
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+
     //если картинка с Json
     if (a) {
       setImagefind(true);
@@ -54,14 +36,13 @@ export const ImageContain = ({ image, setImageFirebase, uid, setSizeImg }: Conta
       setImagefind(false);
       setImageCheck(image);
       //если картинка ссылкой
-      displayImage(image);
     }
-  }, [image, uid, setImageFirebase]);
+  }, [image, uid]);
 
   return (
     <img
       ref={refImg}
-      src={imageFind ? require("../../../../assets/heroes/" + imageCheck) : imageCheck}
+      src={imageFind ? require("../../../../assets/heroes/" + imageCheck) : imagePath ? process.env.REACT_APP_BASE_URL+imageCheck :imageCheck}
       alt=""
       onError={() => setImageCheck(error)}
       onLoad={() => onLoadImg()}

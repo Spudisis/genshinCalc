@@ -29,7 +29,7 @@ export const AddSync = ({ store, synchroName, sum }: addSync) => {
     <Formik
       enableReinitialize
       initialValues={{ id: Math.random(), name: "select", value: 0, typeValue: "select" }}
-      validate={(values) => {
+      validate={(values: any) => {
         const errors: any = {};
         if (values.name === "" || values.name === "select") {
           errors.name = "Необходимо выбрать имя";
@@ -45,11 +45,11 @@ export const AddSync = ({ store, synchroName, sum }: addSync) => {
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values: any, { setSubmitting }: any) => {
         addSynchroFunc(values);
       }}
     >
-      {({ values }) => (
+      {({ values }: any) => (
         <Form>
           {names[0] ? (
             <div className={s.formAdd}>

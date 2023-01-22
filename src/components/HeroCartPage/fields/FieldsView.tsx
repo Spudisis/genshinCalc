@@ -1,4 +1,5 @@
-import s from "./fields.module.scss";
+import s from "./Fields.module.scss";
+
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { storeItem } from "../../../store/types/items";
@@ -7,6 +8,7 @@ import { FormObserver } from "./observerForm";
 import { useAppDispatch } from "../../../store/hooks";
 import { changeItemStore } from "../../../store/slices/person";
 import { getNumberOfDays } from "../../../utils";
+import { updateHero } from "../../../api/heros";
 
 type fieldsView = {
   hero: storeItem;
@@ -24,6 +26,11 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
     resetForm();
   };
 
+  const onSubmit = (values: any) => {
+    setResetFormButton(false);
+
+    updateHero(values).then(() => dispatch(changeItemStore(values)));
+  };
   return (
     <div className={s.wrapper}>
       <Formik
@@ -31,21 +38,22 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
         initialValues={{
           id: hero.id,
           name: hero.name,
-          dateStart: hero.dateStart,
-          dateEnd: hero.dateEnd,
-          countPrimogems: hero.countPrimogems,
+          date_start: hero.date_start,
+          date_end: hero.date_end,
+          valueDayByDay: hero.valueDayByDay,
           countStart: hero.countStart,
           countAdd: hero.countAdd,
           synchValue: hero.synchValue,
           image: hero.image,
         }}
-        validate={(values) => {
+        validate={(values: any) => {
           const errors: any = {};
           setResetFormButton(true);
 
           if (values.dateEnd && values.dateStart) {
-            const { dateStart, dateEnd } = values;
-            const dateEndParse = getNumberOfDays({ dateStart, dateEnd });
+            const { date_start, date_end } = values;
+
+            const dateEndParse = getNumberOfDays({ date_start, date_end });
 
             if (dateEndParse < 0) {
               errors.dateStart = "Начало не может быть после конца";
@@ -53,27 +61,25 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
           } else if (!values.dateStart) {
             errors.dateStart = "Укажите дату";
           }
-          if (values.countPrimogems < 0) {
-            errors.countPrimogems = "Не может быть меньше 0";
+          if (values.valueDayByDay < 0) {
+            errors.valueDayByDay = "Не может быть меньше 0";
           }
           if (values.countStart < 0) {
             errors.countStart = "Не может быть меньше 0";
           }
-          if (!values.countPrimogems && values.countPrimogems !== 0) {
-            errors.countPrimogems = "Не может быть пустым";
+          if (!values.valueDayByDay && values.valueDayByDay !== 0) {
+            errors.valueDayByDay = "Не может быть пустым";
           }
           if (!values.countStart && values.countStart !== 0) {
             errors.countStart = "Не может быть пустым";
           }
           return errors;
         }}
-        onSubmit={(values) => {
-          setResetFormButton(false);
-
-          dispatch(changeItemStore(values));
+        onSubmit={(values: any) => {
+          console.log(values);
         }}
       >
-        {({ isSubmitting, resetForm }) => (
+        {({ resetForm, values }: any) => (
           <Form>
             <FormObserver />
             <div className={s.content}>
@@ -87,23 +93,23 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
               </div>
               <div className={s.columns}>
                 <div className={s.inputBlock}>
-                  <label htmlFor={id + "dateStart"}>Дата начала</label>
-                  <Field type="date" name="dateStart" id={id + "dateStart"} />
-                  <ErrorMessage className={s.error} name="dateStart" component="div" />
+                  <label htmlFor={id + "date_start"}>Дата начала</label>
+                  <Field type="date" name="date_start" id={id + "date_start"} />
+                  <ErrorMessage className={s.error} name="date_start" component="div" />
                 </div>
                 <div className={s.inputBlock}>
-                  <label htmlFor={id + "dateEnd"}>Дата конца</label>
-                  <Field type="date" name="dateEnd" id={id + "dateEnd"} />
-                  <ErrorMessage className={s.error} name="dateEnd" component="div" />
+                  <label htmlFor={id + "date_end"}>Дата конца</label>
+                  <Field type="date" name="date_end" id={id + "date_end"} />
+                  <ErrorMessage className={s.error} name="date_end" component="div" />
                 </div>
                 <div className={s.inputBlock}>
                   <label htmlFor={id + "countStart"}>Изначальное количество примогемов</label>
                   <Field readOnly type="number" name="countStart" id={id + "countStart"} />
                 </div>
                 <div className={s.inputBlock}>
-                  <label htmlFor={id + "countPrimogems"}>Количество откладываемых примогемов</label>
-                  <Field type="number" name="countPrimogems" id={id + "countPrimogems"} />
-                  <ErrorMessage className={s.error} name="countPrimogems" component="div" />
+                  <label htmlFor={id + "valueDayByDay"}>Количество откладываемых примогемов</label>
+                  <Field type="number" name="valueDayByDay" id={id + "valueDayByDay"} />
+                  <ErrorMessage className={s.error} name="valueDayByDay" component="div" />
                 </div>
                 <div className={s.inputBlock}>
                   <label htmlFor={id + "synchValue"}>Синхронизация</label>
@@ -128,7 +134,7 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
                 </div>
               </div>
             </div>
-            <button className={s.submit} type="submit" disabled={isSubmitting}>
+            <button className={s.submit} type="submit" onClick={() => onSubmit(values)}>
               Изменить
             </button>
           </Form>

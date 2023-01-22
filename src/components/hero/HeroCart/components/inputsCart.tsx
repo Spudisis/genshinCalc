@@ -4,16 +4,46 @@ import s from "../HeroCart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { updateHero } from "../../../../api/heros";
+import { useAppDispatch } from "../../../../store/hooks";
+import { addGemsItemStore } from "../../../../store/slices/person";
 
 type Inputs = {
-  handleChange: (n: React.FormEvent<HTMLInputElement>) => void;
-  handleAdd: (n: React.FormEvent<HTMLInputElement>) => void;
-  sendAdd: () => void;
-  countGemsPlus: number;
   initialCount: number;
+  add: number;
+  id: number;
+  setPrimogems: (n: number) => void;
 };
 
-export const InputsCart = ({ handleChange, initialCount, handleAdd, countGemsPlus, sendAdd }: Inputs) => {
+export const InputsCart = ({ initialCount, id, setPrimogems, add }: Inputs) => {
+  const dispatch = useAppDispatch();
+
+  const [countGemsPlus, setAddPrimogems] = React.useState(0);
+  
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const count = e.currentTarget.value;
+    if (count) {
+      setPrimogems(+count);
+    } else {
+      setPrimogems(0);
+    }
+  };
+  const handleAdd = (e: React.FormEvent<HTMLInputElement>) => {
+    const count = e.currentTarget.value;
+    if (count) {
+      setAddPrimogems(+count);
+    } else {
+      setAddPrimogems(0);
+    }
+  };
+  const sendAdd = () => {
+    if (countGemsPlus) {
+      let countAdd = add + countGemsPlus;
+
+      updateHero({ countAdd, id }).then(() => dispatch(addGemsItemStore({ countGemsPlus, id })));
+    }
+  };
+
   return (
     <div className={s.inputs}>
       <div className={s.countPrimo}>

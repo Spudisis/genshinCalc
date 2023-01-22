@@ -28,7 +28,7 @@ export const FormSync = ({ id, name, value, typeValue, synchro }: viewSync) => {
     <Formik
       enableReinitialize
       initialValues={{ id: id, name: name, value: value, typeValue: typeValue }}
-      validate={(values) => {
+      validate={(values: any) => {
         const errors: any = {};
         if (values.value === 0 || values.value < 0 || !values.value) {
           errors.value = "Значение должно быть больше 0";
@@ -39,11 +39,11 @@ export const FormSync = ({ id, name, value, typeValue, synchro }: viewSync) => {
         }
         return errors;
       }}
-      onSubmit={(values) => {
+      onSubmit={(values: any) => {
         dispatch(editSynchro(values));
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting }: any) => (
         <Form>
           <li>
             <div className={s.groupInput}>{name}</div>

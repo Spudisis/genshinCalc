@@ -1,8 +1,9 @@
 import React from "react";
+import { createPrimogems } from "../../api/primogems";
 
-import { UpdateStore } from "../../firebase";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { addPrimogems } from "../../store/slices/primogems";
+import { addPrimogems, setOneRow } from "../../store/slices/primogems";
+import { primogems } from "../../store/types/items";
 import { calcChangePrimogems } from "../../utils";
 import { AddPrimogemsView } from "./AddPrimogemsView";
 
@@ -13,9 +14,9 @@ export type objForm = {
 };
 
 export const AddPrimogems = () => {
-  const { uid, store } = useAppSelector((state) => state.person);
-  const { primogems } = useAppSelector((state) => state.primogemSlice);
-  const synchro = useAppSelector((state) => state.syncSlice.synchro);
+  const { uid } = useAppSelector((state) => state.person);
+  const row = useAppSelector((state) => state.primogemSlice.oneRow);
+
   const fill = useAppSelector((store) => store.persistedReducer.params);
   const dispatch = useAppDispatch();
 
@@ -24,24 +25,26 @@ export const AddPrimogems = () => {
   const [starglitterCount, setStarglitterCount] = React.useState(0);
 
   React.useLayoutEffect(() => {
-    if (fill.autoFill && primogems[0]) {
-      setPrimogemsCount(primogems[0].countPrimogems);
-      setWishCount(primogems[0].countWishes);
-      setStarglitterCount(primogems[0].countStarglitter);
+    if (fill.autoFill && row[0]) {
+      setPrimogemsCount(row[0].countPrimogems);
+      setWishCount(row[0].countWishes);
+      setStarglitterCount(row[0].countStarglitter);
     } else {
       setPrimogemsCount(0);
       setWishCount(0);
       setStarglitterCount(0);
     }
-  }, [fill.autoFill, primogems]);
+  }, [fill.autoFill, row]);
 
-  React.useEffect(() => {
-    uid && primogems.length !== 0 && UpdateStore({ uid, store, primogems, synchro });
-  }, [primogems, uid, store, synchro]);
+  const calcPrimogems = async (obj: objForm) => {
+    const objectFull = calcChangePrimogems(obj, row);
+    try {
+      const data: primogems = await createPrimogems(objectFull, Number(uid));
 
-  const calcPrimogems = (obj: objForm) => {
-    const objectFull = calcChangePrimogems(obj, primogems);
-    dispatch(addPrimogems(objectFull));
+      dispatch(addPrimogems(data));
+
+      dispatch(setOneRow([data]));
+    } catch (e: any) {}
   };
 
   return (

@@ -7,4 +7,4 @@ export { calcChangePrimogems, getDateNow, getTimeNow } from "./calcChangePrimoge
 export { findLocalStorage, setItemLocalStorage, findLocalStorageNumber } from "./LocalStorage";
 
 export { copyClipBoard } from "./copyCLipBoard";
-export { deleteImageFirebase } from "./deleteImageFirebase";
+

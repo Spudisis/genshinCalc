@@ -1,14 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import { useLocation } from "react-router-dom";
-import { getPerson } from "../../../store/slices/person";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { setStore } from "../../../store/slices/person";
 import { findLocalStorage } from "../../../utils/";
+import { getHeros } from "../../../api/heros";
 
 import { HeroListView } from "./HeroListView";
 export const HeroList = () => {
   const typeLocal = findLocalStorage("typeView");
-
-  const { store } = useSelector(getPerson);
+  const { store, uid } = useAppSelector((store) => store.person);
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    const getHerosAll = async () => {
+      const res = await getHeros(uid);
+      dispatch(setStore(res));
+    };
+    getHerosAll();
+  }, [dispatch]);
   const [typeView, setTypeView] = React.useState(typeLocal[1]);
   const location = useLocation();
 

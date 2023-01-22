@@ -1,6 +1,6 @@
 import React from "react";
-import { UpdateStore } from "../../firebase";
-import {  useAppSelector } from "../../store/hooks";
+
+import { useAppSelector } from "../../store/hooks";
 
 import s from "./sync.module.scss";
 
@@ -26,7 +26,7 @@ export const Sync = () => {
 
     sum && setSum(sum);
 
-    uid && synchro.length !== 0 && UpdateStore({ uid, store, primogems, synchro });
+    //тут был код uid && synchro.length !== 0 && UpdateStore({ uid, store, primogems, synchro });
   }, [uid, store, primogems, synchro]);
 
   React.useEffect(() => {

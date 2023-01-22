@@ -1,27 +1,23 @@
 import React from "react";
 import { ModalAuth } from "./modalAuth";
 import s from "./buttonAuth.module.scss";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { clearStore, clearUid, getPerson } from "../../../store/slices/person";
-import { useSignOut } from "react-firebase-hooks/auth";
-import { useSelector } from "react-redux";
-import { auth } from "../../../firebase";
+
 import { clearPrimogems } from "../../../store/slices/primogems";
 
 export const AuthButton = () => {
   const dispatch = useAppDispatch();
   const [modalAuthActive, setModalAuthActive] = React.useState(false);
-  const { uid } = useSelector(getPerson);
-  const [signOut] = useSignOut(auth as any);
+  const uid = useAppSelector((store) => store.person.uid);
 
   React.useEffect(() => {
     console.log(modalAuthActive);
   }, [modalAuthActive]);
   const exit = () => {
+    dispatch(clearUid());
     dispatch(clearStore());
     dispatch(clearPrimogems());
-    dispatch(clearUid());
-    signOut();
   };
   return (
     <>
