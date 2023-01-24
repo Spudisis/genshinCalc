@@ -9,7 +9,7 @@ type viewSync = {
   name: string;
   value: number;
   typeValue: string;
-  synchro: Synchronization[];
+  synchro: Synchronization[] | undefined;
 };
 
 export const FormSync = ({ id, name, value, typeValue, synchro }: viewSync) => {
@@ -19,31 +19,32 @@ export const FormSync = ({ id, name, value, typeValue, synchro }: viewSync) => {
     dispatch(deleteSynchro(id));
   };
 
-  const sum = synchro.map((elem) => {
-    if (elem.id !== id && elem.typeValue !== "number") return elem;
-    return null
-  }).reduce((prev, sumElem) => (sumElem && sumElem.value ? prev + sumElem.value : prev + 0), 0);
-
+  const sum = synchro
+    ?.map((elem) => {
+      if (elem.id !== id && elem.typeValue !== "number") return elem;
+      return null;
+    })
+    .reduce((prev, sumElem) => (sumElem && sumElem.value ? prev + sumElem.value : prev + 0), 0);
   return (
     <Formik
       enableReinitialize
       initialValues={{ id: id, name: name, value: value, typeValue: typeValue }}
-      validate={(values) => {
+      validate={(values: viewSync) => {
         const errors: any = {};
         if (values.value === 0 || values.value < 0 || !values.value) {
           errors.value = "Значение должно быть больше 0";
         }
 
-        if (values.typeValue === "percent" && +values.value + +sum > 100) {
+        if (values.typeValue === "percent" && +values.value + +(sum ? sum : 0) > 100) {
           errors.value = "Синхронизация превышает 100%";
         }
         return errors;
       }}
-      onSubmit={(values) => {
+      onSubmit={(values: viewSync) => {
         dispatch(editSynchro(values));
       }}
     >
-      {({ isSubmitting }) => (
+      {() => (
         <Form>
           <li>
             <div className={s.groupInput}>{name}</div>

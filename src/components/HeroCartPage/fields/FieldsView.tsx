@@ -39,7 +39,7 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
           synchValue: hero.synchValue,
           image: hero.image,
         }}
-        validate={(values) => {
+        validate={(values: storeItem) => {
           const errors: any = {};
           setResetFormButton(true);
 
@@ -67,13 +67,13 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
           }
           return errors;
         }}
-        onSubmit={(values) => {
+        onSubmit={(values: storeItem) => {
           setResetFormButton(false);
 
           dispatch(changeItemStore(values));
         }}
       >
-        {({ isSubmitting, resetForm }) => (
+        {({ resetForm }: { resetForm: () => void }) => (
           <Form>
             <FormObserver />
             <div className={s.content}>
@@ -128,7 +128,7 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
                 </div>
               </div>
             </div>
-            <button className={s.submit} type="submit" disabled={isSubmitting}>
+            <button className={s.submit} type="submit">
               Изменить
             </button>
           </Form>

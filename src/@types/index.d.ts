@@ -33,4 +33,4 @@ declare module "*.sass" {
 
 declare module "@fortawesome/fontawesome-free";
 declare module "react-onclickoutside";
-declare module "styled-components";
+declare module "formik";

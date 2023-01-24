@@ -23,7 +23,7 @@ export const FormAdd = ({ calcPrimogems, primogemsCount, wishCount, starglitterC
     <Formik
       enableReinitialize
       initialValues={{ countPrimogems: primogemsCount, countWishes: wishCount, countStarglitter: starglitterCount }}
-      validate={(values) => {
+      validate={(values: valuesForm) => {
         const errors: any = {};
         if (!values.countPrimogems && values.countPrimogems !== 0) {
           errors.countPrimogems = "Обязательное поле";
@@ -36,12 +36,12 @@ export const FormAdd = ({ calcPrimogems, primogemsCount, wishCount, starglitterC
         }
         return errors;
       }}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values: valuesForm, { resetForm }: { resetForm: () => void }) => {
         calcPrimogems(values);
         resetForm();
       }}
     >
-      {({ isSubmitting }) => (
+      {() => (
         <Form className={s.form}>
           <div className={s.inputs}>
             <div className={s.inputBlock}>

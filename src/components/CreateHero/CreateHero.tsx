@@ -1,14 +1,23 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import s from "./createHero.module.scss";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { addStore } from "../../../../store/slices/person";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { addStore } from "../../store/slices/person";
 
-import { UpdateStore, UploadImg } from "../../../../firebase/index";
-import { getNumberOfDays } from "../../../../utils/getNumberOfDays";
+import { UpdateStore, UploadImg } from "../../firebase/index";
+import { getNumberOfDays } from "../../utils/getNumberOfDays";
 
 import { Fields } from "./Fields";
 import { Drag } from "./drag";
+
+type createHeroT = {
+  name: string;
+  dateStart: string;
+  dateEnd: string;
+  countPrimogems: number;
+  countStart: number;
+  image: string;
+};
 
 export const CreateHero = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +51,7 @@ export const CreateHero = () => {
     <>
       <Formik
         initialValues={{ name: "", dateStart: "", dateEnd: "", countPrimogems: 0, countStart: 0, image: "" }}
-        validate={(values) => {
+        validate={(values: createHeroT) => {
           const errors: any = {};
           if (values.name.length === 0) {
             errors.name = "Обязательное поле";
@@ -72,7 +81,7 @@ export const CreateHero = () => {
           }
           return errors;
         }}
-        onSubmit={async (values, { resetForm }) => {
+        onSubmit={async (values: createHeroT, { resetForm }: { resetForm: () => void }) => {
           if (!values.image) {
             values.image = selectImg;
           }
@@ -86,7 +95,7 @@ export const CreateHero = () => {
           setSelectImg("");
         }}
       >
-        {({ isValid }) => (
+        {() => (
           <Form className={s.form}>
             <div className={s.inputs}>
               <Fields
@@ -114,7 +123,7 @@ export const CreateHero = () => {
               />
             </div>
 
-            <button disabled={!isValid} className={s.submit} type="submit">
+            <button className={s.submit} type="submit">
               Добавить
             </button>
           </Form>

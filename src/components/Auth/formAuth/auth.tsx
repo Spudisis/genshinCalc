@@ -1,6 +1,12 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./authReg.module.scss";
+
+type authT = {
+  email: string;
+  password: string;
+};
+
 export const Auth = ({ signIn }: any) => {
   const id = React.useId();
 
@@ -8,7 +14,7 @@ export const Auth = ({ signIn }: any) => {
     <>
       <Formik
         initialValues={{ email: "", password: "" }}
-        validate={(values) => {
+        validate={(values: authT) => {
           const errors: any = {};
           if (!values.email) {
             errors.email = "Обязательное поле";
@@ -21,13 +27,13 @@ export const Auth = ({ signIn }: any) => {
 
           return errors;
         }}
-        onSubmit={(values) => {
+        onSubmit={(values: authT) => {
           signIn(values);
         }}
       >
         {() => (
           <Form className={s.form}>
-            <div className={s.inputs}>
+            <div>
               <div className={s.inputBlock}>
                 <label htmlFor={id + "email"}>Email</label>
                 <Field type="email" name="email" id={id + "email"} placeholder="Логин" />
