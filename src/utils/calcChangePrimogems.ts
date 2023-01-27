@@ -1,15 +1,22 @@
-import { objForm } from "../components/addPrimo/AddPrimogems";
+import { valuesForm } from "../modules/AddPrimogems/components/FormAdd/formAdd";
 import { primogems } from "../store/types/items";
 const JSJoda = require("@js-joda/core");
 const checkTwoDigit = (number: number) => {
   return number < 10 ? "0" + number : number;
 };
 
-export const calcChangePrimogems = (
-  obj: objForm,
+export type objectFull = {
+  date: string;
+  dateTime: string;
+  valuePrimogems: number;
+  valueWishes: number;
+  valueStarglitter: number;
+  differenceValuePrimogems: number;
+  differenceValueWishes: number;
+  differenceValueStarglitter: number;
+};
 
-  primogems: primogems[]
-) => {
+export const calcChangePrimogems = (obj: valuesForm, primogems: primogems[]) => {
   const lastChange = primogems.length !== 0 && primogems[0];
 
   const date = getDateNow();
@@ -19,23 +26,23 @@ export const calcChangePrimogems = (
     return {
       date: date,
       dateTime: dateTime,
-      countPrimogems: obj.countPrimogems,
-      countWishes: obj.countWishes,
-      countStarglitter: obj.countStarglitter,
-      differenceCountPrimogems: obj.countPrimogems - lastChange.countPrimogems,
-      differenceCountWishes: obj.countWishes - lastChange.countWishes,
-      differenceCountStarglitter: obj.countStarglitter - lastChange.countStarglitter,
+      valuePrimogems: obj.valuePrimogems,
+      valueWishes: obj.valueWishes,
+      valueStarglitter: obj.valueStarglitter,
+      differenceValuePrimogems: obj.valuePrimogems - lastChange.valuePrimogems,
+      differenceValueWishes: obj.valueWishes - lastChange.valueWishes,
+      differenceValueStarglitter: obj.valueStarglitter - lastChange.valueStarglitter,
     };
   }
   return {
     date: date,
     dateTime: dateTime,
-    countPrimogems: obj.countPrimogems,
-    countWishes: obj.countWishes,
-    countStarglitter: obj.countStarglitter,
-    differenceCountPrimogems: 0,
-    differenceCountWishes: 0,
-    differenceCountStarglitter: 0,
+    valuePrimogems: obj.valuePrimogems,
+    valueWishes: obj.valueWishes,
+    valueStarglitter: obj.valueStarglitter,
+    differenceValuePrimogems: 0,
+    differenceValueWishes: 0,
+    differenceValueStarglitter: 0,
   };
 };
 

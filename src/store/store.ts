@@ -3,6 +3,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import heroes from "./slices/heroes";
 import person from "./slices/person";
 import localStorage from "./slices/localstorage";
 import getImagesUrl from "./slices/images";
@@ -22,7 +23,7 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: { persistedReducer, person, getImagesUrl, calcPrimogemObj, primogemSlice, syncSlice },
+  reducer: { persistedReducer, person, getImagesUrl, calcPrimogemObj, primogemSlice, syncSlice, heroes },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

@@ -4,12 +4,12 @@ import s from "../style.module.scss";
 import { useAppSelector } from "../../store/hooks";
 
 export const CreateHero = () => {
-  const uid = useAppSelector((state) => state.person.uid);
+  const id = useAppSelector((state) => state.person.id);
   return (
     <div className={s.root}>
       <Info />
 
-      {uid && <HeroList />}
+      {id && <HeroList />}
     </div>
   );
 };

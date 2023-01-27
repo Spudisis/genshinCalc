@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
 
 import { HeroList } from "../../components/hero/HeroList/HeroList";
-import { getPerson } from "../../store/slices/person";
 
-import s from "../style.module.scss";
+import { useAppSelector } from "../../store/hooks";
 
 export const Main = () => {
-  const { uid } = useSelector(getPerson);
+  const uid = useAppSelector((store) => store.person.id);
 
-  return <div className={s.root}>{uid && <HeroList />}</div>;
+  return <div>{uid && <HeroList />}</div>;
 };

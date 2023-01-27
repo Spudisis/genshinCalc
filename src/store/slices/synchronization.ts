@@ -1,18 +1,25 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { $authHost } from "../../api";
 
 import { Synchronization } from "../types/items";
-import { synchroSlice } from "../types/user";
+import { status, synchroSlice } from "../types/user";
 
 const initialState: synchroSlice = {
   synchro: [],
+  statusSync: status.LOADING,
 };
+
+export const getSynchro = createAsyncThunk<Synchronization[], number>("sync/all", async (id: number) => {
+  const response = await $authHost.post("api/sync/all", { personId: id });
+  console.log(response);
+  return response.data.allSync;
+});
+
 export const syncSlice = createSlice({
   name: "primogemsSlice",
   initialState,
   reducers: {
-    setSynchro: (store, action: PayloadAction<Synchronization[]>) => {
-      store.synchro = action.payload;
-    },
     addSynchro: (store, action: PayloadAction<Synchronization>) => {
       store.synchro = [...store.synchro, action.payload];
     },
@@ -24,15 +31,25 @@ export const syncSlice = createSlice({
         return elem;
       });
     },
-    deleteSynchro: (store, action: PayloadAction<number>) => {
-      store.synchro = store.synchro.filter((elem) => elem.id !== action.payload);
-    },
-    deleteSynchroName: (store, action: PayloadAction<string>) => {
-      store.synchro = store.synchro.filter((elem) => elem.name !== action.payload);
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getSynchro.fulfilled, (state, action) => {
+        state.synchro = action.payload;
+
+        state.statusSync = status.FULFILLED;
+      })
+      .addCase(getSynchro.pending, (state, action) => {
+        state.statusSync = status.LOADING;
+      })
+
+      .addCase(getSynchro.rejected, (state, action) => {
+        state.synchro = [];
+        state.statusSync = status.REJECTED;
+      });
   },
 });
 
-export const { setSynchro, addSynchro, deleteSynchro, deleteSynchroName, editSynchro } = syncSlice.actions;
+export const { addSynchro, editSynchro } = syncSlice.actions;
 
 export default syncSlice.reducer;

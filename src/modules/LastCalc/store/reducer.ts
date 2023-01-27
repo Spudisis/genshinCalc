@@ -1,0 +1,1 @@
+export { setLastCalc } from "../../../store/slices/localstorage";

@@ -1,40 +1,52 @@
 import React from "react";
-import { Header, Footer } from "./layout/index";
-import "./style/resize.css";
-import s from "./style/scss/app.module.scss";
-import "./style/theme.css";
+import "./UI/resize.css";
+import "./UI/theme.css";
+import s from "./UI/scss/app.module.scss";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./store/hooks";
 
-import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero } from "./pages";
-import { check } from "./api/userApi";
+import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero, RegistrationNoticed } from "./pages";
+import { check } from "./api/CheckToken";
 import { setUid } from "./store/slices/person";
 import { Loader } from "./components/";
-import { counterPrim, heroCart, idHeroCart, more, Site, waiting } from "./const/routes";
-import ThemeProvider from "./provider/provider";
+import { counterPrim, heroCart, idHeroCart, more, registrationConfirm, Site, waiting } from "./const/routes";
+import ThemeProvider from "./modules/Header/components/Toggle/Provider";
 import { getOnePrimogems } from "./api/primogems";
 import { setOneRow } from "./store/slices/primogems";
-import { primogems } from "./store/types/items";
+import { Header, Footer } from "./modules/index";
+import { NotFound } from "./pages/notFound/NotFound";
 
 export const App = () => {
   const [loading, setLoading] = React.useState(true);
   const dispatch = useAppDispatch();
-  React.useEffect(() => {
-    check()
-      .then((data: any) => {
-        dispatch(setUid(data.id));
+
+  const checkToken = async () => {
+    try {
+      const data = await check();
+      const { user } = data.userData;
+      if (user.isActivated) {
+        dispatch(setUid(user.id));
         const findOneRow = async () => {
-          const res: any = await getOnePrimogems(data.id);
+          const res: any = await getOnePrimogems(user.id);
           if (!res) {
             return;
           }
           dispatch(setOneRow(res));
         };
         findOneRow();
-      })
-      .finally(() => setLoading(false));
-  }, [dispatch]);
+      }
+    } catch (error) {}
+    setLoading(false);
+  };
+
+  React.useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkToken();
+    } else {
+      setLoading(false);
+    }
+  }, [dispatch, checkToken]);
 
   return (
     <ThemeProvider>
@@ -51,6 +63,8 @@ export const App = () => {
                 <Route path={Site + waiting + more} element={<MoreInfoCreateHero />}></Route>
                 <Route path={Site + waiting + heroCart + idHeroCart} element={<HeroCart />}></Route>
                 <Route path={Site + counterPrim} element={<CounterPrim />}></Route>
+                <Route path={Site + registrationConfirm} element={<RegistrationNoticed />}></Route>
+                <Route path="*" element={<NotFound />}></Route>
               </Routes>
             </main>
             <Footer />

@@ -1,0 +1,9 @@
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  top: 30px;
+}
+.errorMessage::before {
+  content: "*";
+}

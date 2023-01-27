@@ -1,0 +1,14 @@
+.logo {
+  height: 90%;
+  transition: 0.5s;
+  height: 100%;
+  img {
+    width: auto;
+    height: 100%;
+  }
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

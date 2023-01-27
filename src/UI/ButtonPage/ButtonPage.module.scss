@@ -1,0 +1,70 @@
+@import "../../UI/scss/mixin.scss";
+
+a {
+  @include button;
+  transition: 0.3s;
+}
+a:not(:last-child) {
+  margin-right: 10px;
+}
+.active {
+  @include fill;
+}
+.inactive {
+  @include notFill;
+  @media (hover: hover) {
+    &:hover {
+      @include fill;
+    }
+  }
+}
+@media screen and (max-width: 750px) {
+  a:not(:last-child) {
+    margin-right: 0px;
+  }
+
+  @media (hover: hover) {
+    .inactive:hover {
+      border-radius: 0px;
+      border: none;
+    }
+  }
+
+  .inactive {
+    border: none;
+  }
+  a {
+    border: none;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 0px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .inactive {
+    @include notFill;
+    background-color: var(--color-modal-burger-bgc);
+    color: var(--color-close-modal-burger);
+    border: none;
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+        background-color: var(--bcg-color-hover-modal-links);
+        border: none;
+      }
+    }
+  }
+  a:not(:last-child) {
+    margin-right: 0px;
+    border-radius: 0px;
+  }
+  a {
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 0px;
+    width: 100%;
+  }
+}

@@ -14,7 +14,7 @@ type pagination = {
 };
 
 export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine, countLine }: pagination) => {
-  const array = Array.from({ length: pageCount }, () => undefined);
+  const array = Array.from({ length: pageCount }, () => undefined); //пустой массив
 
   const ref = React.useRef<HTMLDivElement>(null);
   const [modalView, setModalView] = React.useState(false);

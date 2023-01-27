@@ -1,0 +1,13 @@
+@import "../../../../UI/scss/mixin";
+@import "../../../../UI/scss/values";
+
+.buttonOpenModal {
+  margin-left: 20px;
+  display: flex;
+  position: relative;
+  font-size: 18px;
+  @media screen and (max-width: 750px) {
+    position: static;
+    margin-left: 0px;
+  }
+}

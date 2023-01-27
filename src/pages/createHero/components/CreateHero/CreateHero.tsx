@@ -8,10 +8,10 @@ import { getNumberOfDays } from "../../../../utils/getNumberOfDays";
 import { Fields } from "./Fields";
 import { Drag } from "./drag";
 import { createHero } from "../../../../api/heros";
-import { addStore } from "../../../../store/slices/person";
+import { addStore } from "../../../../store/slices/heroes";
 
 export const CreateHero = () => {
-  const uid = useAppSelector((store) => store.person.uid);
+  const id = useAppSelector((store) => store.person.id);
   const dispatch = useAppDispatch();
   const [focusDateStart, setFocusDateStart] = React.useState(false);
   const [focusDateEnd, setfocusDateEnd] = React.useState(false);
@@ -93,7 +93,7 @@ export const CreateHero = () => {
           formData.append("image", image);
           formData.append("imagePath", `${imagePath}`);
           formData.append("img", objImg);
-          formData.append("personId", uid);
+          formData.append("personId", `${id}`);
 
           createHero(formData).then((data) => dispatch(addStore(data)));
 

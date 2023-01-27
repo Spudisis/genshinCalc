@@ -1,4 +1,4 @@
-import s from "./Fields.module.scss";
+import s from "./fields.module.scss";
 
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
@@ -6,7 +6,7 @@ import { storeItem } from "../../../store/types/items";
 import { FormObserver } from "./observerForm";
 
 import { useAppDispatch } from "../../../store/hooks";
-import { changeItemStore } from "../../../store/slices/person";
+import { changeItemStore } from "../../../store/slices/heroes";
 import { getNumberOfDays } from "../../../utils";
 import { updateHero } from "../../../api/heros";
 
@@ -40,9 +40,9 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
           name: hero.name,
           date_start: hero.date_start,
           date_end: hero.date_end,
-          valueDayByDay: hero.valueDayByDay,
-          countStart: hero.countStart,
-          countAdd: hero.countAdd,
+
+          countStart: hero.valueStart,
+          countAdd: hero.valueAdd,
           synchValue: hero.synchValue,
           image: hero.image,
         }}

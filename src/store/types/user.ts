@@ -24,4 +24,8 @@ export type allSlice = {
 
 export type synchroSlice = {
   synchro: Synchronization[];
+  statusSync: status;
 };
+export enum status {
+  LOADING, REJECTED, FULFILLED
+}

@@ -1,0 +1,42 @@
+@import "../../../../UI/scss/mixin.scss";
+@import "../../../../UI/scss/values.scss";
+.modal {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  z-index: 300;
+  @media screen and (max-width: $menuSync) {
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+  }
+
+  .wrapper {
+    width: auto;
+    height: auto;
+    min-width: 500px;
+    box-shadow: 2px 2px 5px var(--box-shadow-color);
+    border-radius: 15px;
+    background-color: var(--color-bgc-main);
+    color: var(--color-text);
+
+    ul {
+      margin-top: 10px;
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      form:first-child li {
+        border-top: none;
+      }
+      li {
+        padding: 12px;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 120px 90px  1fr 1fr;
+        grid-column-gap: 10px;
+        text-align: center;
+        border-top: 1px solid var(--bgc-color-layout);
+      }
+    }
+  }
+}

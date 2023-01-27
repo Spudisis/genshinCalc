@@ -11,8 +11,8 @@ type Img = {
 };
 
 export const Image = ({ id, setSizeImg }: Img) => {
-  const uid = useAppSelector((state) => state.person.uid);
-  const store = useAppSelector((store) => store.person.store);
+  const uid = useAppSelector((state) => state.person.id);
+  const store = useAppSelector((store) => store.heroes.heroes);
   const [cart, setCart] = React.useState<storeItem>();
 
   React.useEffect(() => {

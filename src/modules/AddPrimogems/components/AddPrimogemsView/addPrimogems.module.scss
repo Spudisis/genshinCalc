@@ -1,0 +1,16 @@
+@import "../../../../UI/scss/mixin.scss";
+@import "../../../../UI/scss/values.scss";
+
+.addPrimogemsGeneral {
+  @media screen and (max-width: $addPrimogemsMedia) {
+    display: none;
+  }
+}
+.addPrimogems {
+  @include details;
+  display: none;
+  margin-bottom: 20px;
+  @media screen and (max-width: $addPrimogemsMedia) {
+    display: block;
+  }
+}

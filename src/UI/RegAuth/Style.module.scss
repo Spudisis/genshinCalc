@@ -1,0 +1,31 @@
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+  border-bottom: 2px solid var(--input-border-color);
+  label {
+    color: var(--label-color);
+    @media (hover: hover) {
+      &:hover {
+        color: var(--color-text);
+      }
+    }
+  }
+  input {
+    background-color: var(--color-bgc);
+    color: var(--color-text);
+    border: none;
+    outline: none;
+  }
+  .errorMessage {
+    position: absolute;
+    top: 60px;
+    color: var(--error-color-message);
+    font-size: 12px;
+  }
+  .errorMessage::before {
+    content: "*";
+  }
+}

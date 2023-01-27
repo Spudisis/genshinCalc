@@ -1,0 +1,13 @@
+@import "../../UI/scss/mixin";
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  main {
+    min-height: 80vh;
+    @include wrapper;
+    @media screen and (max-width: 1200px) {
+      @include wrapper1200;
+    }
+  }
+}

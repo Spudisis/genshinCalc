@@ -1,0 +1,86 @@
+@import "../../../../UI/scss/mixin";
+@import "../../../../UI/scss/values";
+.modal {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  top: 80px;
+  right: 10px;
+
+  z-index: 9999999;
+
+  @media screen and (max-width: 750px) {
+    font-size: 18px;
+    top: 150px;
+  }
+  @media screen and (max-width: $modalMenu) {
+    position: fixed;
+    border: 0px;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    border-radius: 0px;
+    height: 100vh;
+  }
+  .wrapper {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--modal-bgc-color);
+    box-shadow: 2px 5px 5px var(--box-shadow-color);
+    border: 1px solid var(--modal-color-border);
+    @media screen and (max-width: $modalMenu) {
+      height: 100%;
+      border-radius: 0px;
+      border: 0px;
+    }
+  }
+}
+.buttons {
+  display: flex;
+  width: 100%;
+
+  .close {
+    display: none;
+    @include button;
+    width: 50px;
+    height: 100%;
+    color: var(--color-text-fill);
+    background-color: var(--color-border-not-fill-button);
+  }
+  button {
+    width: 100%;
+    @include button;
+    color: var(--color-text-inactive-auth);
+    background-color: var(--button-modal-auth-bgc-color);
+    box-shadow: 2px 5px 5px var(--button-active-color-shadow);
+  }
+  button:first-child {
+    border-radius: 15px 0px 0px 0px;
+  }
+  button:nth-child(2) {
+    border-radius: 0px 15px 0px 0px;
+  }
+  .activeButton {
+    color: var(--color-text-active-auth);
+    background-color: var(--bgc-color-button-active-auth);
+  }
+
+  @media screen and (max-width: 450px) {
+    button:first-child {
+      border-radius: 0px;
+    }
+    .close {
+      display: block;
+    }
+    button:nth-child(2) {
+      border-radius: 0px;
+    }
+    button:last-child {
+      border-radius: 0px;
+    }
+    button {
+      border-radius: 0px;
+    }
+  }
+}

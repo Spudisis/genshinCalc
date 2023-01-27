@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { addGemsItemStore } from "../../../store/slices/person";
+import { addGemsItemStore } from "../../../store/slices/heroes";
 import { storeItem } from "../../../store/types/items";
 import { CalcBetween } from "../../../utils";
 import s from "./HeroTable.module.scss";
@@ -10,7 +10,24 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { updateHero } from "../../../api/heros";
 
 export const Hero = React.memo(
-  ({ id, name, date_start, date_end, countStart, countAdd, valueDayByDay, synchValue }: storeItem) => {
+  ({
+    id,
+    date_start,
+    date_end,
+    name,
+    image,
+    imagePath,
+    valueStart,
+    valueAdd,
+    valueWishes,
+    createdAt,
+    updatedAt,
+    personId,
+    SynchronizationId,
+    Synchronization,
+    valueDayByDays,
+    synchValue,
+  }: storeItem) => {
     const dispatch = useAppDispatch();
     const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.oneRow);
 
@@ -21,22 +38,22 @@ export const Hero = React.memo(
     const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
 
     React.useEffect(() => {
-      initialCountPrimogems.length !== 0 && setPrimogems(initialCountPrimogems[0].countPrimogems);
+      initialCountPrimogems.length !== 0 && setPrimogems(initialCountPrimogems[0].valuePrimogems);
     }, [initialCountPrimogems]);
 
-    React.useEffect(() => {
-      const count = CalcBetween({
-        date_start,
-        date_end,
-        countStart,
-        countAdd,
-        valueDayByDay,
-        synchValue,
-      });
-      if (count) {
-        setObj(count);
-      }
-    }, [date_start, date_end, countStart, countAdd, valueDayByDay, synchValue]);
+    // React.useEffect(() => {
+    //   const count = CalcBetween({
+    //     date_start,
+    //     date_end,
+    //     countStart,
+    //     countAdd,
+    //     valueDayByDay,
+    //     synchValue,
+    //   });
+    //   if (count) {
+    //     setObj(count);
+    //   }
+    // }, [date_start, date_end, countStart, countAdd, valueDayByDay, synchValue]);
 
     React.useEffect(() => {
       if (primogems && obj.countSave) {
@@ -105,7 +122,7 @@ export const Hero = React.memo(
         <td>{obj.betweenSumm ? obj.betweenSumm : "Нет конечной даты"}</td>
         <td>
           <input type="number" onChange={(e) => handleAdd(e)} placeholder="Количество" />
-          <button onClick={() => sendAdd(countAdd)} disabled={countGemsPlus ? false : true}>
+          <button onClick={() => sendAdd(valueAdd)} disabled={countGemsPlus ? false : true}>
             <FontAwesomeIcon icon={faCheck as IconProp} />
           </button>
         </td>

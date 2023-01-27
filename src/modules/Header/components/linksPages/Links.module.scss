@@ -1,0 +1,20 @@
+@import "../../../../UI/scss/mixin.scss";
+
+.root {
+  @include sizes;
+
+  @media screen and (max-width: 750px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 750px) {
+    a:first-child {
+      border-radius: 15px 15px 0px 0px;
+    }
+    a {
+      border-radius: 0px;
+    }
+  }
+}

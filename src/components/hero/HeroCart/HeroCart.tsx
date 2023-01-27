@@ -18,21 +18,27 @@ import { obj } from "../../../store/slices/calcPrimogemObj";
 export const HeroCart = React.memo(
   ({
     id,
-    name,
     date_start,
     date_end,
-    countStart,
-    countAdd,
-    valueDayByDay,
+    name,
     image,
     imagePath,
+    valueStart,
+    valueAdd,
+    valueWishes,
+    createdAt,
+    updatedAt,
+    personId,
+    SynchronizationId,
+    Synchronization,
+    valueDayByDays,
     synchValue,
   }: storeItem) => {
     const location = useLocation();
 
     const actionView = location.pathname !== Site && location.pathname !== Site.slice(0, Site.length - 1);
 
-    const uid = useAppSelector((store) => store.person.uid);
+    const idPerson = useAppSelector((store) => store.person.id);
     const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.oneRow);
 
     const [obj, setObj] = React.useState<obj>({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
@@ -41,22 +47,22 @@ export const HeroCart = React.memo(
     const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
 
     React.useLayoutEffect(() => {
-      if (initialCountPrimogems.length !== 0) setPrimogems(initialCountPrimogems[0].countPrimogems);
+      if (initialCountPrimogems.length !== 0) setPrimogems(initialCountPrimogems[0].valuePrimogems);
     }, [initialCountPrimogems]);
 
     React.useLayoutEffect(() => {
-      const count = CalcBetween({
-        date_start,
-        date_end,
-        countStart,
-        countAdd,
-        valueDayByDay,
-        synchValue,
-      });
-      if (count) {
-        setObj(count);
-      }
-    }, [date_start, date_end, countStart, countAdd, valueDayByDay, synchValue]);
+      // const count = CalcBetween({
+      //   date_start,
+      //   date_end,
+      //   countStart,
+      //   countAdd,
+      //   valueDayByDay,
+      //   synchValue,
+      // });
+      // if (count) {
+      //   setObj(count);
+      // }
+    }, [date_start, date_end, valueStart, valueAdd, valueDayByDays, synchValue]);
 
     React.useLayoutEffect(() => {
       if (primogems && obj.countSave) {
@@ -69,18 +75,18 @@ export const HeroCart = React.memo(
         <div className={s.info}>
           <div className={s.mainInfoCart}>
             <div className={s.imageContain}>
-              <ImageContain image={image} imagePath={imagePath} uid={uid} setSizeImg={undefined} />
+              <ImageContain image={image} imagePath={imagePath} uid={idPerson} setSizeImg={undefined} />
             </div>
-            <InputsCart initialCount={primogems} setPrimogems={setPrimogems} add={countAdd} id={id} />
+            <InputsCart initialCount={primogems} setPrimogems={setPrimogems} add={valueAdd} id={idPerson} />
           </div>
           <Info
             obj={obj}
             primogems={primogems}
             primogemsMinusSumm={primogemsMinusSumm}
-            initialCountPrimogems={initialCountPrimogems.length !== 0 ? initialCountPrimogems[0].countWishes : 0}
+            initialCountPrimogems={initialCountPrimogems.length !== 0 ? initialCountPrimogems[0].valuePrimogems : 0}
           />
         </div>
-        {actionView && <Actions id={id} name={name} image={image} uid={uid} />}
+        {actionView && <Actions id={id} name={name} image={image} idPerson={idPerson} />}
       </div>
     );
   }

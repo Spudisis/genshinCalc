@@ -1,0 +1,25 @@
+@import "../scss/mixin";
+.relative {
+  position: relative;
+  @media screen and (max-width: $menuSync) {
+    position: static;
+  }
+}
+.buttonFill {
+  @include button;
+
+  margin-left: 20px;
+  transition: 0.2s;
+  margin-bottom: 10px;
+}
+.autofill {
+  @include fill;
+}
+.autoFillNone {
+  @include notFill;
+  @media (hover: hover) {
+    &:hover {
+      @include fill;
+    }
+  }
+}

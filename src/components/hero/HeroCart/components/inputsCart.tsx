@@ -6,7 +6,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { updateHero } from "../../../../api/heros";
 import { useAppDispatch } from "../../../../store/hooks";
-import { addGemsItemStore } from "../../../../store/slices/person";
+import { addGemsItemStore } from "../../../../store/slices/heroes";
 
 type Inputs = {
   initialCount: number;

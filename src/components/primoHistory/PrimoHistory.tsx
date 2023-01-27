@@ -21,10 +21,10 @@ export type lineCount = 5 | 10 | 15 | 25;
 export const PrimoHistory = () => {
   const getLocalPageCount = findLocalStorageNumber("countLine");
   const dispatch = useAppDispatch();
-  const uid = useAppSelector((store) => store.person.uid);
+  const uid = useAppSelector((store) => store.person.id);
   const primogems = useAppSelector((store) => store.primogemSlice.primogems);
   const rows = useAppSelector((store) => store.primogemSlice.count);
-  const store = useAppSelector((store) => store.person.store);
+  const store = useAppSelector((store) => store.heroes.heroes);
   const lastCalc = useAppSelector((store) => store.persistedReducer.params);
 
   const [reserve, setReserve] = React.useState(0);
@@ -60,14 +60,14 @@ export const PrimoHistory = () => {
     setPageCount(Math.ceil(rows / countLine));
   }, [rows, countLine]);
 
-  React.useLayoutEffect(() => {
-    if (store && lastCalc.lastCalc) {
-      const count = store.reduce((a: number, elem: storeItem) => CalcBetween(elem).countSave + a, 0);
-      setReserve(count);
-    } else {
-      !lastCalc.lastCalc && setReserve(0);
-    }
-  }, [store, lastCalc]);
+  // React.useLayoutEffect(() => {
+  //   if (store && lastCalc.lastCalc) {
+  //     const count = store.reduce((a: number, elem: storeItem) => CalcBetween(elem).countSave + a, 0);
+  //     setReserve(count);
+  //   } else {
+  //     !lastCalc.lastCalc && setReserve(0);
+  //   }
+  // }, [store, lastCalc]);
 
   const createClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter, index }: copy) => {
     try {
@@ -81,11 +81,7 @@ export const PrimoHistory = () => {
   return (
     <>
       <NoticedCopy status={statusNoticed} setStatus={setStatusNoticed} />
-      <PrimoHistoryView
-        primogem={primogems}
-        createClipBoard={createClipBoard}
-        reserve={reserve}
-      />
+      <PrimoHistoryView primogem={primogems} createClipBoard={createClipBoard} reserve={reserve} />
       {rows > countLine && (
         <Pagination
           pageCount={pageCount}

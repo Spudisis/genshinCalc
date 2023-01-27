@@ -1,0 +1,86 @@
+@import "../../../../UI/scss/mixin.scss";
+
+.root {
+  height: 100px;
+  box-shadow: 0px 5px 5px var(--box-shadow-main);
+  border-bottom: 1px solid --box-shadow-main;
+  margin-bottom: 30px;
+  background-color: var(--color-bgc-header);
+}
+.wrapper {
+  @include wrapper;
+  @media screen and (max-width: 1200px) {
+    @include wrapper1200;
+  }
+
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .context751 {
+    display: block;
+  }
+  .context750 {
+    display: none;
+  }
+  .toggleNimg {
+    display: flex;
+    height: inherit;
+    align-items: center;
+  }
+  @media screen and (max-width: 750px) {
+    justify-content: space-between;
+    .context751 {
+      display: none;
+    }
+    .context750 {
+      display: block;
+    }
+  }
+}
+.logo {
+  height: 90%;
+  transition: 0.5s;
+
+  img {
+    width: auto;
+    height: 100%;
+  }
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+}
+
+.burgerMenu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 35px;
+  margin-right: 20px;
+  height: 100%;
+  position: relative;
+  color: var(--color-text);
+  @media screen and (max-width: 450px) {
+    position: static;
+  }
+  justify-content: flex-end;
+  @media screen and (min-width: 751px) {
+    display: none;
+  }
+  @media (hover: hover) {
+    &:hover {
+      color: var(--hover-burger-menu);
+      transition: 0.3s;
+    }
+  }
+}

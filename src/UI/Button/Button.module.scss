@@ -1,0 +1,41 @@
+@import "../../UI/scss/mixin";
+.button {
+  transition: 0.3s all ease;
+  @include notFill;
+  @media (hover: hover) {
+    &:hover {
+      @include fill;
+    }
+  }
+}
+
+.auth {
+  transition: 0.3s all ease;
+  width: 100%;
+  @include notFill;
+
+  @media (hover: hover) {
+    &:hover {
+      @include fill;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    width: 100%;
+    border-radius: 0px 0px 15px 15px;
+    border: none;
+    @media (hover: hover) {
+      &:hover {
+        border: none;
+        border-radius: 0px 0px 15px 15px;
+      }
+    }
+  }
+  @media screen and (max-width: 450px) {
+    border-radius: 0px;
+    @media (hover: hover) {
+      &:hover {
+        border-radius: 0px;
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
-@import "../style/scss/mixin.scss";
+@import "../UI/scss/mixin.scss";
 
-.root {
-  @include wrapper;
-  @media screen and (max-width: 1200px) {
-    @include wrapper1200;
+.details {
+  @include details;
+  .additionalFunction {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
   }
 }

@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../../store/hooks";
 
-import { addGemsItemStore } from "../../../store/slices/person";
+import { addGemsItemStore } from "../../../store/slices/heroes";
 import { storeItem } from "../../../store/types/items";
 
 import { FieldsView } from "./FieldsView";
