@@ -1,8 +1,8 @@
 import React from "react";
 import s from "../style.module.scss";
 import { Info } from "./components/Info";
-import { PrimoHistory, AddPrimogems } from "../../components";
-import { AutoFill, LastCalc, SyncButton } from "../../modules";
+import { PrimoHistory } from "../../modules";
+import { AddPrimogems, AutoFill, LastCalc, SyncButton } from "../../modules";
 export const CounterPrim = () => {
   return (
     <>

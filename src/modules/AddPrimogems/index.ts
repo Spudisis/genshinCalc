@@ -1,3 +1,1 @@
-export const a = ()=> {
-
-}
+export { AddPrimogems } from "./components/AddPrimogems/AddPrimogems";

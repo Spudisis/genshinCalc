@@ -1,0 +1,99 @@
+@import "../../../../UI/scss/mixin.scss";
+
+.wrapper {
+  margin-top: 30px;
+  color: var(--color-text);
+  .name {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 420px) {
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+  h2 {
+    font-size: 26px;
+  }
+  .buttons {
+    button {
+      @include button;
+      @include fill;
+      transition: 0.2s;
+      @media (hover: hover) {
+        &:hover {
+          @include notFill;
+        }
+      }
+    }
+  }
+}
+.container {
+  overflow-x: auto;
+  width: auto;
+}
+.table {
+  text-align: center;
+  margin: 0 auto;
+  width: 1170px;
+
+  th {
+    border-bottom: 3px solid var(--color-thHeroList);
+    padding: 10px;
+    text-align: center;
+  }
+  td {
+    padding: 10px;
+    input {
+      color: var(--color-input);
+    }
+  }
+
+  input {
+    width: 100px;
+  }
+  img {
+    margin: 0 auto;
+    height: 60px;
+  }
+}
+.itemsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+  .item {
+    width: 370px;
+    max-height: 500px;
+    border-radius: 20px;
+    box-shadow: 15px 15px 2px 1px var(--color-item);
+    border: 1px solid var(--color-item);
+    margin: 10px;
+    transition: box-shadow 0.4s;
+
+    @media screen and (max-width: 450px) {
+      box-shadow: none;
+    }
+    @media screen and (max-width: 420px) {
+      margin: 0px;
+      margin-bottom: 10px;
+      width: 330px;
+    }
+  }
+  @media (hover: hover) {
+    .item:hover {
+      box-shadow: 15px 15px 2px 1px var(--color-item-hover);
+      @media screen and (max-width: 450px) {
+        box-shadow: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1170px) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  @media screen and (max-width: 800px) {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+}

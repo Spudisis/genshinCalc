@@ -8,13 +8,8 @@ export { LoaderMini } from "./loader/loaderMini/loaderMini";
 
 export { SelectHero } from "./hero/selectImgHero/selectHero";
 
-export { PrimoHistory } from "./primoHistory/PrimoHistory";
-export { AddPrimogems } from "../modules/AddPrimogems/components/AddPrimogems/AddPrimogems";
-
 export { Pagination } from "./pagination/pagination";
 
-export { ImageContain } from "./hero/HeroCart/components/imageContain";
+export { ImageContain } from "./ImageContain/imageContain";
 
-export { Image } from "./HeroCartPage/Image/Image";
-export { Fields } from "./HeroCartPage/fields/Fields";
 export { PrimogemsViewCart } from "./HeroCartPage/PrimogemsViewCart/PrimogemsViewCart";

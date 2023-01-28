@@ -1,0 +1,1 @@
+export { HeroList } from "./components/HeroList/HeroList";

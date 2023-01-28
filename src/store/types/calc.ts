@@ -4,5 +4,5 @@ export type betweenDate = {
 };
 export type propRedux = {
   id: number;
-  countGemsPlus: number;
+  valueAdd: number;
 }

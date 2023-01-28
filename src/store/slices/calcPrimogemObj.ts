@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type obj = {
-  between: number;
-  now: number;
-  countSave: number;
-  countSumm: number;
-  betweenSumm: number;
+  betweenDays: number;
+  nowDays: number;
+  valueSave: number;
+  valueSum: number;
+  betweenSum: number;
 };
 
 type stateObj = {
@@ -13,11 +13,11 @@ type stateObj = {
 };
 const initialState: stateObj = {
   calculate: {
-    between: 0,
-    now: 0,
-    countSave: 0,
-    countSumm: 0,
-    betweenSumm: 0,
+    betweenDays: 0,
+    nowDays: 0,
+    valueSave: 0,
+    valueSum: 0,
+    betweenSum: 0,
   },
 };
 export const calcPrimogemObj = createSlice({

@@ -1,0 +1,16 @@
+.infoDBD {
+  display: flex;
+  flex-direction: column;
+}
+.listDBD {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+  input {
+    margin: 0px 5px;
+  }
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
