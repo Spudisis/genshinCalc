@@ -1,6 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
-import { SelectHero } from "../../../../components";
+import { SelectHero } from "..";
 import s from "./createHero.module.scss";
 
 export const DragAndDrop = ({

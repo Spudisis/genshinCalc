@@ -7,10 +7,15 @@
     width: 100%;
     color: var(--color-text);
     border-spacing: 0px;
-
+    .loader {
+      width: 100%;
+    }
     .theadTable tr {
       border: 1px solid var(--border-table);
-
+      height: 55px;
+      td {
+        width: 25%;
+      }
       td:first-child {
         border-radius: 10px 0px 0px 0px;
       }

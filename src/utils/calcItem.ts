@@ -18,9 +18,10 @@ export const CalcBetween = ({ date_start, date_end, valueStart, valueAdd, valueD
 
   if (date_end) {
     const validate = getNumberOfDays({ date_start, date_end }) + +1; //кол-во дней между датами
-
     validate < 0 ? (getDays.betweenDays = 0) : (getDays.betweenDays = validate); // ставится дата в объект, если есть конечная дата
   }
+
+
   const validateNow = getNumberDaysNow(date_start) + +1; // прошедшее количество дней с начала
   validateNow < 0 ? (getDays.nowDays = 0) : (getDays.nowDays = validateNow); //
 

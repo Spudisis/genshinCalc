@@ -1,62 +1,55 @@
 import { ChooseColorCount } from "../ChooseColorCount/ChooseColorCount";
-import { copy } from "../PrimoHistory/PrimoHistory";
+import { Copy } from "../PrimoHistory/PrimoHistory";
 import s from "./Line.module.scss";
 import React from "react";
-type cartHistory = {
-  id: number;
-  date: string;
-  dateTime: string;
-  countPrimogems: number;
-  countWishes: number;
-  countStarglitter: number;
-  differenceCountPrimogems: number;
-  differenceCountWishes: number;
-  differenceCountStarglitter: number;
-  createClipBoard: (n: copy) => void;
-  reserve: number;
-  index: number;
-};
+import { primogems } from "../../../../store/types/items";
+
+type LineTableT = { reserve: number; index: number; createClipBoard: (n: Copy) => void } & Omit<
+  primogems,
+  "personId" | "createdAt" | "updatedAt"
+>;
+
 export const LineTable = React.memo(
   ({
     id,
     date,
     dateTime,
-    countPrimogems,
-    countWishes,
-    countStarglitter,
-    differenceCountPrimogems,
-    differenceCountWishes,
-    differenceCountStarglitter,
+    valuePrimogems,
+    valueWishes,
+    valueStarglitter,
+    differenceValuePrimogems,
+    differenceValueWishes,
+    differenceValueStarglitter,
     createClipBoard,
     reserve,
     index,
-  }: cartHistory) => {
+  }: LineTableT) => {
     return (
       <tr
         className={s.item}
-        onClick={() => createClipBoard({ date, countPrimogems, countWishes, countStarglitter, index })}
+        onClick={() => createClipBoard({ date, valuePrimogems, valueWishes, valueStarglitter, index })}
       >
         <td className={s.line}>
           {date} {dateTime && dateTime}
         </td>
         <td className={s.line}>
           <div className={s.main}>
-            {countPrimogems}
+            {valuePrimogems}
             {reserve > 0 && (
               <span>
-                (-{reserve}={countPrimogems - reserve})
+                (-{reserve}={valuePrimogems - reserve})
               </span>
             )}
           </div>
-          <ChooseColorCount count={differenceCountPrimogems} />
+          <ChooseColorCount count={differenceValuePrimogems} />
         </td>
         <td className={s.line}>
-          <div className={s.main}>{countWishes}</div>
-          <ChooseColorCount count={differenceCountWishes} />
+          <div className={s.main}>{valueWishes}</div>
+          <ChooseColorCount count={differenceValueWishes} />
         </td>
         <td className={s.line}>
-          <div className={s.main}>{countStarglitter}</div>
-          <ChooseColorCount count={differenceCountStarglitter} />
+          <div className={s.main}>{valueStarglitter}</div>
+          <ChooseColorCount count={differenceValueStarglitter} />
         </td>
       </tr>
     );

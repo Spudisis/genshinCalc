@@ -1,6 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
-import { AddHeroInput } from "../../../../UI/AddHero/AddHeroInput";
+import { AddHeroInput } from "../../UI/AddHero/AddHeroInput";
 import s from "./createHero.module.scss";
 
 export const Fields = ({

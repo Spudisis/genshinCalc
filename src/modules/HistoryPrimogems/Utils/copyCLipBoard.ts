@@ -1,7 +1,7 @@
-import { copy } from "../components/PrimoHistory/PrimoHistory";
+import { Copy } from "../components/PrimoHistory/PrimoHistory";
 import { getDateNow } from "../../../utils/calcChangePrimogems";
 
-export const copyClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter, index }: copy) => {
+export const copyClipBoard = async ({ date, valuePrimogems, valueWishes, valueStarglitter, index }: Copy) => {
   let declination = "";
 
   if (index === 0 && date.slice(0, 10) === getDateNow()) {
@@ -10,6 +10,6 @@ export const copyClipBoard = async ({ date, countPrimogems, countWishes, countSt
     declination = `${date} у меня было `;
   }
   await navigator.clipboard.writeText(
-    `${declination} ${countPrimogems} примогемов, ${countWishes} круток и ${countStarglitter} блеска`
+    `${declination} ${valuePrimogems} примогемов, ${valueWishes} круток и ${valueStarglitter} блеска`
   );
 };

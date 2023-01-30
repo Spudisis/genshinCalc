@@ -11,21 +11,15 @@ export const DayByDayList = ({ hero }: { hero: storeItem }) => {
 
   const [valueDayByDay, setValueDayByDays] = React.useState(hero.valueDayByDays);
   const [errorText, setErrorText] = React.useState("");
+
   React.useEffect(() => {
     setValueDayByDays(hero.valueDayByDays);
   }, [hero.valueDayByDays]);
-  const handleChangeDateStart = (id: number, value: string, date_end: string) => {
-    const objStart = { date_start: value, date_end: hero.date_end };
-    const objEnd = { date_end: value, date_start: hero.date_start };
-    const error = { date_start: value, date_end: date_end };
-    if (getNumberOfDays(objStart) < 0) {
-      return setErrorText("Проверьте дату начала накопления");
-    }
-    if (getNumberOfDays(objEnd) < 0) {
-      return setErrorText("Проверьте дату конца накопления");
-    }
-    if (getNumberOfDays(error) < 0) {
-      return setErrorText("начальная дата больше чем конец");
+
+  const handleChangeDateStart = (id: number, value: string, date_end: string | undefined) => {
+    const errorMsg = Validate(TypeValidate.date_start, value, date_end, hero.date_start, hero.date_end);
+    if (errorMsg) {
+      return setErrorText(errorMsg);
     }
     setErrorText("");
     const newMas = valueDayByDay.map((elem) => {
@@ -36,19 +30,8 @@ export const DayByDayList = ({ hero }: { hero: storeItem }) => {
     });
     setValueDayByDays(newMas);
   };
-  const handleChangeDateEnd = (id: number, value: string, date_start: string) => {
-    const objStart = { date_end: value, date_start: hero.date_start };
-    const objEnd = { date_start: value, date_end: hero.date_end };
-    const error = { date_end: value, date_start: date_start };
-    if (getNumberOfDays(objStart) < 0) {
-      return setErrorText("Проверьте дату начала накопления");
-    }
-    if (getNumberOfDays(objEnd) < 0) {
-      return setErrorText("Проверьте дату конца накопления");
-    }
-    if (getNumberOfDays(error) < 0) {
-      return setErrorText("Конечная дата меньше начала");
-    }
+  const handleChangeDateEnd = (id: number, value: string, date_start: string | undefined) => {
+    const errorMsg = Validate(TypeValidate.date_end, value, date_start, hero.date_start, hero.date_end);
     setErrorText("");
     const newMas = valueDayByDay.map((elem) => {
       if (elem.id === id) {
@@ -70,25 +53,25 @@ export const DayByDayList = ({ hero }: { hero: storeItem }) => {
   };
 
   const saveDBD = async () => {
-    valueDayByDay.forEach((elem) => {
-      const objStart = { date_start: elem.date_start, date_end: hero.date_end };
-      const objEnd = { date_end: elem.date_end, date_start: hero.date_start };
-      const error = { date_start: elem.date_start, date_end: elem.date_end };
-      const heroDateChange = { date_end: hero.date_end, date_start: elem.date_end };
-      console.log(heroDateChange);
-      if (getNumberOfDays(objStart) < 0) {
-        return setErrorText("Проверьте дату начала накопления");
-      }
-      if (getNumberOfDays(objEnd) < 0) {
-        return setErrorText("Проверьте дату конца накопления");
-      }
-      if (getNumberOfDays(error) < 0) {
-        return setErrorText("начальная дата больше чем конец");
-      }
-      if (getNumberOfDays(heroDateChange) < 0) {
-        return setErrorText("Дата превышает конечную дату");
-      }
-    });
+    // valueDayByDay.forEach((elem) => {
+    //   const objStart = { date_start: elem.date_start, date_end: hero.date_end }; //начало таймлайна конец героя
+    //   const objEnd = { date_end: elem.date_end, date_start: hero.date_start }; // конец таймлайна начало героя
+    //   const error = { date_start: elem.date_start, date_end: elem.date_end }; // начало таймлайна конец таймлайна
+    //   const heroDateChange = { date_end: hero.date_end, date_start: elem.date_end }; //
+
+    //   if (getNumberOfDays(objStart) < 0) {
+    //     return setErrorText("Проверьте дату начала накопления");
+    //   }
+    //   if (getNumberOfDays(objEnd) < 0) {
+    //     return setErrorText("Проверьте дату конца накопления");
+    //   }
+    //   if (getNumberOfDays(error) < 0) {
+    //     return setErrorText("начальная дата больше чем конец");
+    //   }
+    //   if (getNumberOfDays(heroDateChange) < 0) {
+    //     return setErrorText("Дата превышает конечную дату");
+    //   }
+    // });
     try {
       if (errorText !== "") {
         return;
@@ -110,7 +93,6 @@ export const DayByDayList = ({ hero }: { hero: storeItem }) => {
         } else {
           date_start = hero.date_end;
         }
-
         const res = await addDBD(hero.id, date_start);
         setValueDayByDays((valueDayByDay) => [...valueDayByDay, res]);
       } catch (error) {
@@ -158,4 +140,60 @@ export const DayByDayList = ({ hero }: { hero: storeItem }) => {
       </div>
     </div>
   );
+};
+
+enum TypeValidate {
+  "date_start",
+  "date_end",
+}
+
+const Validate = (
+  CheckType: TypeValidate,
+  value: string | undefined,
+  date: string | undefined,
+  heroDateStart: string,
+  heroDateEnd: string | undefined
+) => {
+  if (CheckType === TypeValidate.date_start) {
+    if (!value) {
+      return "Должна быть начальная дата";
+    }
+    if (heroDateEnd) {
+      const objStart = { date_start: value, date_end: heroDateEnd };
+      if (getNumberOfDays(objStart) < 0) {
+        return "Проверьте дату конца накопления";
+      }
+    }
+    const objEnd = { date_start: heroDateStart, date_end: value };
+    if (getNumberOfDays(objEnd) < 0) {
+      return "Проверьте дату начала накопления";
+    }
+    if (date) {
+      const error = { date_start: value, date_end: date };
+      if (getNumberOfDays(error) < 0) {
+        return "начальная дата больше чем конец";
+      }
+    }
+  } else if (CheckType === TypeValidate.date_end) {
+    if (!date) {
+      return "Должна быть начальная дата";
+    }
+
+    if (heroDateEnd && value) {
+      const objEnd = { date_start: value, date_end: heroDateEnd };
+      if (getNumberOfDays(objEnd) < 1) {
+        return "Проверьте дату конца накопления";
+      }
+    }
+    if (value) {
+      const error = { date_start: date, date_end: value };
+      if (getNumberOfDays(error) < 0) {
+        return "Конечная дата меньше начала";
+      }
+      const objStart = { date_start: heroDateStart, date_end: value };
+      if (getNumberOfDays(objStart) < 1) {
+        return "Проверьте дату начала накопления";
+      }
+    }
+  }
 };

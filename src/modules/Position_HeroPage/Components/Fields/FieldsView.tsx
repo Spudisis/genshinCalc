@@ -13,25 +13,15 @@ import s from "./fields.module.scss";
 
 import { DayByDayList } from "../DayByDayList/DayByDayList";
 
-type fieldsView = {
+type FieldsView = {
   hero: storeItem;
   addPrimogems: (n: number, c: number) => void;
 };
 
-type values = {
-  id: number;
-  name: string;
-  date_start: string;
-  date_end: string;
-  valueStart: number;
-  valueAdd: number;
-  image: string;
-  Synchronization: Synchronization;
-  valueDayByDays: valueDayByDay[];
-  valueWishes: number;
-};
 
-export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
+type ErrorsValues = Partial<Record<keyof storeItem, string>>;
+
+export const FieldsView = ({ hero, addPrimogems }: FieldsView) => {
   const dispatch = useAppDispatch();
   const id = React.useId();
   const [resetFormButton, setResetFormButton] = React.useState(false);
@@ -42,11 +32,7 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
     resetForm();
   };
 
-  const onSubmit = (values: any) => {
-    setResetFormButton(false);
-
-    updateHero(values).then(() => dispatch(setSoloHero(values)));
-  };
+  const onSubmit = (values: any) => {};
   return (
     <div className={s.wrapper}>
       <Formik
@@ -63,33 +49,39 @@ export const FieldsView = ({ hero, addPrimogems }: fieldsView) => {
           valueDayByDays: hero.valueDayByDays,
           valueWishes: hero.valueWishes,
         }}
-        validate={(values: values) => {
-          const errors: any = {};
+        validate={(values: storeItem) => {
+          const errors: ErrorsValues = {};
           setResetFormButton(true);
-
+          if (!values.date_start) {
+            errors.date_start = "Нет даты начала";
+          }
           if (values.date_end && values.date_start) {
             const { date_start, date_end } = values;
 
             const dateEndParse = getNumberOfDays({ date_start, date_end });
 
             if (dateEndParse < 0) {
-              errors.dateStart = "Начало не может быть после конца";
+              errors.date_start = "Начало не может быть после конца";
             }
-          } else if (!values.date_start) {
-            errors.dateStart = "Укажите дату";
           }
 
           if (values.valueStart < 0) {
-            errors.countStart = "Не может быть меньше 0";
+            errors.valueStart = "Не может быть меньше 0";
           }
 
           return errors;
         }}
-        onSubmit={(values: values) => {
-          console.log(values);
+        onSubmit={async (values: storeItem) => {
+          setResetFormButton(false);
+          try {
+            await updateHero(values);
+            dispatch(setSoloHero(values));
+          } catch (error) {
+            console.log("error");
+          }
         }}
       >
-        {({ resetForm, values }: { resetForm: any; values: values }) => (
+        {({ resetForm, values }: { resetForm: any; values: storeItem }) => (
           <Form>
             <FormObserver />
             <div className={s.content}>

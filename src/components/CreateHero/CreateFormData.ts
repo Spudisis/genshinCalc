@@ -1,7 +1,7 @@
-import { createHeroForm } from "./CreateHero";
+import { CreateHeroForm } from "./CreateHero";
 
 export const CreateFormData = (
-  { name, date_start, date_end, valuePrimogems, valueStart, image, imagePath }: createHeroForm,
+  { name, date_start, date_end, valuePrimogems, valueStart, image, imagePath }: CreateHeroForm,
   id: number,
   objImg: string
 ) => {

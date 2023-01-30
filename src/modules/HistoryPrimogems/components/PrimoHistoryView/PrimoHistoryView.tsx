@@ -2,7 +2,7 @@ import React from "react";
 import { primogems } from "../../../../store/types/items";
 
 import { LineTable } from "../TableRow/line";
-import { copy } from "../PrimoHistory/PrimoHistory";
+import { Copy } from "../PrimoHistory/PrimoHistory";
 
 import wish from "../../../../assets/Objeto_Destino_entrelazado.webp";
 
@@ -10,30 +10,35 @@ import primogemImg from "../../assets/Item_Primogem.webp";
 import starglitter from "../../assets/Item_Masterless_Starglitter.webp";
 
 import s from "./PrimoHistory.module.scss";
+import { status } from "../../../../store/types/user";
+import { LoaderMini } from "../../../../components";
 
 export type objPrimogems = {
   primogem: primogems[];
-  createClipBoard: (n: copy) => void;
+  createClipBoard: (n: Copy) => void;
   reserve: number;
+  statusLoading: status;
 };
-export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve }: objPrimogems) => {
-  const lines = primogem.map((obj: primogems, index: number) => (
-    <LineTable
-      id={obj.id}
-      date={obj.date}
-      dateTime={obj.dateTime ? obj.dateTime : ""}
-      countPrimogems={obj.valuePrimogems}
-      countWishes={obj.valueWishes}
-      countStarglitter={obj.valueStarglitter}
-      differenceCountPrimogems={obj.differenceValuePrimogems}
-      differenceCountWishes={obj.differenceValueWishes}
-      differenceCountStarglitter={obj.differenceValueStarglitter}
-      createClipBoard={createClipBoard}
-      reserve={index === 0 ? reserve : 0}
-      index={index}
-      key={obj.id}
-    />
-  ));
+export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve, statusLoading }: objPrimogems) => {
+  const lines =
+    statusLoading === status.FULFILLED &&
+    primogem.map((obj: primogems, index: number) => (
+      <LineTable
+        id={obj.id}
+        date={obj.date}
+        dateTime={obj.dateTime ? obj.dateTime : ""}
+        valuePrimogems={obj.valuePrimogems}
+        valueWishes={obj.valueWishes}
+        valueStarglitter={obj.valueStarglitter}
+        differenceValuePrimogems={obj.differenceValuePrimogems}
+        differenceValueWishes={obj.differenceValueWishes}
+        differenceValueStarglitter={obj.differenceValueStarglitter}
+        createClipBoard={createClipBoard}
+        reserve={index === 0 ? reserve : 0}
+        index={index}
+        key={obj.id}
+      />
+    ));
 
   return (
     <div className={s.wrapper}>
@@ -53,8 +58,9 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
           </tr>
         </thead>
 
-        <tbody>{lines}</tbody>
+        {statusLoading === status.FULFILLED && <tbody>{lines}</tbody>}
       </table>
+      {statusLoading === status.LOADING && <LoaderMini />}
     </div>
   );
 });

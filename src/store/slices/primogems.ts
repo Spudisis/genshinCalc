@@ -1,12 +1,37 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { $authHost } from "../../api";
 
 import { primogems } from "../types/items";
-import { primogemsSlice } from "../types/user";
+import { primogemsSlice, status } from "../types/user";
+
+type Params = {
+  uid: number;
+  pageNumberNow: number;
+  countLine: number;
+};
+
+type Response = {
+  rows: primogems[];
+  count: number;
+};
+
+export const getPrimogemsThunk = createAsyncThunk<Response, Params>(
+  "api/getPrimogems",
+  async ({ uid, pageNumberNow, countLine }) => {
+    const { data } = await $authHost.post("api/primogems/rows", {
+      personId: uid,
+      offset: pageNumberNow + 1,
+      limit: countLine,
+    });
+    return data;
+  }
+);
 
 const initialState: primogemsSlice = {
   primogems: [],
   oneRow: [],
   count: 0,
+  statusLoading: status.LOADING,
 };
 export const primogemSlice = createSlice({
   name: "primogemsSlice",
@@ -31,6 +56,24 @@ export const primogemSlice = createSlice({
     clearPrimogems: (state) => {
       state.primogems = [];
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getPrimogemsThunk.fulfilled, (state, action) => {
+        state.primogems = action.payload.rows;
+        state.count = action.payload.count;
+
+        state.statusLoading = status.FULFILLED;
+      })
+      .addCase(getPrimogemsThunk.pending, (state, action) => {
+        state.statusLoading = status.LOADING;
+      })
+
+      .addCase(getPrimogemsThunk.rejected, (state, action) => {
+        state.primogems = [];
+        state.count = 0;
+        state.statusLoading = status.REJECTED;
+      });
   },
 });
 export const getPerson = (state: any) => state.person;

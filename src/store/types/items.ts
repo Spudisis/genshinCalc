@@ -52,7 +52,7 @@ export type valueDayByDay = {
   id: number;
   value: number;
   date_start: string;
-  date_end: string;
+  date_end: string | undefined;
 };
 
 export enum typeVal {

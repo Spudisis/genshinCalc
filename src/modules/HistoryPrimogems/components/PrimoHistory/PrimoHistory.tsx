@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { setCount, setPrimogems } from "../../../../store/slices/primogems";
-import { storeItem } from "../../../../store/types/items";
+import { getPrimogemsThunk, setCount, setPrimogems } from "../../../../store/slices/primogems";
+import { primogems, storeItem } from "../../../../store/types/items";
 
 import { CalcBetween, copyClipBoard, findLocalStorageNumber, setItemLocalStorage } from "../../../../utils";
 
@@ -10,21 +10,18 @@ import { Pagination } from "../../../../components/pagination/pagination";
 import { NoticedCopy } from "../NoticedCopy/noticedCopy";
 import { PrimoHistoryView } from "../PrimoHistoryView/PrimoHistoryView";
 
-export type copy = {
-  date: string;
-  countPrimogems: number;
-  countWishes: number;
-  countStarglitter: number;
-  index: number;
-};
+export type Copy = { index: number } & Pick<primogems, "valuePrimogems" | "valueWishes" | "valueStarglitter" | "date">;
 
 export type lineCount = 5 | 10 | 15 | 25;
 
 export const PrimoHistory = () => {
   const getLocalPageCount = findLocalStorageNumber("countLine");
+
   const dispatch = useAppDispatch();
+
   const uid = useAppSelector((store) => store.person.id);
   const primogems = useAppSelector((store) => store.primogemSlice.primogems);
+  const Loading = useAppSelector((store) => store.primogemSlice.statusLoading);
   const rows = useAppSelector((store) => store.primogemSlice.count);
   const store = useAppSelector((store) => store.heroes.heroes);
   const lastCalc = useAppSelector((store) => store.persistedReducer.params);
@@ -37,17 +34,11 @@ export const PrimoHistory = () => {
   const [countLine, setCountLine] = React.useState<lineCount>(getLocalPageCount[1] ? getLocalPageCount[1] : 10);
 
   React.useEffect(() => {
-    const loadPrimogems = async (pageNumberNow: number, countLine: number) => {
-      try {
-        const data = await getPrimogems({ uid, pageNumberNow, countLine });
-        dispatch(setPrimogems(data.rows));
-        dispatch(setCount(data.count));
-        console.log("aa");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    loadPrimogems(pageNumberNow, countLine);
+    try {
+      dispatch(getPrimogemsThunk({ uid, pageNumberNow, countLine }));
+    } catch (error) {
+      console.log(error);
+    }
   }, [pageNumberNow, countLine]);
 
   React.useEffect(() => {
@@ -71,9 +62,9 @@ export const PrimoHistory = () => {
     }
   }, [store, lastCalc]);
 
-  const createClipBoard = async ({ date, countPrimogems, countWishes, countStarglitter, index }: copy) => {
+  const createClipBoard = async (copyData: Copy) => {
     try {
-      await copyClipBoard({ date, countPrimogems, countWishes, countStarglitter, index });
+      await copyClipBoard(copyData);
       setStatusNoticed(true);
     } catch (error) {
       console.log(error);
@@ -83,7 +74,12 @@ export const PrimoHistory = () => {
   return (
     <>
       <NoticedCopy status={statusNoticed} setStatus={setStatusNoticed} />
-      <PrimoHistoryView primogem={primogems} createClipBoard={createClipBoard} reserve={reserve} />
+      <PrimoHistoryView
+        primogem={primogems}
+        createClipBoard={createClipBoard}
+        reserve={reserve}
+        statusLoading={Loading}
+      />
       {rows > countLine && (
         <Pagination
           pageCount={pageCount}

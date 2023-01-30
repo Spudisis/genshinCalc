@@ -13,6 +13,7 @@ export type primogemsSlice = {
   oneRow: primogems[];
   primogems: primogems[];
   count: number;
+  statusLoading: status;
 };
 
 export type allSlice = {

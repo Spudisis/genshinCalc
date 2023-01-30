@@ -5,7 +5,7 @@ import wish from "../../../../assets/Objeto_Destino_entrelazado.webp";
 import { storeItem } from "../../../../store/types/items";
 import { Hero } from "../../../../components/HeroTable/HeroTable";
 import { HeroCart } from "../../../../components/HeroCart/HeroCart";
-import { CreateHero } from "../CreateHero/CreateHero";
+import { CreateHero } from "../../../../components/CreateHero/CreateHero";
 
 interface HeroListViewTypes {
   store: storeItem[];
