@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/genshinCalc/static/css/main.ade46cc6.css",
-    "main.js": "/genshinCalc/static/js/main.669d90c9.js",
+    "main.css": "/genshinCalc/static/css/main.3030abc3.css",
+    "main.js": "/genshinCalc/static/js/main.1b3f4aeb.js",
+    "static/media/try.jpg": "/genshinCalc/static/media/try.29e5190bfc2e75344259.jpg",
     "static/media/Nilou_2.webp": "/genshinCalc/static/media/Nilou_2.51d28697d474aa7543d6.webp",
     "static/media/Kamisato-Ayato-_2_.png": "/genshinCalc/static/media/Kamisato-Ayato-_2_.28da5811294eae021362.png",
     "static/media/yoimiya.webp": "/genshinCalc/static/media/yoimiya.0206fec82551c44af03f.webp",
@@ -19,11 +20,11 @@
     "static/media/addHero.PNG": "/genshinCalc/static/media/addHero.fa69e91fe669a3520cd4.PNG",
     "static/media/Item_Primogem.webp": "/genshinCalc/static/media/Item_Primogem.852791dc455614ac9f59.webp",
     "index.html": "/genshinCalc/index.html",
-    "main.ade46cc6.css.map": "/genshinCalc/static/css/main.ade46cc6.css.map",
-    "main.669d90c9.js.map": "/genshinCalc/static/js/main.669d90c9.js.map"
+    "main.3030abc3.css.map": "/genshinCalc/static/css/main.3030abc3.css.map",
+    "main.1b3f4aeb.js.map": "/genshinCalc/static/js/main.1b3f4aeb.js.map"
   },
   "entrypoints": [
-    "static/css/main.ade46cc6.css",
-    "static/js/main.669d90c9.js"
+    "static/css/main.3030abc3.css",
+    "static/js/main.1b3f4aeb.js"
   ]
 }
