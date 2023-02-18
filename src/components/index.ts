@@ -23,3 +23,5 @@ export { Fields } from "./HeroCartPage/fields/Fields";
 export { PrimogemsViewCart } from "./HeroCartPage/PrimogemsViewCart/PrimogemsViewCart";
 
 export { Sync } from "./sync/sync";
+
+export { Lore } from "./Lore/Lore";
