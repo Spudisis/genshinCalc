@@ -1,4 +1,4 @@
-import s from "./fields.module.scss";
+import s from "./Fields.module.scss";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { storeItem } from "../../../store/types/items";

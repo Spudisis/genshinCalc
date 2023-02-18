@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { counterPrim, Site, waiting } from "../../const/routes";
+import { counterPrim, Lore, Site, waiting } from "../../const/routes";
 import s from "./Links.module.scss";
 export const Links = () => {
   return (
@@ -9,6 +9,9 @@ export const Links = () => {
       </NavLink>
       <NavLink to={Site + counterPrim} className={({ isActive }) => (isActive ? s.active : s.inactive)}>
         Счетчик примогемов
+      </NavLink>
+      <NavLink to={Site + Lore} className={({ isActive }) => (isActive ? s.active : s.inactive)}>
+        Лор
       </NavLink>
     </div>
   );
