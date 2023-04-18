@@ -8,11 +8,11 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./store/hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero, LorePage } from "./pages";
-import { auth, CheckUser } from "./firebase/index";
+import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero, LorePage, UsefulLinks } from "./pages";
+import { auth, CheckUser, GetSitesInfo } from "./firebase/index";
 import { setUid } from "./store/slices/person";
 import { Loader } from "./components/";
-import { counterPrim, heroCart, idHeroCart, Lore, more, Site, waiting } from "./const/routes";
+import { counterPrim, heroCart, idHeroCart, Lore, more, Site, usefulLinks, waiting } from "./const/routes";
 import ThemeProvider from "./provider/provider";
 
 export const App = () => {
@@ -42,6 +42,7 @@ export const App = () => {
                 <Route path={Site + waiting + more} element={<MoreInfoCreateHero />}></Route>
                 <Route path={Site + waiting + heroCart + idHeroCart} element={<HeroCart />}></Route>
                 <Route path={Site + Lore} element={<LorePage />}></Route>
+                <Route path={Site + usefulLinks} element={<UsefulLinks />}></Route>
                 <Route path={Site + counterPrim} element={<CounterPrim />}></Route>
               </Routes>
             </main>

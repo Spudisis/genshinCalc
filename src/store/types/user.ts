@@ -4,9 +4,11 @@ export type user = {
   email: string;
   password: string;
 };
+
 export type personSlice = {
   uid: string;
   store: storeItem[];
+  privilege: string;
 };
 
 export type primogemsSlice = {
@@ -22,4 +24,12 @@ export type allSlice = {
 
 export type synchroSlice = {
   synchro: Synchronization[];
+};
+
+export type UsefulSitesType = {
+  name: string;
+  id: string;
+  description: string;
+  urlSite: string;
+  urlImg: string;
 };

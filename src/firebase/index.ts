@@ -8,3 +8,5 @@ export { getUserState } from "./get/getUserState";
 
 export { CreateUser } from "./create/createUser";
 export { UploadImg } from "./create/uploadImg";
+export { GetSitesInfo } from "./getSitesInfo";
+export { CreateSite } from "./create/createSite";

@@ -7,16 +7,26 @@
     transition: 0.3s;
   }
   a:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 5px;
   }
   .active {
     @include fill;
+    @media screen and (max-width: 750px) {
+      &:not(:first-child) {
+        border-radius: 0px;
+      }
+    }
   }
   .inactive {
     @include notFill;
     @media (hover: hover) {
       &:hover {
         @include fill;
+      }
+      @media screen and (max-width: 750px) {
+        &:not(:first-child) {
+          border-radius: 0px;
+        }
       }
     }
   }

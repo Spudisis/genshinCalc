@@ -4,3 +4,4 @@ export { CounterPrim } from "./counterPrim/CounterPrim";
 export { HeroCart } from "./heroCart/HeroCart";
 export { MoreInfoCreateHero } from "./moreInfoCreateHero/MoreInfoCreateHero";
 export { LorePage } from "./LorePage/LorePage";
+export { UsefulLinks } from "./usefulLinks/usefulLinks";

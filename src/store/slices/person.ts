@@ -6,6 +6,7 @@ import { personSlice } from "../types/user";
 const initialState: personSlice = {
   uid: "",
   store: [],
+  privilege: "user",
 };
 export const dataSlice = createSlice({
   name: "user",
@@ -21,7 +22,9 @@ export const dataSlice = createSlice({
     setStore: (state, action: PayloadAction<storeItem[]>) => {
       state.store = action.payload;
     },
-
+    setPrivilege: (state, action: PayloadAction<string>) => {
+      state.privilege = action.payload;
+    },
     addGemsItemStore: (state, action: PayloadAction<propRedux>) => {
       state.store.forEach((elem) => {
         if (elem.id === action.payload.id) {
@@ -56,7 +59,7 @@ export const {
   clearUid,
   addStore,
   setStore,
-
+  setPrivilege,
   clearStore,
   deleteStore,
   addGemsItemStore,

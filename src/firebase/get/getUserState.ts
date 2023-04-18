@@ -1,4 +1,4 @@
-import { setStore } from "../../store/slices/person";
+import { setPrivilege, setStore } from "../../store/slices/person";
 import { setPrimogems } from "../../store/slices/primogems";
 import { setSynchro } from "../../store/slices/synchronization";
 
@@ -8,7 +8,9 @@ export const getUserState = ({ docs, dispatch }: any) => {
   const store = data?.store;
   const primogems = data?.primogems;
   const synchro = data?.synchro;
-  console.log(primogems);
+  const statusUser = data?.privilege || "user";
+
+  dispatch(setPrivilege(statusUser));
   if (Object.keys(store).length !== 0) {
     dispatch(setStore(store));
   }

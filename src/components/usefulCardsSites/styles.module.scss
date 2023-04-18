@@ -1,0 +1,95 @@
+@import "../../style/scss/mixin.scss";
+@import "../../style/scss/values.scss";
+.wrapper {
+  position: relative;
+  .meta {
+    display: flex;
+    margin-bottom: 30px;
+    @media screen and (max-width: 450px) {
+      h1 {
+        text-align: center;
+        font-size: 26px;
+      }
+      flex-direction: column;
+    }
+  }
+  .button {
+    margin-left: 20px;
+    @include button;
+    @include notFill;
+    text-align: center;
+    transition: ease all var(--change-theme-duration);
+
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
+    }
+    @media screen and (max-width: 450px) {
+      margin-left: 0px;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+  color: var(--color-text);
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 750px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+
+  min-height: 300px;
+  box-shadow: 2px 2px 3px 2px var(--box-shadow-color);
+  background-size: cover;
+  background-position: center center;
+
+  @media screen and (max-width: 480px) {
+    margin: 10px 20px;
+  }
+  .nameCard {
+    padding: 5px 10px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-bgc-main);
+  }
+  .buttonRedirect {
+    @include button;
+    @include notFill;
+    width: 100%;
+    text-align: center;
+    transition: ease all var(--change-theme-duration);
+    @media (hover: hover) {
+      &:hover {
+        @include fill;
+      }
+    }
+  }
+  .notFind {
+    background-color: var(--color-bgc-main);
+    padding: 5px;
+    border-radius: 10px;
+  }
+  .description {
+    background-color: var(--color-bgc-main);
+    padding: 5px;
+    border-radius: 10px;
+  }
+}
