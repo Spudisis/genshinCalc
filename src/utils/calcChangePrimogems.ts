@@ -1,6 +1,6 @@
 import { objForm } from "../components/addPrimo/AddPrimogems";
 import { primogems } from "../store/types/items";
-const JSJoda = require("@js-joda/core");
+
 const checkTwoDigit = (number: number) => {
   return number < 10 ? "0" + number : number;
 };
@@ -42,13 +42,14 @@ export const calcChangePrimogems = (
 };
 
 export const getDateNow = () => {
-  let LocalDate = JSJoda.LocalDate;
-  const dateNow = LocalDate.now();
-  return dateNow.year() + "-" + checkTwoDigit(dateNow.monthValue()) + "-" + checkTwoDigit(dateNow.dayOfMonth());
+    const now = Date.now()
+  const dateNow = new Date(now)
+  return dateNow.getFullYear() + "-" + checkTwoDigit(dateNow.getMonth()) + "-" + checkTwoDigit(dateNow.getDay());
 };
 
 export const getTimeNow = () => {
-  let localTime = JSJoda.LocalTime;
-  const timeNow = localTime.now();
-  return checkTwoDigit(timeNow.hour()) + ":" + checkTwoDigit(timeNow.minute()) + ":" + checkTwoDigit(timeNow.second());
+
+  const now = Date.now()
+  const timeNow = new Date(now)
+  return checkTwoDigit(timeNow.getHours()) + ":" + checkTwoDigit(timeNow.getMinutes()) + ":" + checkTwoDigit(timeNow.getSeconds());
 };

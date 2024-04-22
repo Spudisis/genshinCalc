@@ -1,9 +1,12 @@
 
 export const getNumberDaysNow = (dateStart: string) => {
-  const JSJoda = require("@js-joda/core");
-  let LocalDate = JSJoda.LocalDate;
+  const timeNow = Date.now()
+  const newDate = new Date(timeNow)
 
-  const start_date = new LocalDate.parse(dateStart);
-  const count = JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now());
+  const different = newDate.getTime() - (new Date(dateStart)).getTime()
+
+  let count =
+    Math.round
+        (different / (1000 * 3600 * 24));
   return count;
 };
