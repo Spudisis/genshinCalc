@@ -18,7 +18,7 @@ type cartHistory = {
 };
 export const LineTable = React.memo(
   ({
-    id,
+  
     date,
     dateTime,
     countPrimogems,

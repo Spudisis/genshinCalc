@@ -15,7 +15,7 @@ export const Image = ({ id, setSizeImg }: Img) => {
   const store = useAppSelector((store) => store.person.store);
   const [cart, setCart] = React.useState<storeItem>();
   // eslint-disable-next-line
-  const [imageFirebase, setImageFirebase] = React.useState(false);
+  const [_, setImageFirebase] = React.useState(false);
 
   React.useEffect(() => {
     const cart = store.find((elem: storeItem) => id && elem.id === +id);

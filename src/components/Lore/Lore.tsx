@@ -1,6 +1,5 @@
 import React from "react";
 
-import logo from "../../assets/try.jpg";
 import s from "./LorePage.module.scss";
 import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
 import top1 from "../../assets/lore/top1.svg";

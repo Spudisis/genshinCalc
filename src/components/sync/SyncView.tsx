@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Synchronization } from "../../store/types/items";
 import { deleteSynchro, editSynchro } from "../../store/slices/synchronization";
 import s from "./sync.module.scss";
-import React from "react";
+
 type viewSync = {
   id: number;
   name: string;

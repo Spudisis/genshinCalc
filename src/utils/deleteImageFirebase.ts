@@ -12,7 +12,7 @@ export const deleteImageFirebase = async ({ uid, image }: deleteImage) => {
     .then(() => {
       console.log("удалено");
     })
-    .catch((error) => {
+    .catch(() => {
       console.log("ошибка");
     });
 };

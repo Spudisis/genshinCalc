@@ -1,4 +1,4 @@
-import React from "react";
+import {useEffect} from "react";
 import { Header, Footer } from "./layout/index";
 import "./style/resize.css";
 import s from "./style/scss/app.module.scss";
@@ -9,7 +9,7 @@ import { useAppDispatch } from "./store/hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero, LorePage, UsefulLinks } from "./pages";
-import { auth, CheckUser, GetSitesInfo } from "./firebase/index";
+import { auth, CheckUser } from "./firebase/index";
 import { setUid } from "./store/slices/person";
 import { Loader } from "./components/";
 import { counterPrim, heroCart, idHeroCart, Lore, more, Site, usefulLinks, waiting } from "./const/routes";
@@ -19,7 +19,7 @@ export const App = () => {
   const [user, loading] = useAuthState(auth as any);
 
   const dispatch = useAppDispatch();
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) {
       const uid = user.uid;
       dispatch(setUid(uid));

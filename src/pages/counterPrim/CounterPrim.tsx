@@ -1,4 +1,4 @@
-import React from "react";
+
 import s from "../style.module.scss";
 import { Info } from "./components/Info";
 import { PrimoHistory, AddPrimogems, AdditionalActions } from "../../components";

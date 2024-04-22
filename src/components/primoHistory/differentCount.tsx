@@ -1,4 +1,4 @@
-import React from "react";
+
 import s from "./PrimoHistory.module.scss";
 type different = {
   count: number;

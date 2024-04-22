@@ -1,4 +1,3 @@
-import React from "react";
 
 import s from "./HeroList.module.scss";
 import wish from "../../../assets/Objeto_Destino_entrelazado.webp";

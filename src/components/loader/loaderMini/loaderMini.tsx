@@ -1,4 +1,4 @@
-import React from "react";
+
 import s from "./loaderMini.module.scss";
 export const LoaderMini = () => {
   return (

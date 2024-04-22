@@ -1,4 +1,4 @@
-import React from "react";
+
 import s from "./Info.module.scss";
 import addHero from "../../assets/info/addHero.png";
 export const Info = () => {

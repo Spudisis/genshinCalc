@@ -1,4 +1,4 @@
-import React from "react";
+
 import s from "./pagination.module.scss";
 
 type viewPagination = {
