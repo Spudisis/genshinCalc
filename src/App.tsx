@@ -4,7 +4,7 @@ import "./style/resize.css";
 import s from "./style/scss/app.module.scss";
 import "./style/theme.css";
 
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter , Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./store/hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -33,7 +33,7 @@ export const App = () => {
         {loading ? (
           <Loader />
         ) : (
-          <Router>
+          <BrowserRouter>
             <Header />
             <main>
               <Routes>
@@ -47,7 +47,7 @@ export const App = () => {
               </Routes>
             </main>
             <Footer />
-          </Router>
+          </BrowserRouter>
         )}
       </div>
     </ThemeProvider>
