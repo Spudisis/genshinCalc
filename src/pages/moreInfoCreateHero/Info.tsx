@@ -1,6 +1,6 @@
 
 import s from "./Info.module.scss";
-import addHero from "../../assets/info/addHero.png";
+import addHero from "@/assets/info/addHero.PNG";
 export const Info = () => {
   return (
     <div className={s.root}>
