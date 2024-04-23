@@ -2,7 +2,8 @@ import React from 'react'
 
 import primogem from '@/assets/Item_Primogem.webp'
 import wish from '@/assets/Objeto_Destino_entrelazado.webp'
-import { addPrimogemsLastItem, addWishLastItem } from '@/store/slices/primogems'
+import starGlitter from '@/assets/Item_Masterless_Starglitter.webp'
+import { addPrimogemsLastItem, addStarglitterLastItem, addWishLastItem } from '@/store/slices/primogems'
 import { clsx } from 'clsx'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
@@ -46,6 +47,9 @@ export const AdditionalActions = () => {
 
   const addWish = (n: number) => {
     dispatch(addWishLastItem(n))
+  }
+  const addStar = (n:number)=>{
+    dispatch(addStarglitterLastItem(n))
   }
 
   return (
@@ -111,6 +115,18 @@ export const AdditionalActions = () => {
           <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addWish(5)}>
             +5
           </button>
+        </div>
+        <div className='flex flex-wrap gap-2'>
+          <div className='rounded-full border h-9 w-9 flex justify-center items-center'>
+            <img src={starGlitter} className='w-auto h-8' />
+          </div>
+          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addStar(2)}>
+            +2
+          </button>
+          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addStar(5)}>
+            +5
+          </button>
+          
         </div>
       </div>
     </details>

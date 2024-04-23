@@ -31,6 +31,12 @@ export const primogemSlice = createSlice({
       }
       state.lastItem.countWishes = +state.lastItem.countWishes + +action.payload
     },
+    addStarglitterLastItem: (state, action: PayloadAction<number>) => {
+      if (!state.lastItem) {
+        return
+      }
+      state.lastItem.countStarglitter = +state.lastItem.countStarglitter + +action.payload
+    },
     clearPrimogems: (state) => {
       state.primogems = []
     }
@@ -38,6 +44,7 @@ export const primogemSlice = createSlice({
 })
 export const getPerson = (state: any) => state.person
 
-export const { setPrimogems, addPrimogems, clearPrimogems, addPrimogemsLastItem, addWishLastItem } = primogemSlice.actions
+export const { setPrimogems, addPrimogems, clearPrimogems, addPrimogemsLastItem, addWishLastItem, addStarglitterLastItem } =
+  primogemSlice.actions
 
 export default primogemSlice.reducer
