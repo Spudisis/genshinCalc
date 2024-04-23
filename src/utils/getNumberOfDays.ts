@@ -7,6 +7,6 @@ export const getNumberOfDays = ({ dateStart, dateEnd }: betweenDate) => {
 
   const different = newDate.getTime() - oldDate.getTime()
 
-  let count = Math.round(different / (1000 * 3600 * 24))
+  const count = Math.round(different / (1000 * 3600 * 24))
   return count
 }

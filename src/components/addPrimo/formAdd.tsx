@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+
 import s from './addPrimogems.module.scss'
 
 type add = {
@@ -73,7 +74,7 @@ export const FormAdd = ({ calcPrimogems, primogemsCount, wishCount, starglitterC
         <div className={s.inputBlock}>
           <label>
             Количество блеска
-            <input type='number' {...register('countStarglitter')} id={'countStarglitter'} placeholder='Количество' />
+            <input type='number' {...register('countStarglitter')} id='countStarglitter' placeholder='Количество' />
           </label>
           <p className={s.errorMessage}>{errors.countStarglitter?.message}</p>
         </div>

@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { objForm } from './AddPrimogems'
-import s from './addPrimogems.module.scss'
 import { FormAdd } from './formAdd'
+
+import s from './addPrimogems.module.scss'
 type FormAddPrimogems = {
   calcPrimogems: (primogems: objForm) => void
   primogemsCount: number

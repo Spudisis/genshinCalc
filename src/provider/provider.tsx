@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ThemeContext, themes } from './context'
 
 const getTheme = () => {

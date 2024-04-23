@@ -1,12 +1,15 @@
 import React from 'react'
+
 import primogem from '@/assets/Item_Primogem.webp'
 import wish from '@/assets/Objeto_Destino_entrelazado.webp'
+import { addPrimogemsLastItem, addWishLastItem } from '@/store/slices/primogems'
+import { clsx } from 'clsx'
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { setAutoFill, setLastCalc } from '../../store/slices/localstorage'
-import { clsx } from 'clsx'
 import { Sync } from '../sync/sync'
+
 import s from './addActions.module.scss'
-import { addPrimogemsLastItem, addWishLastItem } from '@/store/slices/primogems'
 
 export const AdditionalActions = () => {
   const localstorage = useAppSelector((store) => store.persistedReducer.params)

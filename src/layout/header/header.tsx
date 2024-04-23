@@ -1,18 +1,19 @@
 import React from 'react'
-
-import s from './header.module.scss'
-import logo from '../../assets/logo.png'
-
-import { Links } from '../../components/linksPages/Links'
 import { Link } from 'react-router-dom'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { AuthButton } from './modalAuth/auth'
-import { Site } from '../../const/routes'
-import { ModalMenu } from './burgerMenu/ModalMenu'
-import { ThemeContext, themes } from '../../provider/context'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import logo from '../../assets/logo.png'
 import { Toggle } from '../../components'
+import { Links } from '../../components/linksPages/Links'
+import { Site } from '../../const/routes'
+import { ThemeContext, themes } from '../../provider/context'
+
+import { ModalMenu } from './burgerMenu/ModalMenu'
+import { AuthButton } from './modalAuth/auth'
+
+import s from './header.module.scss'
 
 export const Header = () => {
   const [modalMenu, setModalMenu] = React.useState(false)

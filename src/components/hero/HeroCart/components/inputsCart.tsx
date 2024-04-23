@@ -1,9 +1,10 @@
 import React from 'react'
-import s from '../HeroCart.module.scss'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import s from '../HeroCart.module.scss'
 
 type Inputs = {
   handleChange: (n: React.FormEvent<HTMLInputElement>) => void

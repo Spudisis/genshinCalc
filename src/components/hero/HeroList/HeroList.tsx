@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+
 import { getPerson } from '../../../store/slices/person'
 import { findLocalStorage } from '../../../utils/'
 

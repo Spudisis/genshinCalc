@@ -1,21 +1,22 @@
 import React from 'react'
-
-import s from './LorePage.module.scss'
 import QuickPinchZoom, { make3dTransformValue } from 'react-quick-pinch-zoom'
-import top1 from '../../assets/lore/top1.svg'
+
 import bot1 from '../../assets/lore/bot1.svg'
-import top2 from '../../assets/lore/top2.svg'
 import bot2 from '../../assets/lore/bot2.svg'
-import top3 from '../../assets/lore/top3.svg'
 import bot3 from '../../assets/lore/bot3.svg'
-import top4 from '../../assets/lore/top4.svg'
 import bot4 from '../../assets/lore/bot4.svg'
-import top5 from '../../assets/lore/top5.svg'
 import bot5 from '../../assets/lore/bot5.svg'
 import bot6 from '../../assets/lore/bot6.svg'
-import top6 from '../../assets/lore/top6.svg'
 import bot7 from '../../assets/lore/bot7.svg'
+import top1 from '../../assets/lore/top1.svg'
+import top2 from '../../assets/lore/top2.svg'
+import top3 from '../../assets/lore/top3.svg'
+import top4 from '../../assets/lore/top4.svg'
+import top5 from '../../assets/lore/top5.svg'
+import top6 from '../../assets/lore/top6.svg'
 import top7 from '../../assets/lore/top7.svg'
+
+import s from './LorePage.module.scss'
 export const Lore = () => {
   const refWrapper = React.useRef<null | HTMLImageElement>(null)
   const [loadImg, setLoadImg] = React.useState(false)

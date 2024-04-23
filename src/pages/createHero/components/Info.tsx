@@ -1,6 +1,9 @@
-import s from '../../head.module.scss'
+/* eslint-disable react/no-unescaped-entities */
 import { Link } from 'react-router-dom'
-import { Site, waiting, more } from '../../../const/routes'
+
+import { more, Site, waiting } from '../../../const/routes'
+
+import s from '../../head.module.scss'
 
 export const Info = () => {
   return (

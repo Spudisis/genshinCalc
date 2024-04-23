@@ -34,7 +34,7 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.cjs",
-    "src/**/*",
+    "src/**/*", ".eslintrc.cjs",
   ], 
   "references": [{ "path": "./tsconfig.node.json" }]
 }

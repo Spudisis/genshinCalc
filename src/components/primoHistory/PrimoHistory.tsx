@@ -1,8 +1,10 @@
 import React from 'react'
+
 import { useAppSelector } from '../../store/hooks'
 import { storeItem } from '../../store/types/items'
 import { CalcBetween, copyClipBoard, findLocalStorageNumber, setItemLocalStorage } from '../../utils'
 import { Pagination } from '../pagination/pagination'
+
 import { NoticedCopy } from './NoticedCopy/noticedCopy'
 import { PrimoHistoryView } from './PrimoHistoryView'
 

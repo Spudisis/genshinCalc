@@ -1,8 +1,10 @@
 import React from 'react'
-import s from './HeroOutput/HeroCart/HeroCart.module.scss'
+
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import s from './HeroOutput/HeroCart/HeroCart.module.scss'
 export const ChangeImageBlock = ({ setChangeItemImage }: any) => {
   const [drag, setDrag] = React.useState(false)
   const [selectImg, setSelectImg] = React.useState('')
@@ -17,7 +19,7 @@ export const ChangeImageBlock = ({ setChangeItemImage }: any) => {
   }
   const onDropFile = async (e: any) => {
     e.preventDefault()
-    let files = [...e.dataTransfer.files]
+    const files = [...e.dataTransfer.files]
     const image = await files[0]
     const { name } = image
     console.log(name)

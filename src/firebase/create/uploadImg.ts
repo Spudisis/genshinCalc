@@ -1,5 +1,6 @@
-import { storage } from '../config'
 import { ref, uploadBytes } from 'firebase/storage'
+
+import { storage } from '../config'
 
 export const UploadImg = async ({ objImg, uid }: any) => {
   console.log(objImg, objImg.name)

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import { propRedux } from '../types/calc'
 import { storeItem } from '../types/items'
 import { personSlice } from '../types/user'

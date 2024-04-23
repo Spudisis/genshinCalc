@@ -1,21 +1,20 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+
+import { Site } from '../../../const/routes'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { obj } from '../../../store/slices/calcPrimogemObj'
 import { addGemsItemStore, getPerson } from '../../../store/slices/person'
 import { storeItem } from '../../../store/types/items'
-
 import { CalcBetween } from '../../../utils'
-
-import s from './HeroCart.module.scss'
-
-import { useSelector } from 'react-redux'
 
 import { Actions } from './actions/actions'
 import { ImageContain } from './components/imageContain'
-import { InputsCart } from './components/inputsCart'
 import { Info } from './components/Info'
-import { useLocation } from 'react-router-dom'
-import { Site } from '../../../const/routes'
-import { obj } from '../../../store/slices/calcPrimogemObj'
+import { InputsCart } from './components/inputsCart'
+
+import s from './HeroCart.module.scss'
 
 export const HeroCart = React.memo(
   ({ id, name, dateStart, dateEnd, countStart, countAdd, countPrimogems, image, synchValue }: storeItem) => {

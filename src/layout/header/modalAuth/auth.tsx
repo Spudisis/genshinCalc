@@ -1,12 +1,15 @@
 import React from 'react'
-import { ModalAuth } from './modalAuth'
-import s from './buttonAuth.module.scss'
-import { useAppDispatch } from '../../../store/hooks'
-import { clearStore, clearUid, getPerson } from '../../../store/slices/person'
 import { useSignOut } from 'react-firebase-hooks/auth'
 import { useSelector } from 'react-redux'
+
 import { auth } from '../../../firebase'
+import { useAppDispatch } from '../../../store/hooks'
+import { clearStore, clearUid, getPerson } from '../../../store/slices/person'
 import { clearPrimogems } from '../../../store/slices/primogems'
+
+import { ModalAuth } from './modalAuth'
+
+import s from './buttonAuth.module.scss'
 
 export const AuthButton = () => {
   const dispatch = useAppDispatch()

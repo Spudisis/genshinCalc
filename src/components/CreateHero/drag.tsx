@@ -1,6 +1,8 @@
-import { ErrorMessage, Field } from 'formik'
 import React from 'react'
+
 import { SelectHero } from '..'
+import { ErrorMessage, Field } from 'formik'
+
 import s from './createHero.module.scss'
 
 export const Drag = ({
@@ -25,7 +27,7 @@ export const Drag = ({
   }
   const onDropFile = async (e: any) => {
     e.preventDefault()
-    let files = [...e.dataTransfer.files]
+    const files = [...e.dataTransfer.files]
     const image = await files[0]
     const { name } = image
     console.log(name)

@@ -1,9 +1,10 @@
 import React from 'react'
-import s from './Image.module.scss'
 
 import { useAppSelector } from '../../../store/hooks'
 import { storeItem } from '../../../store/types/items'
 import { ImageContain } from '../../hero/HeroCart/components/imageContain'
+
+import s from './Image.module.scss'
 
 type Img = {
   id: string

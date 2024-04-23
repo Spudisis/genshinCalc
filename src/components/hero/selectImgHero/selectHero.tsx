@@ -1,7 +1,9 @@
 import React from 'react'
-import s from './selectHero.module.scss'
+
 import json from '../../../assets/heroes/heroes.json'
 import { LoaderMini } from '../../index'
+
+import s from './selectHero.module.scss'
 
 export const SelectHero = ({ setSelectImg, setViewListHeroes }: any) => {
   const lengthMas = json.heroes.length - 1

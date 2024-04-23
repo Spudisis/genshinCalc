@@ -1,13 +1,16 @@
 import React from 'react'
-import s from './modalAuth.module.scss'
-import { Reg } from '../../../components/Auth/formAuth/reg'
-import { Auth } from '../../../components/Auth/formAuth/auth'
-import { GoogleAuth } from '../../../components/Auth/googleAuth/googleAuth'
 import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { Auth } from '../../../components/Auth/formAuth/auth'
+import { Reg } from '../../../components/Auth/formAuth/reg'
+import { GoogleAuth } from '../../../components/Auth/googleAuth/googleAuth'
 import { auth } from '../../../firebase/index'
 import { user } from '../../../store/types/user'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+
+import s from './modalAuth.module.scss'
 
 export const ModalAuth = ({ setModalActive }: any) => {
   const [chooseForm, setChooseForm] = React.useState(false)

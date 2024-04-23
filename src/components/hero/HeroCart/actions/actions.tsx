@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { deleteStore } from '../../../../store/slices/person'
 import { deleteSynchroName } from '../../../../store/slices/synchronization'
 import { deleteImageFirebase } from '../../../../utils'
+
 import { ActionsView } from './ActionsView'
 
 interface ActionsTypes {

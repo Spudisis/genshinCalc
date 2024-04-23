@@ -1,5 +1,7 @@
 import React from 'react'
+
 import debounce from 'lodash.debounce'
+
 import { NoticedCopyView } from './noticedCopyView'
 
 type notice = {

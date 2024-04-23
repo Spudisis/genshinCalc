@@ -1,9 +1,10 @@
 import { storeItem } from '../store/types/items'
+
 import { getNumberDaysNow } from './getNumberDaysNow'
 import { getNumberOfDays } from './getNumberOfDays'
 
 export const CalcBetween = ({ dateStart, dateEnd, countStart, countAdd, countPrimogems, synchValue }: storeItem) => {
-  let getDays = { between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 }
+  const getDays = { between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 }
 
   if (dateEnd) {
     const validate = getNumberOfDays({ dateStart, dateEnd }) + +1

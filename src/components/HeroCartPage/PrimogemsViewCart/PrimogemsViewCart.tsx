@@ -1,4 +1,5 @@
 import { obj } from '../../../store/slices/calcPrimogemObj'
+
 import s from './primogemsViewCart.module.scss'
 type cartPrimogem = {
   obj: obj

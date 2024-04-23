@@ -1,19 +1,22 @@
 import { useEffect } from 'react'
-import { Header, Footer } from './layout/index'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import { auth, CheckUser } from '@/firebase'
+
 import './style/resize.css'
-import s from './style/scss/app.module.scss'
 import './style/theme.css'
 import './index.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { useAppDispatch } from './store/hooks'
-import { useAuthState } from 'react-firebase-hooks/auth'
 
-import { CounterPrim, CreateHero, HeroCart, Main, MoreInfoCreateHero, LorePage, UsefulLinks } from './pages'
-import { auth, CheckUser } from '@/firebase'
-import { setUid } from './store/slices/person'
 import { Loader } from './components/'
 import { counterPrim, heroCart, idHeroCart, Lore, more, Site, usefulLinks, waiting } from './const/routes'
+import { Footer, Header } from './layout/index'
+import { CounterPrim, CreateHero, HeroCart, LorePage, Main, MoreInfoCreateHero, UsefulLinks } from './pages'
 import ThemeProvider from './provider/provider'
+import { useAppDispatch } from './store/hooks'
+import { setUid } from './store/slices/person'
+
+import s from './style/scss/app.module.scss'
 
 export const App = () => {
   const [user, loading] = useAuthState(auth as any)

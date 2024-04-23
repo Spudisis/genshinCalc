@@ -1,12 +1,15 @@
-import s from './Fields.module.scss'
-import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React from 'react'
-import { storeItem } from '../../../store/types/items'
-import { FormObserver } from './observerForm'
+
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 
 import { useAppDispatch } from '../../../store/hooks'
 import { changeItemStore } from '../../../store/slices/person'
+import { storeItem } from '../../../store/types/items'
 import { getNumberOfDays } from '../../../utils'
+
+import { FormObserver } from './observerForm'
+
+import s from './Fields.module.scss'
 
 type fieldsView = {
   hero: storeItem

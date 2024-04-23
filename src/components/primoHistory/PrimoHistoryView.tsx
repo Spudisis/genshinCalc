@@ -1,11 +1,12 @@
 import React from 'react'
+
+import starglitter from '../../assets/Item_Masterless_Starglitter.webp'
+import primogemImg from '../../assets/Item_Primogem.webp'
+import wish from '../../assets/Objeto_Destino_entrelazado.webp'
 import { primogems } from '../../store/types/items'
+
 import { LineTable } from './line'
 import { copy } from './PrimoHistory'
-
-import wish from '../../assets/Objeto_Destino_entrelazado.webp'
-import primogemImg from '../../assets/Item_Primogem.webp'
-import starglitter from '../../assets/Item_Masterless_Starglitter.webp'
 
 import s from './PrimoHistory.module.scss'
 

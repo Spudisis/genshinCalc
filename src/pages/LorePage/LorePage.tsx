@@ -1,8 +1,10 @@
 import React from 'react'
-import s from './LorePage.module.scss'
-import { Lore } from '../../components'
 import { useNavigate } from 'react-router-dom'
+
+import { Lore } from '../../components'
 import { Site } from '../../const/routes'
+
+import s from './LorePage.module.scss'
 export const LorePage = () => {
   const [warning, setWarning] = React.useState(true)
   const redirect = useNavigate()

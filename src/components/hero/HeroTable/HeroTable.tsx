@@ -1,12 +1,15 @@
 import React from 'react'
+
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { addGemsItemStore } from '../../../store/slices/person'
 import { storeItem } from '../../../store/types/items'
 import { CalcBetween } from '../../../utils'
+
 import s from './HeroTable.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 export const Hero = React.memo(({ id, name, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, synchValue }: storeItem) => {
   const dispatch = useAppDispatch()

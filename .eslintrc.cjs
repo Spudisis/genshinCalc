@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   env: {
     browser: true,
     es2021: true
@@ -7,7 +7,7 @@ export default {
     'react/react-in-jsx-scope': 'off', // "react/self-closing-comp": "off",
     'react/display-name': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    "@typescript-eslint/no-unused-vars" : "off",
+    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     'simple-import-sort/imports': [
       'error',
@@ -31,13 +31,7 @@ export default {
     'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
     'prettier/prettier': ['error', {}, { usePrettierrc: true }]
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    "plugin:import/typescript"
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   overrides: [
     {
       env: {
@@ -64,11 +58,6 @@ export default {
   settings: {
     'jsx-a11y': {
       polymorphicPropName: 'component'
-    },
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
     }
   }
 }

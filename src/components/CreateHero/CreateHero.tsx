@@ -1,14 +1,16 @@
 import React from 'react'
-import { Formik, Form } from 'formik'
-import s from './createHero.module.scss'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { addStore } from '../../store/slices/person'
+
+import { Form, Formik } from 'formik'
 
 import { UpdateStore, UploadImg } from '../../firebase/index'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { addStore } from '../../store/slices/person'
 import { getNumberOfDays } from '../../utils/getNumberOfDays'
 
-import { Fields } from './Fields'
 import { Drag } from './drag'
+import { Fields } from './Fields'
+
+import s from './createHero.module.scss'
 
 type createHeroT = {
   name: string

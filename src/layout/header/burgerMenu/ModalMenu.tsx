@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import logo from '../../../assets/logo.png'
 import { Links } from '../../../components'
 import { Site } from '../../../const/routes'
 import { AuthButton } from '../modalAuth/auth'
+
 import s from './ModalMenu.module.scss'
-import logo from '../../../assets/logo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
 type modal = {
   modalMenu: boolean
   setModalMenu: (n: boolean) => void

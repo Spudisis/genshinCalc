@@ -1,5 +1,7 @@
 import React from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+
 import s from './authReg.module.scss'
 
 type refT = {

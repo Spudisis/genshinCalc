@@ -1,12 +1,14 @@
-import { useParams } from 'react-router-dom'
-import { Fields, Image, PrimogemsViewCart } from '../../components'
 import React from 'react'
-import s from '../style.module.scss'
-import w from './HeroCart.module.scss'
+import { useParams } from 'react-router-dom'
+
+import { Fields, Image, PrimogemsViewCart } from '../../components'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { obj, setObj } from '../../store/slices/calcPrimogemObj'
 import { storeItem } from '../../store/types/items'
 import { CalcBetween } from '../../utils'
+
+import s from '../style.module.scss'
+import w from './HeroCart.module.scss'
 export const HeroCart = () => {
   const params = useParams()
   const dispatch = useAppDispatch()

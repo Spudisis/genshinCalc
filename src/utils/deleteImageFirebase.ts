@@ -1,9 +1,10 @@
-import { storage } from '../firebase'
 import { deleteObject, ref } from 'firebase/storage'
+
+import { storage } from '../firebase'
 
 type deleteImage = {
   uid: any
-  image: String
+  image: string
 }
 
 export const deleteImageFirebase = async ({ uid, image }: deleteImage) => {

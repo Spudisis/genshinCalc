@@ -1,10 +1,11 @@
-import s from './HeroList.module.scss'
 import wish from '../../../assets/Objeto_Destino_entrelazado.webp'
-import { storeItem } from '../../../store/types/items'
-import { Hero } from '../HeroTable/HeroTable'
-import { HeroCart } from '../HeroCart/HeroCart'
-import { CreateHero } from '../../CreateHero/CreateHero'
 import { Site, waiting } from '../../../const/routes'
+import { storeItem } from '../../../store/types/items'
+import { CreateHero } from '../../CreateHero/CreateHero'
+import { HeroCart } from '../HeroCart/HeroCart'
+import { Hero } from '../HeroTable/HeroTable'
+
+import s from './HeroList.module.scss'
 
 interface HeroListViewTypes {
   store: any

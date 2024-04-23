@@ -1,8 +1,12 @@
+import React from 'react'
+
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+
 import { lineCount } from '../primoHistory/PrimoHistory'
+
 import { PaginationView } from './numberPage'
+
 import s from './pagination.module.scss'
 
 type pagination = {

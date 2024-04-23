@@ -1,8 +1,10 @@
 import React from 'react'
+
 import { useFormikContext } from 'formik'
+
 import { useAppDispatch } from '../../../store/hooks'
-import { CalcBetween } from '../../../utils'
 import { setObj } from '../../../store/slices/calcPrimogemObj'
+import { CalcBetween } from '../../../utils'
 
 export const FormObserver: React.FC = () => {
   const { values }: any = useFormikContext()

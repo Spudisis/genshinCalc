@@ -1,9 +1,12 @@
-import s from '../HeroCart.module.scss'
+import { Link } from 'react-router-dom'
+
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faCheck, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+
 import { heroCart } from '../../../../const/routes'
+
+import s from '../HeroCart.module.scss'
 
 interface ActionsViewTypes {
   deleteItem: boolean

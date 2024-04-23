@@ -1,7 +1,9 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+
 import { useAppDispatch } from '../../store/hooks'
 import { addSynchro } from '../../store/slices/synchronization'
 import { Synchronization } from '../../store/types/items'
+
 import s from './sync.module.scss'
 
 type addSync = {

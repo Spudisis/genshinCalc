@@ -1,11 +1,12 @@
 import React from 'react'
+
 import { UpdateStore } from '../../firebase'
 import { useAppSelector } from '../../store/hooks'
 
-import s from './sync.module.scss'
-
 import { AddSync } from './AddSync'
 import { FormSync } from './SyncView'
+
+import s from './sync.module.scss'
 
 export const Sync = () => {
   const { uid, store } = useAppSelector((state) => state.person)

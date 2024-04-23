@@ -1,7 +1,9 @@
+import React from 'react'
+
 import { DifferentCount } from './differentCount'
 import { copy } from './PrimoHistory'
+
 import s from './PrimoHistory.module.scss'
-import React from 'react'
 type cartHistory = {
   id: number
   date: string

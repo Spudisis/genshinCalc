@@ -1,13 +1,16 @@
+import React from 'react'
+
 import { Field } from 'formik'
 import { Form } from 'formik'
 import { ErrorMessage } from 'formik'
 import { Formik } from 'formik'
 import { v4 as uuidv4 } from 'uuid'
-import React from 'react'
-import { UsefulSitesType } from '../../store/types/user'
-import s from './addSite.module.scss'
+
 import { CreateSite, UploadImg } from '../../firebase'
 import { firestore } from '../../firebase/config'
+import { UsefulSitesType } from '../../store/types/user'
+
+import s from './addSite.module.scss'
 type PropsModal = {
   statusModal: (n: boolean) => void
   getNewSites: () => void

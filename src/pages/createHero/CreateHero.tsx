@@ -1,7 +1,9 @@
 import { HeroList } from '../../components/hero/HeroList/HeroList'
-import { Info } from './components/Info'
-import s from '../style.module.scss'
 import { useAppSelector } from '../../store/hooks'
+
+import { Info } from './components/Info'
+
+import s from '../style.module.scss'
 
 export const CreateHero = () => {
   const uid = useAppSelector((state) => state.person.uid)
