@@ -1,30 +1,30 @@
-import React from "react";
-import debounce from "lodash.debounce";
-import { NoticedCopyView } from "./noticedCopyView";
+import React from 'react'
+import debounce from 'lodash.debounce'
+import { NoticedCopyView } from './noticedCopyView'
 
 type notice = {
-  status: boolean;
-  setStatus: (n: boolean) => void;
-};
+  status: boolean
+  setStatus: (n: boolean) => void
+}
 
 export const NoticedCopy = ({ status, setStatus }: notice) => {
   const debounceFn = React.useMemo(
     () =>
       debounce(() => {
-        setStatus(false);
+        setStatus(false)
       }, 3000),
     [setStatus]
-  );
+  )
   React.useEffect(() => {
-    status && debounceFn();
-  }, [status, debounceFn]);
+    status && debounceFn()
+  }, [status, debounceFn])
 
   const clearDebounce = () => {
-    debounceFn.cancel();
-  };
+    debounceFn.cancel()
+  }
   const addDebounce = () => {
-    debounceFn();
-  };
+    debounceFn()
+  }
   return (
     <>
       {status && (
@@ -33,5 +33,5 @@ export const NoticedCopy = ({ status, setStatus }: notice) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}

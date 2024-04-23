@@ -1,26 +1,26 @@
-import React from "react";
-import s from "./Image.module.scss";
+import React from 'react'
+import s from './Image.module.scss'
 
-import { useAppSelector } from "../../../store/hooks";
-import { storeItem } from "../../../store/types/items";
-import { ImageContain } from "../../hero/HeroCart/components/imageContain";
+import { useAppSelector } from '../../../store/hooks'
+import { storeItem } from '../../../store/types/items'
+import { ImageContain } from '../../hero/HeroCart/components/imageContain'
 
 type Img = {
-  id: string;
-  setSizeImg: ([n, b]: [T: number, U: number]) => void;
-};
+  id: string
+  setSizeImg: ([n, b]: [T: number, U: number]) => void
+}
 
 export const Image = ({ id, setSizeImg }: Img) => {
-  const uid = useAppSelector((state) => state.person.uid);
-  const store = useAppSelector((store) => store.person.store);
-  const [cart, setCart] = React.useState<storeItem>();
+  const uid = useAppSelector((state) => state.person.uid)
+  const store = useAppSelector((store) => store.person.store)
+  const [cart, setCart] = React.useState<storeItem>()
   // eslint-disable-next-line
-  const [_, setImageFirebase] = React.useState(false);
+  const [_, setImageFirebase] = React.useState(false)
 
   React.useEffect(() => {
-    const cart = store.find((elem: storeItem) => id && elem.id === +id);
-    if (cart) setCart(cart);
-  }, [store, id]);
+    const cart = store.find((elem: storeItem) => id && elem.id === +id)
+    if (cart) setCart(cart)
+  }, [store, id])
 
   return (
     <>
@@ -30,5 +30,5 @@ export const Image = ({ id, setSizeImg }: Img) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}

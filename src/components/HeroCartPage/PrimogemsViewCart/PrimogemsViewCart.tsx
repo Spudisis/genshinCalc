@@ -1,9 +1,8 @@
-
-import { obj } from "../../../store/slices/calcPrimogemObj";
-import s from "./primogemsViewCart.module.scss";
+import { obj } from '../../../store/slices/calcPrimogemObj'
+import s from './primogemsViewCart.module.scss'
 type cartPrimogem = {
-  obj: obj;
-};
+  obj: obj
+}
 
 export const PrimogemsViewCart = ({ obj }: cartPrimogem) => {
   return (
@@ -34,5 +33,5 @@ export const PrimogemsViewCart = ({ obj }: cartPrimogem) => {
         {obj.countSumm}
       </div>
     </div>
-  );
-};
+  )
+}

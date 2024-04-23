@@ -1,15 +1,15 @@
-import s from "../HeroCart.module.scss";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import { heroCart } from "../../../../const/routes";
+import s from '../HeroCart.module.scss'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { faCheck, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
+import { heroCart } from '../../../../const/routes'
 
 interface ActionsViewTypes {
-  deleteItem: boolean;
-  deleteCart: () => void;
-  setDeleteItem: (n: boolean) => void;
-  id: number;
+  deleteItem: boolean
+  deleteCart: () => void
+  setDeleteItem: (n: boolean) => void
+  id: number
 }
 
 export const ActionsView = ({ deleteItem, deleteCart, setDeleteItem, id }: ActionsViewTypes) => {
@@ -34,5 +34,5 @@ export const ActionsView = ({ deleteItem, deleteCart, setDeleteItem, id }: Actio
         </div>
       )}
     </div>
-  );
-};
+  )
+}

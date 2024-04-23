@@ -1,5 +1,4 @@
-
-import s from "./loader.module.scss";
+import s from './loader.module.scss'
 export const Loader = () => {
   return (
     <div className={s.wrapper}>
@@ -18,5 +17,5 @@ export const Loader = () => {
         <div></div>
       </div>
     </div>
-  );
-};
+  )
+}

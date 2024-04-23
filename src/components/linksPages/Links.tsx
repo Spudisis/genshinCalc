@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
-import { counterPrim, Lore, Site, usefulLinks, waiting } from "../../const/routes";
-import s from "./Links.module.scss";
+import { NavLink } from 'react-router-dom'
+import { counterPrim, Lore, Site, usefulLinks, waiting } from '../../const/routes'
+import s from './Links.module.scss'
 export const Links = () => {
   return (
     <div className={s.root}>
@@ -17,5 +17,5 @@ export const Links = () => {
         Лор
       </NavLink>
     </div>
-  );
-};
+  )
+}

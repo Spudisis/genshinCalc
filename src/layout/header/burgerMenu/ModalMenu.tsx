@@ -1,30 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Links } from "../../../components";
-import { Site } from "../../../const/routes";
-import { AuthButton } from "../modalAuth/auth";
-import s from "./ModalMenu.module.scss";
-import logo from "../../../assets/logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Links } from '../../../components'
+import { Site } from '../../../const/routes'
+import { AuthButton } from '../modalAuth/auth'
+import s from './ModalMenu.module.scss'
+import logo from '../../../assets/logo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 type modal = {
-  modalMenu: boolean;
-  setModalMenu: (n: boolean) => void;
-};
+  modalMenu: boolean
+  setModalMenu: (n: boolean) => void
+}
 
 export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
-  const modalRef = React.useRef<HTMLDivElement>(null);
+  const modalRef = React.useRef<HTMLDivElement>(null)
   const handleClickOutside = (event: any) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
-      setModalMenu(false);
+      setModalMenu(false)
     }
-  };
+  }
   React.useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true)
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  });
+      document.removeEventListener('click', handleClickOutside, true)
+    }
+  })
   return (
     <div className={s.modal} ref={modalRef}>
       <div className={s.wrapper}>
@@ -32,7 +32,7 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
           <FontAwesomeIcon icon={faXmark} />
         </button>
         <Link to={Site} className={s.logo} onClick={() => setModalMenu(!modalMenu)}>
-          <img src={logo} alt="logo" />
+          <img src={logo} alt='logo' />
         </Link>
 
         <div onClick={() => setModalMenu(!modalMenu)}>
@@ -41,5 +41,5 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
         <AuthButton />
       </div>
     </div>
-  );
-};
+  )
+}

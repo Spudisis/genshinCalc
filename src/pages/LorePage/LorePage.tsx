@@ -1,11 +1,11 @@
-import React from "react";
-import s from "./LorePage.module.scss";
-import { Lore } from "../../components";
-import { useNavigate } from "react-router-dom";
-import { Site } from "../../const/routes";
+import React from 'react'
+import s from './LorePage.module.scss'
+import { Lore } from '../../components'
+import { useNavigate } from 'react-router-dom'
+import { Site } from '../../const/routes'
 export const LorePage = () => {
-  const [warning, setWarning] = React.useState(true);
-  const redirect = useNavigate();
+  const [warning, setWarning] = React.useState(true)
+  const redirect = useNavigate()
   return (
     <>
       {warning ? (
@@ -20,5 +20,5 @@ export const LorePage = () => {
         <Lore />
       )}
     </>
-  );
-};
+  )
+}

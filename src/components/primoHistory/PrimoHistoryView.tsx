@@ -1,25 +1,25 @@
-import React from "react";
-import { primogems } from "../../store/types/items";
-import { LineTable } from "./line";
-import { copy } from "./PrimoHistory";
+import React from 'react'
+import { primogems } from '../../store/types/items'
+import { LineTable } from './line'
+import { copy } from './PrimoHistory'
 
-import wish from "../../assets/Objeto_Destino_entrelazado.webp";
-import primogemImg from "../../assets/Item_Primogem.webp";
-import starglitter from "../../assets/Item_Masterless_Starglitter.webp";
+import wish from '../../assets/Objeto_Destino_entrelazado.webp'
+import primogemImg from '../../assets/Item_Primogem.webp'
+import starglitter from '../../assets/Item_Masterless_Starglitter.webp'
 
-import s from "./PrimoHistory.module.scss";
+import s from './PrimoHistory.module.scss'
 
 export type objPrimogems = {
-  primogem: primogems[];
-  createClipBoard: (n: copy) => void;
-  reserve: number;
-};
+  primogem: primogems[]
+  createClipBoard: (n: copy) => void
+  reserve: number
+}
 export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve }: objPrimogems) => {
   const lines = primogem.map((obj: primogems, index: number) => (
     <LineTable
       id={obj.id}
       date={obj.date}
-      dateTime={obj.dateTime ? obj.dateTime : ""}
+      dateTime={obj.dateTime ? obj.dateTime : ''}
       countPrimogems={obj.countPrimogems}
       countWishes={obj.countWishes}
       countStarglitter={obj.countStarglitter}
@@ -31,7 +31,7 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
       index={index}
       key={obj.id}
     />
-  ));
+  ))
 
   return (
     <div className={s.wrapper}>
@@ -40,13 +40,13 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
           <tr className={s.itemHead}>
             <td className={s.line}>Дата</td>
             <td className={s.line}>
-              <img src={primogemImg} alt="primogemImg" />
+              <img src={primogemImg} alt='primogemImg' />
             </td>
             <td className={s.line}>
-              <img src={wish} alt="wish" />
+              <img src={wish} alt='wish' />
             </td>
             <td className={s.line}>
-              <img src={starglitter} alt="starglitter" />
+              <img src={starglitter} alt='starglitter' />
             </td>
           </tr>
         </thead>
@@ -54,5 +54,5 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
         <tbody>{lines}</tbody>
       </table>
     </div>
-  );
-});
+  )
+})

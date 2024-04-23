@@ -1,3 +1,3 @@
 export type PopupClick = MouseEvent & {
-  path: Node[];
-};
+  path: Node[]
+}

@@ -1,24 +1,23 @@
-import { DifferentCount } from "./differentCount";
-import { copy } from "./PrimoHistory";
-import s from "./PrimoHistory.module.scss";
-import React from "react";
+import { DifferentCount } from './differentCount'
+import { copy } from './PrimoHistory'
+import s from './PrimoHistory.module.scss'
+import React from 'react'
 type cartHistory = {
-  id: number;
-  date: string;
-  dateTime: string;
-  countPrimogems: number;
-  countWishes: number;
-  countStarglitter: number;
-  differenceCountPrimogems: number;
-  differenceCountWishes: number;
-  differenceCountStarglitter: number;
-  createClipBoard: (n: copy) => void;
-  reserve: number;
-  index: number;
-};
+  id: number
+  date: string
+  dateTime: string
+  countPrimogems: number
+  countWishes: number
+  countStarglitter: number
+  differenceCountPrimogems: number
+  differenceCountWishes: number
+  differenceCountStarglitter: number
+  createClipBoard: (n: copy) => void
+  reserve: number
+  index: number
+}
 export const LineTable = React.memo(
   ({
-  
     date,
     dateTime,
     countPrimogems,
@@ -29,13 +28,10 @@ export const LineTable = React.memo(
     differenceCountStarglitter,
     createClipBoard,
     reserve,
-    index,
+    index
   }: cartHistory) => {
     return (
-      <tr
-        className={s.item}
-        onClick={() => createClipBoard({ date, countPrimogems, countWishes, countStarglitter, index })}
-      >
+      <tr className={s.item} onClick={() => createClipBoard({ date, countPrimogems, countWishes, countStarglitter, index })}>
         <td className={s.line}>
           {date} {dateTime && dateTime}
         </td>
@@ -59,6 +55,6 @@ export const LineTable = React.memo(
           <DifferentCount count={differenceCountStarglitter} />
         </td>
       </tr>
-    );
+    )
   }
-);
+)

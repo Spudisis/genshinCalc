@@ -1,23 +1,23 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: any = {
-  imagesUrl: [],
-};
+  imagesUrl: []
+}
 export const dataSlice = createSlice({
-  name: "imagesUrl",
+  name: 'imagesUrl',
   initialState,
   reducers: {
     setImagesUrl: (state, action: PayloadAction<any>) => {
-      state.imagesUrl = action.payload;
+      state.imagesUrl = action.payload
     },
 
     clearImages: (state) => {
-      state.store = [];
-    },
-  },
-});
-export const getImagesUrl = (state: any) => state.getImagesUrl;
+      state.store = []
+    }
+  }
+})
+export const getImagesUrl = (state: any) => state.getImagesUrl
 
-export const { setImagesUrl, clearImages } = dataSlice.actions;
+export const { setImagesUrl, clearImages } = dataSlice.actions
 
-export default dataSlice.reducer;
+export default dataSlice.reducer

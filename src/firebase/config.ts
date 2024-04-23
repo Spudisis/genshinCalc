@@ -1,8 +1,8 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
 
-import "firebase/compat/storage";
+import 'firebase/compat/storage'
 
 firebase.initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,11 +10,11 @@ firebase.initializeApp({
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-});
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+})
 
-export default firebase;
-export const auth = firebase.auth();
+export default firebase
+export const auth = firebase.auth()
 
-export const firestore = firebase.firestore();
-export const storage = firebase.storage();
+export const firestore = firebase.firestore()
+export const storage = firebase.storage()

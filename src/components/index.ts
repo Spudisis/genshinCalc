@@ -1,29 +1,29 @@
-export { GoogleAuth } from "./Auth/googleAuth/googleAuth";
-export { Auth } from "./Auth/formAuth/auth";
-export { Reg } from "./Auth/formAuth/reg";
+export { GoogleAuth } from './Auth/googleAuth/googleAuth'
+export { Auth } from './Auth/formAuth/auth'
+export { Reg } from './Auth/formAuth/reg'
 
-export { Links } from "./linksPages/Links";
+export { Links } from './linksPages/Links'
 
-export { Loader } from "./loader/loader";
-export { LoaderMini } from "./loader/loaderMini/loaderMini";
+export { Loader } from './loader/loader'
+export { LoaderMini } from './loader/loaderMini/loaderMini'
 
-export { SelectHero } from "./hero/selectImgHero/selectHero";
+export { SelectHero } from './hero/selectImgHero/selectHero'
 
-export { PrimoHistory } from "./primoHistory/PrimoHistory";
-export { AddPrimogems } from "./addPrimo/AddPrimogems";
-export { AdditionalActions } from "./additionalActions/AdditionalActions";
+export { PrimoHistory } from './primoHistory/PrimoHistory'
+export { AddPrimogems } from './addPrimo/AddPrimogems'
+export { AdditionalActions } from './additionalActions/AdditionalActions'
 
-export { Toggle } from "./toggle/toggle";
-export { Pagination } from "./pagination/pagination";
+export { Toggle } from './toggle/toggle'
+export { Pagination } from './pagination/pagination'
 
-export { ImageContain } from "./hero/HeroCart/components/imageContain";
+export { ImageContain } from './hero/HeroCart/components/imageContain'
 
-export { Image } from "./HeroCartPage/Image/Image";
-export { Fields } from "./HeroCartPage/fields/Fields";
-export { PrimogemsViewCart } from "./HeroCartPage/PrimogemsViewCart/PrimogemsViewCart";
+export { Image } from './HeroCartPage/Image/Image'
+export { Fields } from './HeroCartPage/fields/Fields'
+export { PrimogemsViewCart } from './HeroCartPage/PrimogemsViewCart/PrimogemsViewCart'
 
-export { Sync } from "./sync/sync";
+export { Sync } from './sync/sync'
 
-export { Lore } from "./Lore/Lore";
+export { Lore } from './Lore/Lore'
 
-export { UsefulCardsSites } from "./usefulCardsSites/usefulCardsSites";
+export { UsefulCardsSites } from './usefulCardsSites/usefulCardsSites'

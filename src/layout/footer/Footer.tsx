@@ -1,6 +1,5 @@
-
-import { FooterView } from "./FooterView";
+import { FooterView } from './FooterView'
 
 export const Footer = () => {
-  return <FooterView />;
-};
+  return <FooterView />
+}

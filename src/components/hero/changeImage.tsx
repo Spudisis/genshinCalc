@@ -1,30 +1,30 @@
-import React from "react";
-import s from "./HeroOutput/HeroCart/HeroCart.module.scss";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react'
+import s from './HeroOutput/HeroCart/HeroCart.module.scss'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export const ChangeImageBlock = ({ setChangeItemImage }: any) => {
-  const [drag, setDrag] = React.useState(false);
-  const [selectImg, setSelectImg] = React.useState("");
+  const [drag, setDrag] = React.useState(false)
+  const [selectImg, setSelectImg] = React.useState('')
 
   function dragStartHandler(e: any) {
-    e.preventDefault();
-    setDrag(true);
+    e.preventDefault()
+    setDrag(true)
   }
   function dragLeaveHandler(e: any) {
-    e.preventDefault();
-    setDrag(false);
+    e.preventDefault()
+    setDrag(false)
   }
   const onDropFile = async (e: any) => {
-    e.preventDefault();
-    let files = [...e.dataTransfer.files];
-    const image = await files[0];
-    const { name } = image;
-    console.log(name);
-    setSelectImg(image);
-    setDrag(false);
-    setSelectImg(name);
-  };
+    e.preventDefault()
+    let files = [...e.dataTransfer.files]
+    const image = await files[0]
+    const { name } = image
+    console.log(name)
+    setSelectImg(image)
+    setDrag(false)
+    setSelectImg(name)
+  }
 
   return (
     <div className={s.downloadNewImage}>
@@ -36,8 +36,8 @@ export const ChangeImageBlock = ({ setChangeItemImage }: any) => {
           <button
             className={s.buttonsaveImage}
             onClick={() => {
-              setSelectImg("");
-              setChangeItemImage(false);
+              setSelectImg('')
+              setChangeItemImage(false)
             }}
           >
             <FontAwesomeIcon icon={faXmark as IconProp} />
@@ -68,8 +68,8 @@ export const ChangeImageBlock = ({ setChangeItemImage }: any) => {
         </>
       )}
       <div>
-        или вставьте ссылку <input type="text" />
+        или вставьте ссылку <input type='text' />
       </div>
     </div>
-  );
-};
+  )
+}

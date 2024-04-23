@@ -1,5 +1,4 @@
-
-import s from "./loaderMini.module.scss";
+import s from './loaderMini.module.scss'
 export const LoaderMini = () => {
   return (
     <div className={s.wrapper}>
@@ -18,5 +17,5 @@ export const LoaderMini = () => {
         <div></div>
       </div>
     </div>
-  );
-};
+  )
+}

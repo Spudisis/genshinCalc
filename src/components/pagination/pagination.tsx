@@ -1,51 +1,51 @@
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { lineCount } from "../primoHistory/PrimoHistory";
-import { PaginationView } from "./numberPage";
-import s from "./pagination.module.scss";
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
+import { lineCount } from '../primoHistory/PrimoHistory'
+import { PaginationView } from './numberPage'
+import s from './pagination.module.scss'
 
 type pagination = {
-  pageCount: number;
-  pageNumber: number;
-  setPageNumber: (n: number) => void;
-  setCountLine: (n: lineCount) => void;
-  countLine: number;
-};
+  pageCount: number
+  pageNumber: number
+  setPageNumber: (n: number) => void
+  setCountLine: (n: lineCount) => void
+  countLine: number
+}
 
 export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine, countLine }: pagination) => {
-  const array = Array.from({ length: pageCount }, () => undefined);
+  const array = Array.from({ length: pageCount }, () => undefined)
 
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [modalView, setModalView] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null)
+  const [modalView, setModalView] = React.useState(false)
 
   React.useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true)
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
+      document.removeEventListener('click', handleClickOutside, true)
+    }
+  }, [])
 
   const handleClickOutside = (event: any) => {
     if (ref.current && !ref.current.contains(event.target)) {
-      setModalView(false);
+      setModalView(false)
     }
-  };
+  }
   const nextPage = () => {
     if (pageCount > pageNumber + 1) {
-      setPageNumber(pageNumber + 1);
+      setPageNumber(pageNumber + 1)
     }
-  };
+  }
   const prevPage = () => {
     if (1 < pageNumber + 1) {
-      setPageNumber(pageNumber - 1);
+      setPageNumber(pageNumber - 1)
     }
-  };
+  }
 
   const setLine = (number: lineCount) => {
-    setCountLine(number);
-    setModalView(!modalView);
-  };
+    setCountLine(number)
+    setModalView(!modalView)
+  }
 
   return (
     <div className={s.root}>
@@ -55,11 +55,7 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
         </button>
         {array.map(
           (_: undefined, index: number) =>
-            (index < 3 ||
-              index > array.length - 4 ||
-              index === pageNumber - 1 ||
-              index === pageNumber + 1 ||
-              index === pageNumber) && (
+            (index < 3 || index > array.length - 4 || index === pageNumber - 1 || index === pageNumber + 1 || index === pageNumber) && (
               <PaginationView index={index} page={pageNumber + 1} setPageNumber={setPageNumber} key={index} />
             )
         )}
@@ -83,5 +79,5 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

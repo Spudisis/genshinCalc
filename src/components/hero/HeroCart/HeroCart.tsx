@@ -1,42 +1,42 @@
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { addGemsItemStore, getPerson } from "../../../store/slices/person";
-import { storeItem } from "../../../store/types/items";
+import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { addGemsItemStore, getPerson } from '../../../store/slices/person'
+import { storeItem } from '../../../store/types/items'
 
-import { CalcBetween } from "../../../utils";
+import { CalcBetween } from '../../../utils'
 
-import s from "./HeroCart.module.scss";
+import s from './HeroCart.module.scss'
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux'
 
-import { Actions } from "./actions/actions";
-import { ImageContain } from "./components/imageContain";
-import { InputsCart } from "./components/inputsCart";
-import { Info } from "./components/Info";
-import { useLocation } from "react-router-dom";
-import { Site } from "../../../const/routes";
-import { obj } from "../../../store/slices/calcPrimogemObj";
+import { Actions } from './actions/actions'
+import { ImageContain } from './components/imageContain'
+import { InputsCart } from './components/inputsCart'
+import { Info } from './components/Info'
+import { useLocation } from 'react-router-dom'
+import { Site } from '../../../const/routes'
+import { obj } from '../../../store/slices/calcPrimogemObj'
 
 export const HeroCart = React.memo(
   ({ id, name, dateStart, dateEnd, countStart, countAdd, countPrimogems, image, synchValue }: storeItem) => {
-    const dispatch = useAppDispatch();
-    const location = useLocation();
+    const dispatch = useAppDispatch()
+    const location = useLocation()
 
-    const actionView = location.pathname !== Site && location.pathname !== Site.slice(0, Site.length - 1);
+    const actionView = location.pathname !== Site && location.pathname !== Site.slice(0, Site.length - 1)
 
-    const { uid } = useSelector(getPerson);
-    const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.primogems);
+    const { uid } = useSelector(getPerson)
+    const initialCountPrimogems = useAppSelector((state) => state.primogemSlice.primogems)
 
-    const [obj, setObj] = React.useState<obj>({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 });
-    const [primogems, setPrimogems] = React.useState(0);
-    const [countGemsPlus, setAddPrimogems] = React.useState(0);
-    const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0);
+    const [obj, setObj] = React.useState<obj>({ between: 0, now: 0, countSave: 0, countSumm: 0, betweenSumm: 0 })
+    const [primogems, setPrimogems] = React.useState(0)
+    const [countGemsPlus, setAddPrimogems] = React.useState(0)
+    const [primogemsMinusSumm, setPrimogemsMinusSumm] = React.useState(0)
 
-    const [imageFirebase, setImageFirebase] = React.useState(false); //проверка, изображение с файрбейза или нет
+    const [imageFirebase, setImageFirebase] = React.useState(false) //проверка, изображение с файрбейза или нет
 
     React.useLayoutEffect(() => {
-      if (initialCountPrimogems.length !== 0) setPrimogems(initialCountPrimogems[0].countPrimogems);
-    }, [initialCountPrimogems]);
+      if (initialCountPrimogems.length !== 0) setPrimogems(initialCountPrimogems[0].countPrimogems)
+    }, [initialCountPrimogems])
 
     React.useLayoutEffect(() => {
       //рассчет примогемов
@@ -49,40 +49,40 @@ export const HeroCart = React.memo(
         countStart,
         countPrimogems,
         image,
-        synchValue,
-      });
+        synchValue
+      })
       if (count) {
-        setObj(count);
+        setObj(count)
       }
-    }, [id, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, primogems, name, synchValue]);
+    }, [id, dateStart, dateEnd, countStart, countPrimogems, countAdd, image, primogems, name, synchValue])
 
     React.useLayoutEffect(() => {
       if (primogems && obj.countSave) {
-        setPrimogemsMinusSumm(primogems - obj.countSave);
+        setPrimogemsMinusSumm(primogems - obj.countSave)
       }
-    }, [primogems, initialCountPrimogems, obj.countSave]);
+    }, [primogems, initialCountPrimogems, obj.countSave])
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-      const count = e.currentTarget.value;
+      const count = e.currentTarget.value
       if (count) {
-        setPrimogems(+count);
+        setPrimogems(+count)
       } else {
-        setPrimogems(0);
+        setPrimogems(0)
       }
-    };
+    }
     const handleAdd = (e: React.FormEvent<HTMLInputElement>) => {
-      const count = e.currentTarget.value;
+      const count = e.currentTarget.value
       if (count) {
-        setAddPrimogems(+count);
+        setAddPrimogems(+count)
       } else {
-        setAddPrimogems(0);
+        setAddPrimogems(0)
       }
-    };
+    }
     const sendAdd = () => {
       if (countGemsPlus) {
-        dispatch(addGemsItemStore({ countGemsPlus, id }));
+        dispatch(addGemsItemStore({ countGemsPlus, id }))
       }
-    };
+    }
 
     return (
       <div className={s.item}>
@@ -117,6 +117,6 @@ export const HeroCart = React.memo(
           />
         )}
       </div>
-    );
+    )
   }
-);
+)

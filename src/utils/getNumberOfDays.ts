@@ -1,12 +1,12 @@
-import { betweenDate } from "../store/types/calc";
+import { betweenDate } from '../store/types/calc'
 
 export const getNumberOfDays = ({ dateStart, dateEnd }: betweenDate) => {
-  const JSJoda = require("@js-joda/core");
-  let LocalDate = JSJoda.LocalDate;
+  const dateNow = Date.now()
+  const newDate = new Date(dateEnd || dateNow)
+  const oldDate = new Date(dateStart)
 
-  const start_date = new LocalDate.parse(dateStart);
-  const end_date = new LocalDate.parse(dateEnd);
+  const different = newDate.getTime() - oldDate.getTime()
 
-  const count = JSJoda.ChronoUnit.DAYS.between(start_date, end_date);
-  return count;
-};
+  let count = Math.round(different / (1000 * 3600 * 24))
+  return count
+}

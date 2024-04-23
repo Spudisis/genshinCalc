@@ -1,42 +1,42 @@
 /// <reference types="vite/client" />
-declare module "*.svg" {
-  const content: any;
-  export default content;
+declare module '*.svg' {
+  const content: any
+  export default content
 }
-declare module "*.png" {
-  const content: any;
-  export default content;
+declare module '*.png' {
+  const content: any
+  export default content
 }
-declare module "*.jpg" {
-  const content: any;
-  export default content;
+declare module '*.jpg' {
+  const content: any
+  export default content
 }
-declare module "*.PNG" {
-  const content: any;
-  export default content;
+declare module '*.PNG' {
+  const content: any
+  export default content
 }
-declare module "*.webp" {
-  const content: any;
-  export default content;
+declare module '*.webp' {
+  const content: any
+  export default content
 }
-declare module "*.css" {
-  const content: any;
-  export default content;
+declare module '*.css' {
+  const content: any
+  export default content
 }
-declare module "lodash.debounce" {
-  const content: any;
-  export default content;
+declare module 'lodash.debounce' {
+  const content: any
+  export default content
 }
-declare module "*.scss" {
-  const css: { [key: string]: string };
-  export default css;
+declare module '*.scss' {
+  const css: { [key: string]: string }
+  export default css
 }
-declare module "*.sass" {
-  const css: { [key: string]: string };
-  export default css;
+declare module '*.sass' {
+  const css: { [key: string]: string }
+  export default css
 }
 
-declare module "@fortawesome/fontawesome-free";
-declare module "react-onclickoutside";
-declare module "formik";
-declare module "uuid";
+declare module '@fortawesome/fontawesome-free'
+declare module 'react-onclickoutside'
+declare module 'formik'
+declare module 'uuid'

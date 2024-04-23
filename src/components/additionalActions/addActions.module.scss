@@ -3,9 +3,8 @@
 .buttonFill {
   @include button;
 
-  margin-left: 20px;
   transition: 0.2s;
-  margin-bottom: 10px;
+
 }
 .relative {
   position: relative;
@@ -27,9 +26,5 @@
 
 .details {
   @include details;
-  .additionalFunction {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
+  
 }

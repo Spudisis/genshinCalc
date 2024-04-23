@@ -1,8 +1,7 @@
-
-import s from "./PrimoHistory.module.scss";
+import s from './PrimoHistory.module.scss'
 type different = {
-  count: number;
-};
+  count: number
+}
 export const DifferentCount = ({ count }: different) => {
   return (
     <>
@@ -14,5 +13,5 @@ export const DifferentCount = ({ count }: different) => {
         <div className={`${s.change} ${s.normal}`}>{count}</div>
       )}
     </>
-  );
-};
+  )
+}

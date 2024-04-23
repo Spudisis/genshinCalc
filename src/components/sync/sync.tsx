@@ -1,40 +1,40 @@
-import React from "react";
-import { UpdateStore } from "../../firebase";
-import {  useAppSelector } from "../../store/hooks";
+import React from 'react'
+import { UpdateStore } from '../../firebase'
+import { useAppSelector } from '../../store/hooks'
 
-import s from "./sync.module.scss";
+import s from './sync.module.scss'
 
-import { AddSync } from "./AddSync";
-import { FormSync } from "./SyncView";
+import { AddSync } from './AddSync'
+import { FormSync } from './SyncView'
 
 export const Sync = () => {
-  const { uid, store } = useAppSelector((state) => state.person);
-  const { primogems } = useAppSelector((state) => state.primogemSlice);
-  const synchro = useAppSelector((store) => store.syncSlice.synchro);
+  const { uid, store } = useAppSelector((state) => state.person)
+  const { primogems } = useAppSelector((state) => state.primogemSlice)
+  const synchro = useAppSelector((store) => store.syncSlice.synchro)
 
-  const [synchroName, setSynchroName] = React.useState<string[]>([]);
-  const [storeName, setStoreName] = React.useState<string[]>([]);
-  const [sum, setSum] = React.useState<number>(0);
+  const [synchroName, setSynchroName] = React.useState<string[]>([])
+  const [storeName, setStoreName] = React.useState<string[]>([])
+  const [sum, setSum] = React.useState<number>(0)
 
   React.useEffect(() => {
     const names = synchro.map((elem) => {
-      return elem.name;
-    });
+      return elem.name
+    })
 
-    setSynchroName(names);
-    const sum = synchro.reduce((prev, elem) => (elem.typeValue === "percent" ? +prev + +elem.value : +prev + +0), 0);
+    setSynchroName(names)
+    const sum = synchro.reduce((prev, elem) => (elem.typeValue === 'percent' ? +prev + +elem.value : +prev + +0), 0)
 
-    sum && setSum(sum);
+    sum && setSum(sum)
 
-    uid && synchro.length !== 0 && UpdateStore({ uid, store, primogems, synchro });
-  }, [uid, store, primogems, synchro]);
+    uid && synchro.length !== 0 && UpdateStore({ uid, store, primogems, synchro })
+  }, [uid, store, primogems, synchro])
 
   React.useEffect(() => {
     const names = store.map((elem) => {
-      return elem.name;
-    });
-    setStoreName(names);
-  }, [store]);
+      return elem.name
+    })
+    setStoreName(names)
+  }, [store])
 
   return (
     <div className={s.modal}>
@@ -48,7 +48,7 @@ export const Sync = () => {
           {synchro &&
             synchro.map((elem, id) => (
               <FormSync
-                key={id + "syncModal"}
+                key={id + 'syncModal'}
                 id={elem.id}
                 synchro={synchro}
                 name={elem.name}
@@ -59,5 +59,5 @@ export const Sync = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
