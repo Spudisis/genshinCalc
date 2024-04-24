@@ -3,7 +3,9 @@ import React from 'react'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { lineCount } from '../primoHistory/PrimoHistory'
+import { Button } from '@/shared/ui'
+
+import { lineCount } from '../primoHistory/promo-history'
 
 import { PaginationView } from './numberPage'
 
@@ -69,9 +71,7 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
       </div>
       <div className={s.setCountLine}>
         <div ref={ref}>
-          <button className={s.openModal} onClick={() => setModalView(!modalView)}>
-            {countLine}&nbsp;&nbsp; записей
-          </button>
+          <Button onClick={() => setModalView(!modalView)}>{countLine}&nbsp;&nbsp; записей</Button>
           {modalView && (
             <div className={s.modalLinesChange}>
               <button onClick={() => setLine(5)}>5</button>

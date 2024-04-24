@@ -6,7 +6,7 @@ import { CalcBetween, copyClipBoard, findLocalStorageNumber, setItemLocalStorage
 import { Pagination } from '../pagination/pagination'
 
 import { NoticedCopy } from './NoticedCopy/noticedCopy'
-import { PrimoHistoryView } from './PrimoHistoryView'
+import { PrimoHistoryView } from './promo-history-view'
 
 export type copy = {
   date: string

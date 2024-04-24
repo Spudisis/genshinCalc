@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+import starGlitter from '@/assets/Item_Masterless_Starglitter.webp'
 import primogem from '@/assets/Item_Primogem.webp'
 import wish from '@/assets/Objeto_Destino_entrelazado.webp'
-import starGlitter from '@/assets/Item_Masterless_Starglitter.webp'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { setAutoFill, setLastCalc } from '@/store/slices/localstorage'
 import { addPrimogemsLastItem, addStarglitterLastItem, addWishLastItem } from '@/store/slices/primogems'
 import { clsx } from 'clsx'
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { setAutoFill, setLastCalc } from '../../store/slices/localstorage'
+import { Button } from '@/shared/ui'
+
 import { Sync } from '../sync/sync'
 
 import s from './addActions.module.scss'
 
 export const AdditionalActions = () => {
+  const [isPositive, setIsPositive] = useState({
+    primogems: true,
+    wishes: true,
+    starglitter: true
+  })
   const localstorage = useAppSelector((store) => store.persistedReducer.params)
   const synchronization = useAppSelector((store) => store.syncSlice.synchro)
 
@@ -35,6 +42,7 @@ export const AdditionalActions = () => {
       document.removeEventListener('click', handleClickOutside, true)
     }
   }, [])
+
   const handleClickOutside = (event: any) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setModalSync(false)
@@ -48,7 +56,7 @@ export const AdditionalActions = () => {
   const addWish = (n: number) => {
     dispatch(addWishLastItem(n))
   }
-  const addStar = (n:number)=>{
+  const addStar = (n: number) => {
     dispatch(addStarglitterLastItem(n))
   }
 
@@ -57,18 +65,12 @@ export const AdditionalActions = () => {
       <summary>Дополнительные параметры</summary>
       <div className={clsx(s.additionalFunction, 'flex flex-col gap-2 py-2')}>
         <div className='flex flex-wrap gap-2'>
-          <button
-            className={`${s.buttonFill}  ${localstorage.autoFill ? s.autofill : s.autoFillNone}`}
-            onClick={() => handleChangeAutoFill(!localstorage.autoFill)}
-          >
+          <Button isActive={localstorage.autoFill} onClick={() => handleChangeAutoFill(!localstorage.autoFill)}>
             Автозаполнение
-          </button>
-          <button
-            className={`${s.buttonFill}  ${localstorage.lastCalc ? s.autofill : s.autoFillNone}`}
-            onClick={() => handleChangeLastCalc(!localstorage.lastCalc)}
-          >
+          </Button>
+          <Button isActive={localstorage.lastCalc} onClick={() => handleChangeLastCalc(!localstorage.lastCalc)}>
             Последний расчет
-          </button>
+          </Button>
           <div className={s.relative} ref={ref}>
             <button
               className={`${s.buttonFill}  ${modalSync || synchronization.length !== 0 ? s.autofill : s.autoFillNone}`}
@@ -80,53 +82,48 @@ export const AdditionalActions = () => {
           </div>
         </div>
         <div className='flex flex-wrap gap-2'>
-          <div className='rounded-full border h-9 w-9 flex justify-center items-center'>
+          <Button
+            className='rounded-full'
+            borderRadius='none'
+            padding='none'
+            isActive={!isPositive.primogems}
+            onClick={() => setIsPositive((prev) => ({ ...prev, primogems: !prev.primogems }))}
+          >
             <img src={primogem} className='w-auto h-8' />
-          </div>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addPrimogems(60)}>
-            +60
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addPrimogems(90)}>
-            +90
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addPrimogems(5)}>
-            +5
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addPrimogems(10)}>
-            +10
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addPrimogems(20)}>
-            +20
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addPrimogems(1)}>
-            +1
-          </button>
+          </Button>
+          <Button onClick={() => addPrimogems(60)}>{isPositive.primogems ? '+' : '-'}60</Button>
+          <Button onClick={() => addPrimogems(90)}>{isPositive.primogems ? '+' : '-'}90</Button>
+          <Button onClick={() => addPrimogems(5)}>{isPositive.primogems ? '+' : '-'}5</Button>
+          <Button onClick={() => addPrimogems(10)}>{isPositive.primogems ? '+' : '-'}10</Button>
+          <Button onClick={() => addPrimogems(20)}>{isPositive.primogems ? '+' : '-'}20</Button>
+          <Button onClick={() => addPrimogems(1)}>{isPositive.primogems ? '+' : '-'}1</Button>
         </div>
         <div className='flex flex-wrap gap-2'>
-          <div className='rounded-full border h-9 w-9 flex justify-center items-center'>
+          <Button
+            className='rounded-full'
+            borderRadius='none'
+            padding='none'
+            isActive={!isPositive.wishes}
+            onClick={() => setIsPositive((prev) => ({ ...prev, wishes: !prev.wishes }))}
+          >
             <img src={wish} className='w-auto h-8' />
-          </div>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addWish(1)}>
-            +1
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addWish(2)}>
-            +2
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addWish(5)}>
-            +5
-          </button>
+          </Button>
+          <Button onClick={() => addWish(1)}>{isPositive.wishes ? '+' : '-'}1</Button>
+          <Button onClick={() => addWish(2)}>{isPositive.wishes ? '+' : '-'}2</Button>
+          <Button onClick={() => addWish(5)}>{isPositive.wishes ? '+' : '-'}5</Button>
         </div>
         <div className='flex flex-wrap gap-2'>
-          <div className='rounded-full border h-9 w-9 flex justify-center items-center'>
+          <Button
+            className='rounded-full'
+            borderRadius='none'
+            padding='none'
+            isActive={!isPositive.starglitter}
+            onClick={() => setIsPositive((prev) => ({ ...prev, starglitter: !prev.starglitter }))}
+          >
             <img src={starGlitter} className='w-auto h-8' />
-          </div>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addStar(2)}>
-            +2
-          </button>
-          <button className={`${s.buttonFill}  ${s.autoFillNone}`} onClick={() => addStar(5)}>
-            +5
-          </button>
-          
+          </Button>
+          <Button onClick={() => addStar(2)}>{isPositive.starglitter ? '+' : '-'}2</Button>
+          <Button onClick={() => addStar(5)}>{isPositive.starglitter ? '+' : '-'}5</Button>
         </div>
       </div>
     </details>

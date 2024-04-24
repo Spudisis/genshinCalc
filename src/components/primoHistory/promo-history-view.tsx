@@ -5,17 +5,16 @@ import primogemImg from '../../assets/Item_Primogem.webp'
 import wish from '../../assets/Objeto_Destino_entrelazado.webp'
 import { primogems } from '../../store/types/items'
 
+import { ItemTable } from './item-table'
 import { LineTable } from './line'
-import { copy } from './PrimoHistory'
+import { copy } from './promo-history'
 
-import s from './PrimoHistory.module.scss'
-
-export type objPrimogems = {
+export type PrimoHistoryViewProps = {
   primogem: primogems[]
   createClipBoard: (n: copy) => void
   reserve: number
 }
-export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve }: objPrimogems) => {
+export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve }: PrimoHistoryViewProps) => {
   const lines = primogem.map((obj: primogems, index: number) => (
     <LineTable
       id={obj.id}
@@ -35,25 +34,23 @@ export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve
   ))
 
   return (
-    <div className={s.wrapper}>
-      <table className={`${s.table}`}>
-        <thead className={s.theadTable}>
-          <tr className={s.itemHead}>
-            <td className={s.line}>Дата</td>
-            <td className={s.line}>
-              <img src={primogemImg} alt='primogemImg' />
-            </td>
-            <td className={s.line}>
-              <img src={wish} alt='wish' />
-            </td>
-            <td className={s.line}>
-              <img src={starglitter} alt='starglitter' />
-            </td>
-          </tr>
-        </thead>
+    <div className='overflow-hidden overflow-x-auto'>
+      <div className='w-[980px] lg:w-full '>
+        <div className='grid grid-cols-4 justify-center h-12 items-center border dark:border-555555 border-black rounded-tl-lg rounded-tr-lg overflow-hidden'>
+          <ItemTable>Дата</ItemTable>
+          <ItemTable>
+            <img src={primogemImg} className='h-8 w-auto' alt='primogemImg' />
+          </ItemTable>
+          <ItemTable>
+            <img src={wish} className='h-8 w-auto' alt='wish' />
+          </ItemTable>
+          <ItemTable border={false}>
+            <img src={starglitter} className='h-8 w-auto' alt='starglitter' />
+          </ItemTable>
+        </div>
 
-        <tbody>{lines}</tbody>
-      </table>
+        <div className='grid grid-cols-4'>{lines}</div>
+      </div>
     </div>
   )
 })

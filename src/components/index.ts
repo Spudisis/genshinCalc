@@ -9,7 +9,7 @@ export { LoaderMini } from './loader/loaderMini/loaderMini'
 
 export { SelectHero } from './hero/selectImgHero/selectHero'
 
-export { PrimoHistory } from './primoHistory/PrimoHistory'
+export { PrimoHistory } from './primoHistory/promo-history'
 export { AddPrimogems } from './addPrimo/AddPrimogems'
 export { AdditionalActions } from './additionalActions/AdditionalActions'
 

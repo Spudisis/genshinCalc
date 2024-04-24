@@ -1,4 +1,4 @@
-import { copy } from '../components/primoHistory/PrimoHistory'
+import { copy } from '../components/primoHistory/promo-history'
 
 import { getDateNow } from './calcChangePrimogems'
 
