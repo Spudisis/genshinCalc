@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import logo from '../../assets/logo.png'
 import { Toggle } from '../../components'
-import { Links } from '../../components/linksPages/Links'
+import { Links } from '../../components/links-pages/links-pages'
 import { Site } from '../../const/routes'
 import { ThemeContext, themes } from '../../provider/context'
 

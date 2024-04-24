@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, ElementType } from 'react'
 
 import { cva, VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
@@ -34,12 +34,26 @@ const Variants = cva('', {
     borderRadius: 'default'
   }
 })
+export type ButtonPropsWithoutVariant<E extends ElementType> = Omit<ComponentProps<E>, 'component'> & {
+  component?: E
+}
+type ButtonProps<E extends ElementType> = ButtonPropsWithoutVariant<E> & VariantProps<typeof Variants> & { isActive?: boolean }
 
-type ButtonProps = ComponentProps<'button'> & { isActive?: boolean } & VariantProps<typeof Variants>
-
-export const Button = ({ children, isActive = false, className, color, bgColor, border, borderRadius, padding, ...rest }: ButtonProps) => {
+export const Button = <E extends ElementType = 'button'>({
+  children,
+  component,
+  isActive = false,
+  className,
+  color,
+  bgColor,
+  border,
+  borderRadius,
+  padding,
+  ...rest
+}: ButtonProps<E>) => {
+  const TagName = component || 'button'
   return (
-    <button
+    <TagName
       className={clsx(
         Variants({ border, borderRadius, bgColor, color, padding }),
         { 'border-grayDark bg-grayDark text-white': isActive },
@@ -50,6 +64,6 @@ export const Button = ({ children, isActive = false, className, color, bgColor, 
       {...rest}
     >
       {children}
-    </button>
+    </TagName>
   )
 }

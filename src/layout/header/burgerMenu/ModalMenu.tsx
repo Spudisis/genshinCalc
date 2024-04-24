@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { Button } from '@/shared/ui'
+
 import logo from '../../../assets/logo.png'
 import { Links } from '../../../components'
 import { Site } from '../../../const/routes'
@@ -29,11 +31,14 @@ export const ModalMenu = ({ modalMenu, setModalMenu }: modal) => {
     }
   })
   return (
-    <div className={s.modal} ref={modalRef}>
+    <div
+      className='t-0 h-dvh text-sm px-2 w-dvw fixed sm:absolute bg-slate-900 rounded-lg z-40 sm:w-[250px] r-0 sm:t-[200px] sm:h-auto'
+      ref={modalRef}
+    >
       <div className={s.wrapper}>
-        <button className={s.close} onClick={() => setModalMenu(!modalMenu)}>
+        <Button onClick={() => setModalMenu(!modalMenu)}>
           <FontAwesomeIcon icon={faXmark} />
-        </button>
+        </Button>
         <Link to={Site} className={s.logo} onClick={() => setModalMenu(!modalMenu)}>
           <img src={logo} alt='logo' />
         </Link>

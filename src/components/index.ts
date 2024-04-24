@@ -2,7 +2,7 @@ export { GoogleAuth } from './Auth/googleAuth/googleAuth'
 export { Auth } from './Auth/formAuth/auth'
 export { Reg } from './Auth/formAuth/reg'
 
-export { Links } from './linksPages/Links'
+export { Links } from './links-pages/links-pages'
 
 export { Loader } from './loader/loader'
 export { LoaderMini } from './loader/loaderMini/loaderMini'

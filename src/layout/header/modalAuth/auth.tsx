@@ -2,14 +2,14 @@ import React from 'react'
 import { useSignOut } from 'react-firebase-hooks/auth'
 import { useSelector } from 'react-redux'
 
+import { Button } from '@/shared/ui'
+
 import { auth } from '../../../firebase'
 import { useAppDispatch } from '../../../store/hooks'
 import { clearStore, clearUid, getPerson } from '../../../store/slices/person'
 import { clearPrimogems } from '../../../store/slices/primogems'
 
 import { ModalAuth } from './modalAuth'
-
-import s from './buttonAuth.module.scss'
 
 export const AuthButton = () => {
   const dispatch = useAppDispatch()
@@ -29,16 +29,16 @@ export const AuthButton = () => {
   return (
     <>
       {!uid ? (
-        <div className={s.buttonOpenModal}>
-          <button className={s.auth} onClick={() => setModalAuthActive(true)}>
+        <div className='relative'>
+          <Button className='mt-1 md:mt-0 w-full  md:w-auto md:ml-1 xl:ml-2' onClick={() => setModalAuthActive(true)}>
             Войти
-          </button>
+          </Button>
           {modalAuthActive && <ModalAuth setModalActive={(n: boolean) => setModalAuthActive(n)} />}
         </div>
       ) : (
-        <button className={s.auth} onClick={() => exit()}>
+        <Button className='mt-1 md:mt-0 w-full md:w-auto md:ml-1 xl:ml-2' onClick={() => exit()}>
           Выйти
-        </button>
+        </Button>
       )}
     </>
   )
