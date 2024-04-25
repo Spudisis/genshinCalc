@@ -7,6 +7,7 @@ type viewPagination = {
 }
 
 export const PaginationView = ({ page, index, setPageNumber }: viewPagination) => {
+  console.log(page, index)
   return (
     <Button isActive={page === index + 1} onClick={() => setPageNumber(index)}>
       {index + 1}
