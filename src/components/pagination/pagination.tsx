@@ -68,7 +68,7 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
         </Button>
       </div>
 
-      <div ref={ref}>
+      <div ref={ref} className='relative'>
         <Button onClick={() => setModalView(!modalView)}>{countLine}&nbsp;&nbsp; записей</Button>
         {modalView && (
           <div className='absolute -bottom-12 right-0 p-1 rounded-lg flex flex-row gap-1 bg-drop'>
