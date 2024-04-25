@@ -1,4 +1,4 @@
-import s from './pagination.module.scss'
+import { Button } from '@/shared/ui'
 
 type viewPagination = {
   page: number
@@ -8,8 +8,8 @@ type viewPagination = {
 
 export const PaginationView = ({ page, index, setPageNumber }: viewPagination) => {
   return (
-    <button className={page === index + 1 ? s.activePage : s.changePage} onClick={() => setPageNumber(index)}>
+    <Button isActive={page === index + 1} onClick={() => setPageNumber(index)}>
       {index + 1}
-    </button>
+    </Button>
   )
 }

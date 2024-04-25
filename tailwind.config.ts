@@ -8,7 +8,9 @@ export default {
         grayLight: 'rgb(149, 141, 141)',
         gray: 'rgb(100, 85, 85)',
         grayDark: 'rgb(60, 55, 55)',
-        '555555': '#555555'
+        '555555': '#555555',
+        bgButtonDark: '#282727',
+        drop: '#0B0B0B'
       }
     }
   },

@@ -9,8 +9,6 @@ import { lineCount } from '../primoHistory/promo-history'
 
 import { PaginationView } from './numberPage'
 
-import s from './pagination.module.scss'
-
 type pagination = {
   pageCount: number
   pageNumber: number
@@ -54,33 +52,32 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
   }
 
   return (
-    <div className={s.root}>
-      <div className={s.wrapper}>
-        <button className={s.changePage} onClick={() => prevPage()}>
+    <div className='flex justify-center items-center gap-4 sm:justify-between my-8 flex-col sm:flex-row'>
+      <div className='flex flex-row gap-1 justify-center'>
+        <Button onClick={() => prevPage()}>
           <FontAwesomeIcon icon={faArrowLeft} />
-        </button>
+        </Button>
         {array.map(
-          (_: undefined, index: number) =>
+          (_, index) =>
             (index < 3 || index > array.length - 4 || index === pageNumber - 1 || index === pageNumber + 1 || index === pageNumber) && (
               <PaginationView index={index} page={pageNumber + 1} setPageNumber={setPageNumber} key={index} />
             )
         )}
-        <button className={s.changePage} onClick={() => nextPage()}>
+        <Button onClick={() => nextPage()}>
           <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        </Button>
       </div>
-      <div className={s.setCountLine}>
-        <div ref={ref}>
-          <Button onClick={() => setModalView(!modalView)}>{countLine}&nbsp;&nbsp; записей</Button>
-          {modalView && (
-            <div className={s.modalLinesChange}>
-              <button onClick={() => setLine(5)}>5</button>
-              <button onClick={() => setLine(10)}>10</button>
-              <button onClick={() => setLine(15)}>15</button>
-              <button onClick={() => setLine(25)}>25</button>
-            </div>
-          )}
-        </div>
+
+      <div ref={ref}>
+        <Button onClick={() => setModalView(!modalView)}>{countLine}&nbsp;&nbsp; записей</Button>
+        {modalView && (
+          <div className='absolute -bottom-12 right-0 p-1 rounded-lg flex flex-row gap-1 bg-drop'>
+            <Button onClick={() => setLine(5)}>5</Button>
+            <Button onClick={() => setLine(10)}>10</Button>
+            <Button onClick={() => setLine(15)}>15</Button>
+            <Button onClick={() => setLine(25)}>25</Button>
+          </div>
+        )}
       </div>
     </div>
   )
