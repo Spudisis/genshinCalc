@@ -1,3 +1,7 @@
+import { Icon } from '@/components/icon'
+
+import { Button } from '@/shared/ui'
+
 import wish from '../../../assets/Objeto_Destino_entrelazado.webp'
 import { Site, waiting } from '../../../const/routes'
 import { storeItem } from '../../../store/types/items'
@@ -22,9 +26,11 @@ export const HeroListView = ({ store, setTypeView, typeView, location }: HeroLis
     <div className={s.wrapper}>
       <div className={s.name}>
         <h2>Накопление</h2>
-        <div className={s.buttons}>
-          <button onClick={() => setTypeView(!typeView)}>Вид отображения: {typeView ? 'Таблица' : 'Карточки'}</button>
-        </div>
+
+        <Button onClick={() => setTypeView(!typeView)} className='flex items-center gap-2'>
+          <Icon icon={typeView ? 'carbon:table' : 'gridicons:grid'} className='w-5 h-5' /> Вид отображения:{' '}
+          {typeView ? 'Таблица' : 'Карточки'}
+        </Button>
       </div>
 
       {typeView ? (

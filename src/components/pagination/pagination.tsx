@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui'
 
 import { lineCount } from '../primoHistory/promo-history'
 
-import { PaginationView } from './numberPage'
+import { ChooserPage } from './chooser-page'
 
 type pagination = {
   pageCount: number
@@ -60,7 +60,7 @@ export const Pagination = ({ pageCount, pageNumber, setPageNumber, setCountLine,
         {array.map(
           (_, index) =>
             (index < 3 || index > array.length - 4 || index === pageNumber - 1 || index === pageNumber + 1 || index === pageNumber) && (
-              <PaginationView index={index} page={pageNumber + 1} setPageNumber={setPageNumber} key={index} />
+              <ChooserPage index={index} page={pageNumber + 1} setPageNumber={setPageNumber} key={index} />
             )
         )}
         <Button onClick={() => nextPage()}>
