@@ -56,7 +56,7 @@ export const Button = <E extends ElementType = 'button'>({
     <TagName
       className={clsx(
         Variants({ border, borderRadius, bgColor, color, padding }),
-        { 'border-grayDark bg-grayDark dark:bg-[#4D4D4D] text-white': isActive },
+        { 'border-grayDark bg-grayDark dark:bg-gray text-white': isActive },
         ' cursor-pointer transition',
         'focus:outline-none focus:ring focus:ring-grayLight',
         className

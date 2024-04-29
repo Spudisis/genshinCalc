@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import s from './addPrimogems.module.scss'
+import { Button } from '@/shared/ui'
+import { Input } from '@/shared/ui/input'
 
 type add = {
   calcPrimogems: (n: valuesForm) => void
@@ -55,34 +56,13 @@ export const FormAdd = ({ calcPrimogems, primogemsCount, wishCount, starglitterC
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-      <div className={s.inputs}>
-        <div className={s.inputBlock}>
-          <label>
-            Количество примогемов
-            <input type='number' {...register('countPrimogems')} placeholder='Количество' />
-          </label>
-          <p className={s.errorMessage}>{errors.countPrimogems?.message}</p>
-        </div>
-        <div className={s.inputBlock}>
-          <label>
-            Количество круток
-            <input type='number' {...register('countWishes')} placeholder='Количество' />
-          </label>
-          <p className={s.errorMessage}>{errors.countWishes?.message}</p>
-        </div>
-        <div className={s.inputBlock}>
-          <label>
-            Количество блеска
-            <input type='number' {...register('countStarglitter')} id='countStarglitter' placeholder='Количество' />
-          </label>
-          <p className={s.errorMessage}>{errors.countStarglitter?.message}</p>
-        </div>
-      </div>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 w-full max-w-48 justify-end'>
+      <Input error={errors.countPrimogems?.message} label='Количество примогемов' type='number' {...register('countPrimogems')} />
 
-      <button type='submit' className={s.submit}>
-        Добавить
-      </button>
+      <Input error={errors.countWishes?.message} label='Количество круток' type='number' {...register('countWishes')} />
+      <Input error={errors.countStarglitter?.message} label='Количество блеска' type='number' {...register('countStarglitter')} />
+
+      <Button type='submit'>Добавить</Button>
     </form>
   )
 }

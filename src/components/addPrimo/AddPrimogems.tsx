@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { addPrimogems } from '../../store/slices/primogems'
 import { calcChangePrimogems } from '../../utils'
 
-import { AddPrimogemsView } from './AddPrimogemsView'
+import { FormAdd } from './form-add'
 
 export type objForm = {
   countPrimogems: number
@@ -45,12 +45,5 @@ export const AddPrimogems = () => {
     dispatch(addPrimogems(objectFull))
   }
 
-  return (
-    <AddPrimogemsView
-      calcPrimogems={calcPrimogems}
-      primogemsCount={primogemsCount}
-      wishCount={wishCount}
-      starglitterCount={starglitterCount}
-    />
-  )
+  return <FormAdd calcPrimogems={calcPrimogems} primogemsCount={primogemsCount} wishCount={wishCount} starglitterCount={starglitterCount} />
 }
