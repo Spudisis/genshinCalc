@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, wFull, e
           ref={ref}
           {...rest}
           className={clsx(
-            'text-sm text-black border border-black dark:border-555555 border-solid dark:bg-inherit rounded-md p-2 dark:text-white ',
+            'text-sm text-black focus-visible:ring border border-black dark:border-555555 border-solid dark:bg-inherit rounded-md p-2 dark:text-white ',
             {
               'w-full': wFull
             }
