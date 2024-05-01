@@ -25,7 +25,7 @@ export const Info = ({ obj, primogems, primogemsMinusSumm, initialCountPrimogems
       <p>
         Остаток в крутках:<br></br> {lastWishes}
         <span className={s.sideWishes}>
-          {initialCountPrimogems > 0 ? `+${initialCountPrimogems}=${lastWishes + initialCountPrimogems}` : ''}
+          {initialCountPrimogems > 0 ? `+${initialCountPrimogems}=${+lastWishes + +initialCountPrimogems}` : ''}
         </span>
       </p>
       <p>
