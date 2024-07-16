@@ -22,6 +22,7 @@ export const PrimoHistory = () => {
   const getLocalPageCount = findLocalStorageNumber('countLine')
 
   const primogems = useAppSelector((store) => store.primogemSlice.primogems)
+
   const store = useAppSelector((store) => store.person.store)
   const lastCalc = useAppSelector((store) => store.persistedReducer.params)
 

@@ -57,7 +57,7 @@ export const LineTable = React.memo(
           <DifferentCount count={differenceCountWishes} />
         </ItemTable>
         <ItemTable border={false}>
-          <div>{countStarglitter}</div>
+          <div>{+countStarglitter}</div>
           <DifferentCount count={differenceCountStarglitter} />
         </ItemTable>
       </div>

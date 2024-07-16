@@ -15,7 +15,7 @@ export type PrimoHistoryViewProps = {
   reserve: number
 }
 export const PrimoHistoryView = React.memo(({ primogem, createClipBoard, reserve }: PrimoHistoryViewProps) => {
-  const lines = primogem.map((obj: primogems, index: number) => (
+  const lines = primogem.map((obj, index) => (
     <LineTable
       id={obj.id}
       date={obj.date}
